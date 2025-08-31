@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func _on_chat_closed():
 	input_disabled = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
 	if input_disabled:
@@ -66,3 +67,7 @@ func _physics_process(delta: float) -> void:
 
 func set_input_disabled(value: bool):
 	input_disabled = value
+	if value:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
