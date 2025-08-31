@@ -1838,6 +1838,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0mvw"]
+radius = 0.376908
+height = 1.56734
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3st1"]
 radius = 1.66404
@@ -1851,7 +1853,7 @@ tree_root = SubResource("AnimationNodeStateMachine_t0o1e")
 anim_player = NodePath("../AvatarSample_E/AnimationPlayer")
 
 [node name="AvatarSample_E" parent="." instance=ExtResource("2_q1f5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.940407, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.783472, 0)
 spring_bones = Array[ExtResource("3_a4m4e")]([SubResource("Resource_fattd"), SubResource("Resource_bburm"), SubResource("Resource_kxs5b"), SubResource("Resource_yikft"), SubResource("Resource_uft38"), SubResource("Resource_3gerl"), SubResource("Resource_xoosn"), SubResource("Resource_brcaf"), SubResource("Resource_qgbgv"), SubResource("Resource_wgvfu"), SubResource("Resource_wavf8"), SubResource("Resource_117lk"), SubResource("Resource_xxksr"), SubResource("Resource_11fu6"), SubResource("Resource_2a8vg"), SubResource("Resource_244tr"), SubResource("Resource_e67o0"), SubResource("Resource_8j71f"), SubResource("Resource_vpn1r"), SubResource("Resource_rgqcc"), SubResource("Resource_qtrjp"), SubResource("Resource_rk82c"), SubResource("Resource_afofp"), SubResource("Resource_a6ngr"), SubResource("Resource_o3nmy"), SubResource("Resource_xx3o4"), SubResource("Resource_lifj6"), SubResource("Resource_8bjcr"), SubResource("Resource_cmmmq"), SubResource("Resource_jehd4"), SubResource("Resource_8sbn1"), SubResource("Resource_aafg7"), SubResource("Resource_7fe6s"), SubResource("Resource_s8xq5"), SubResource("Resource_taxpk"), SubResource("Resource_ycc6i"), SubResource("Resource_yijx1"), SubResource("Resource_ohwm3"), SubResource("Resource_5t11w"), SubResource("Resource_1gnyr"), SubResource("Resource_qkbxx"), SubResource("Resource_72p7o"), SubResource("Resource_twm8f"), SubResource("Resource_r48i2"), SubResource("Resource_ah78y")])
 collider_groups = Array[ExtResource("4_52oke")]([SubResource("Resource_1wune"), SubResource("Resource_x1ohr"), SubResource("Resource_ivfwo"), SubResource("Resource_2teur"), SubResource("Resource_177k3"), SubResource("Resource_wuv05"), SubResource("Resource_ymf30"), SubResource("Resource_vawfc"), SubResource("Resource_xa8c5"), SubResource("Resource_arpui"), SubResource("Resource_evggp"), SubResource("Resource_5lbj4")])
 collider_library = Array[ExtResource("5_fh514")]([SubResource("Resource_1bjl4"), SubResource("Resource_mo4ro"), SubResource("Resource_2ar73"), SubResource("Resource_dlnys"), SubResource("Resource_f3i8e"), SubResource("Resource_xlomg"), SubResource("Resource_frrvx"), SubResource("Resource_bvkng"), SubResource("Resource_v846j"), SubResource("Resource_m6htu"), SubResource("Resource_carl0"), SubResource("Resource_o3qt2"), SubResource("Resource_kewum"), SubResource("Resource_ou6k3"), SubResource("Resource_y30x7"), SubResource("Resource_3rqd5"), SubResource("Resource_b0l17"), SubResource("Resource_i3das"), SubResource("Resource_sxcpv"), SubResource("Resource_k4j2h"), SubResource("Resource_ojyy3"), SubResource("Resource_nl56o"), SubResource("Resource_ackcu"), SubResource("Resource_lfrr0"), SubResource("Resource_l7s3j"), SubResource("Resource_rhc3q"), SubResource("Resource_wfysm"), SubResource("Resource_35rew")])
