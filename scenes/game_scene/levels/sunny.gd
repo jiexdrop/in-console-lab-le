@@ -79,12 +79,35 @@ func _move_to_target(delta: float) -> void:
 		_play_idle()
 
 func _pick_random_target() -> void:
-	var random_offset = Vector3(
-		randf_range(-5, 5),
-		0,
-		randf_range(-5, 5)
-	)
-	target_position = global_position + random_offset
+	var max_attempts = 10
+	var attempt = 0
+	
+	while attempt < max_attempts:
+		var random_offset = Vector3(
+			randf_range(-10, 10),  # Increased range for more variety
+			0,
+			randf_range(-10, 10)
+		)
+		var potential_target = global_position + random_offset
+		
+		# Cast a ray downward to check for ground
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(
+			potential_target + Vector3(0, 2, 0),  # Start above the target
+			potential_target + Vector3(0, -10, 0)  # Cast down
+		)
+		
+		var result = space_state.intersect_ray(query)
+		if result:
+			# Found ground! Adjust target to be on the surface
+			target_position = result.position
+			has_target = true
+			return
+		
+		attempt += 1
+	
+	# Fallback: stay in current position if no valid target found
+	target_position = global_position
 	has_target = true
 
 
