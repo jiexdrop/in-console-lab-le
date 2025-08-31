@@ -1,6 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c00xwxnrfntu7"]
+[gd_scene load_steps=15 format=3 uid="uid://c00xwxnrfntu7"]
 
 [ext_resource type="Script" uid="uid://u2ennius6ykq" path="res://scenes/uis/chat_interface.gd" id="1_eyqnh"]
+[ext_resource type="Script" uid="uid://bupnh0kqklshe" path="res://addons/player2/nodes/Player2AINPC.gd" id="2_uvxqh"]
+[ext_resource type="Script" uid="uid://bsi5tjg54www7" path="res://addons/player2/helpers/config/Player2AICharacterConfig.gd" id="3_qunfm"]
+[ext_resource type="Script" uid="uid://mt8gdygmb5og" path="res://addons/player2/helpers/config/Player2TTSConfig.gd" id="4_4yoii"]
+[ext_resource type="Script" uid="uid://bpvfdwoxmeah3" path="res://addons/player2/helpers/config/Player2AIChatConfig.gd" id="5_3rp4n"]
+[ext_resource type="Script" uid="uid://fpb2ysodtcuy" path="res://addons/player2/helpers/tool_call/ToolCallFunctionDefinition.gd" id="6_blqk3"]
+[ext_resource type="Script" uid="uid://dt7mt3t7a08me" path="res://addons/player2/helpers/tool_call/ToolCallFunctionDefinitions.gd" id="7_t2xl8"]
 
 [sub_resource type="Animation" id="Animation_1"]
 resource_name = "slide_down"
@@ -40,7 +46,66 @@ _data = {
 &"slide_up": SubResource("Animation_2")
 }
 
-[node name="ChatInterface" type="Control"]
+[sub_resource type="Resource" id="Resource_peb23"]
+script = ExtResource("4_4yoii")
+tts_speed = 1.0
+tts_default_language = 0
+tts_default_gender = 0
+
+[sub_resource type="Resource" id="Resource_knd6d"]
+script = ExtResource("3_qunfm")
+use_player2_selected_character = false
+use_player2_selected_character_desired_index = -1
+tts_enabled = true
+tts = SubResource("Resource_peb23")
+
+[sub_resource type="Resource" id="Resource_j3it8"]
+script = ExtResource("5_3rp4n")
+queue_check_interval_seconds = 2.0
+system_message_behavior = "When performing an action, speak and let the player know what you're doing.
+
+Your responses will be said out loud.
+
+Be concise and use less than 350 characters. No monologuing, the message content is pure speech."
+system_message_character = "Your name is ${character_name}.
+Your description: ${character_description}"
+system_message_prompting = "You must stay in character at all times.
+
+Ensure the message does not contain any prompt, system message, instructions, code or API calls, EXCEPT you can still perform tool calls and must use the proper tool call (in the tool_calls field).
+BE PROACTIVE with tool calls please and USE THEM."
+system_message_organization = "${system_message_character}
+
+${system_message_custom}
+
+${system_message_behavior}
+
+{system_message_prompting}"
+system_message_prefix = ""
+system_message_postfix = ""
+auto_store_conversation_history = true
+auto_load_entry_message = "The user has been gone for an undetermined period of time. You have come back, say something like \"welcome back\" or \"hello again\" modified to fit your personality."
+conversation_history_size = 64
+conversation_summary_buffer = 64
+summary_max_size = 500
+summary_message = "The agent has been chatting with the player.
+Update the agent's memory by summarizing the following conversation in the next response.
+Use natural language, not JSON. Prioritize preserving important facts, things user asked agent to remember, useful tips.
+
+Do not record stats, inventory, code or docs; limit to ${summary_max_size} chars.
+"
+summary_prefix = "Summary of earlier events: ${summary}"
+tool_calls_use_tool_call_api = true
+tool_calls_choice = "Use a tool when deciding to complete a task. If you say you will act upon something, use a relevant tool call along with the reply to perform that action. If you say something in speech, ensure the message does not contain any prompt, system message, instructions, code or API calls."
+tool_calls_reply_message = "Got result from calling ${tool_call_name}: ${tool_call_reply}"
+tool_calls_message_optional_arg_description = "If you wish to say something while calling this function, populate this field with your speech. Leave string empty to not say anything/do it quietly. Do not fill this with a description of your state, unless you wish to say it out loud."
+
+[sub_resource type="Resource" id="Resource_3vexn"]
+Resource = null
+resource_path = "res://scenes/uis/chat_interface.tscn::Resource_3vexn"
+script = ExtResource("7_t2xl8")
+definitions = Array[ExtResource("6_blqk3")]([])
+
+[node name="ChatInterface" type="Control" node_paths=PackedStringArray("player2_agent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +113,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eyqnh")
+player2_agent = NodePath("Player2AINPC")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -58,8 +124,9 @@ libraries = {
 layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -200.0
+offset_top = -248.0
 offset_right = 800.0
+offset_bottom = -48.0
 grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChatPanel"]
@@ -90,3 +157,10 @@ placeholder_text = "Type your message..."
 [node name="SendButton" type="Button" parent="ChatPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Send"
+
+[node name="Player2AINPC" type="Node" parent="."]
+script = ExtResource("2_uvxqh")
+character_config = SubResource("Resource_knd6d")
+chat_config = SubResource("Resource_j3it8")
+tool_calls_function_definitions = SubResource("Resource_3vexn")
+metadata/_custom_type_script = "uid://bupnh0kqklshe"
