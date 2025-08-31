@@ -104,8 +104,20 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		chat_interface.show_chat()
 		state = State.IDLE
+		
+		# Disable player input
+		if body.has_method("set_input_disabled"):
+			body.set_input_disabled(true)
+		# Or access directly if you know the property name:
+		# body.input_disabled = true
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		chat_interface.hide_chat()
 		state = State.WANDER
+		
+		# Re-enable player input
+		if body.has_method("set_input_disabled"):
+			body.set_input_disabled(false)
+		# Or access directly:
+		# body.input_disabled = false

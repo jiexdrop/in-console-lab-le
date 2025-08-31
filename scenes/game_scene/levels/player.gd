@@ -7,16 +7,24 @@ extends CharacterBody3D
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var cam: Camera3D = $Camera3D
+@onready var chat_interface: Control = $"../Sunny/CanvasLayer/ChatInterface"
 
 var yaw: float = 0.0
 var pitch: float = 0.0
 
+var input_disabled: bool = false
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if chat_interface:
+		chat_interface.connect("chat_closed", _on_chat_closed)
 
+func _on_chat_closed():
+	input_disabled = false
 
 func _input(event: InputEvent) -> void:
+	if input_disabled:
+		return
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * mouse_sensitivity
 		pitch -= event.relative.y * mouse_sensitivity
@@ -27,6 +35,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if input_disabled:
+		return
 	var input_dir = Vector2.ZERO
 	
 	if Input.is_action_pressed("move_up"):
@@ -53,3 +63,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_velocity
 
 	move_and_slide()
+
+func set_input_disabled(value: bool):
+	input_disabled = value
