@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var avatar_sample_e: VRMTopLevel = $AvatarSample_E
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine: AnimationNodeStateMachinePlayback
+@onready var chat_interface: Control = $CanvasLayer/ChatInterface
 
 var target_position: Vector3
 var has_target: bool = false
@@ -97,3 +98,14 @@ func _play_idle() -> void:
 	if current_animation != "Idle":
 		state_machine.travel("Idle")  # Use your state names
 		current_animation = "Idle"
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		chat_interface.show_chat()
+		state = State.IDLE
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		chat_interface.hide_chat()
+		state = State.WANDER

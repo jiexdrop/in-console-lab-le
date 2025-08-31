@@ -1,10 +1,11 @@
-[gd_scene load_steps=120 format=3 uid="uid://dc384m82i3jlj"]
+[gd_scene load_steps=122 format=3 uid="uid://dc384m82i3jlj"]
 
 [ext_resource type="Script" uid="uid://t8d23hydev30" path="res://scenes/game_scene/levels/sunny.gd" id="1_t0o1e"]
 [ext_resource type="PackedScene" uid="uid://bkwpborfxt1fj" path="res://assets/vrm/AvatarSample_E.vrm" id="2_q1f5h"]
 [ext_resource type="Script" uid="uid://dq40j0fcexy3s" path="res://addons/vrm/vrm_spring_bone.gd" id="3_a4m4e"]
 [ext_resource type="Script" uid="uid://csej2imsy3jtp" path="res://addons/vrm/vrm_collider_group.gd" id="4_52oke"]
 [ext_resource type="Script" uid="uid://crthok3iytbyc" path="res://addons/vrm/vrm_collider.gd" id="5_fh514"]
+[ext_resource type="PackedScene" uid="uid://c00xwxnrfntu7" path="res://scenes/uis/chat_interface.tscn" id="7_rp5gh"]
 [ext_resource type="AnimationLibrary" uid="uid://dpd4w14h0scq3" path="res://assets/animation_library/locomotion_1.res" id="11_o1e80"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3st1"]
@@ -1242,462 +1243,6 @@ hit_radius = PackedFloat64Array(1, 1, 1, 1, 0)
 center_bone = "Root_"
 center_node = NodePath("")
 
-[sub_resource type="Animation" id="Animation_rp5kj"]
-resource_name = "happy"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Joy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_hkpqp"]
-resource_name = "angry"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Angry")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_8dcbu"]
-resource_name = "sad"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Sorrow")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_8ew6n"]
-resource_name = "relaxed"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Fun")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_33dbh"]
-resource_name = "surprised"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Surprised")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_67lwr"]
-resource_name = "aa"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_A")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_poo3v"]
-resource_name = "ih"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_I")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_4h2qo"]
-resource_name = "ou"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_U")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_d656l"]
-resource_name = "ee"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_E")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_yuyai"]
-resource_name = "oh"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_O")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_62kde"]
-resource_name = "blink"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_meuo5"]
-resource_name = "blinkLeft"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close_L")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_rkqrn"]
-resource_name = "blinkRight"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close_R")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_1vwbi"]
-resource_name = "neutral"
-tracks/0/type = "blend_shape"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Neutral")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
-metadata/vrm_is_binary = false
-metadata/vrm_override_blink = "none"
-metadata/vrm_override_look_at = "none"
-metadata/vrm_override_mouth = "none"
-
-[sub_resource type="Animation" id="Animation_momke"]
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.5, 1, 0.706138, 0.0370071, -0.0370071, 0.706138)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0.5, 1, 0.706138, 0.0370071, -0.0370071, 0.706138)
-
-[sub_resource type="Animation" id="Animation_itl1d"]
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.5, 1, 0.706138, -0.0370071, 0.0370071, 0.706138)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0.5, 1, 0.706138, -0.0370071, 0.0370071, 0.706138)
-
-[sub_resource type="Animation" id="Animation_r123i"]
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.5, 1, 0.67559, 0, 0, 0.737277)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0.5, 1, 0.67559, 0, 0, 0.737277)
-
-[sub_resource type="Animation" id="Animation_rhgma"]
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.5, 1, 0.737277, 0, 0, 0.67559)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0.5, 1, 0.737277, 0, 0, 0.67559)
-
 [sub_resource type="Animation" id="Animation_wyawv"]
 resource_name = "RESET"
 tracks/0/type = "blend_shape"
@@ -1813,6 +1358,462 @@ tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
 
+[sub_resource type="Animation" id="Animation_67lwr"]
+resource_name = "aa"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_A")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_hkpqp"]
+resource_name = "angry"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_62kde"]
+resource_name = "blink"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_meuo5"]
+resource_name = "blinkLeft"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close_L")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_rkqrn"]
+resource_name = "blinkRight"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close_R")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_d656l"]
+resource_name = "ee"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_E")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_rp5kj"]
+resource_name = "happy"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Joy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_poo3v"]
+resource_name = "ih"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_I")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_rhgma"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.5, 1, 0.737277, 0, 0, 0.67559)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.5, 1, 0.737277, 0, 0, 0.67559)
+
+[sub_resource type="Animation" id="Animation_momke"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.5, 1, 0.706138, 0.0370071, -0.0370071, 0.706138)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.5, 1, 0.706138, 0.0370071, -0.0370071, 0.706138)
+
+[sub_resource type="Animation" id="Animation_itl1d"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.5, 1, 0.706138, -0.0370071, 0.0370071, 0.706138)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.5, 1, 0.706138, -0.0370071, 0.0370071, 0.706138)
+
+[sub_resource type="Animation" id="Animation_r123i"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.5, 1, 0.67559, 0, 0, 0.737277)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.5, 1, 0.67559, 0, 0, 0.737277)
+
+[sub_resource type="Animation" id="Animation_1vwbi"]
+resource_name = "neutral"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Neutral")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_yuyai"]
+resource_name = "oh"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_O")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_4h2qo"]
+resource_name = "ou"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_U")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_8ew6n"]
+resource_name = "relaxed"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Fun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_8dcbu"]
+resource_name = "sad"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Sorrow")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_33dbh"]
+resource_name = "surprised"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Surprised")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s4utm"]
 _data = {
 &"RESET": SubResource("Animation_wyawv"),
@@ -1838,6 +1839,9 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y0mvw"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_i3st1"]
+radius = 1.66404
+
 [node name="Sunny" type="CharacterBody3D"]
 script = ExtResource("1_t0o1e")
 player_path = NodePath("../Player")
@@ -1854,62 +1858,64 @@ collider_groups = Array[ExtResource("4_52oke")]([SubResource("Resource_1wune"), 
 collider_library = Array[ExtResource("5_fh514")]([SubResource("Resource_1bjl4"), SubResource("Resource_mo4ro"), SubResource("Resource_2ar73"), SubResource("Resource_dlnys"), SubResource("Resource_f3i8e"), SubResource("Resource_xlomg"), SubResource("Resource_frrvx"), SubResource("Resource_bvkng"), SubResource("Resource_v846j"), SubResource("Resource_m6htu"), SubResource("Resource_carl0"), SubResource("Resource_o3qt2"), SubResource("Resource_kewum"), SubResource("Resource_ou6k3"), SubResource("Resource_y30x7"), SubResource("Resource_3rqd5"), SubResource("Resource_b0l17"), SubResource("Resource_i3das"), SubResource("Resource_sxcpv"), SubResource("Resource_k4j2h"), SubResource("Resource_ojyy3"), SubResource("Resource_nl56o"), SubResource("Resource_ackcu"), SubResource("Resource_lfrr0"), SubResource("Resource_l7s3j"), SubResource("Resource_rhc3q"), SubResource("Resource_wfysm"), SubResource("Resource_35rew")])
 
 [node name="GeneralSkeleton" parent="AvatarSample_E" index="0"]
-bones/1/position = Vector3(0.00520467, 0.860697, 0.0243673)
-bones/1/rotation = Quaternion(-0.00596585, 0.0878995, -0.0407914, 0.995276)
-bones/32/rotation = Quaternion(0.022626, -0.0074723, 0.0301094, 0.999263)
-bones/33/rotation = Quaternion(0.0143016, -0.0199879, 0.00709269, 0.999673)
-bones/34/rotation = Quaternion(-0.02555, -0.0198769, 0.00270586, 0.999472)
-bones/41/rotation = Quaternion(-0.0292946, -0.0102939, -0.00828717, 0.999484)
-bones/42/rotation = Quaternion(-0.0118593, -0.033483, 0.00310018, 0.999364)
-bones/98/rotation = Quaternion(0.350438, 0.567455, 0.597161, -0.44563)
-bones/99/rotation = Quaternion(-0.0408102, 0.828138, -0.558969, 0.00865179)
-bones/100/rotation = Quaternion(0.216176, -0.714327, 0.216177, 0.629502)
-bones/101/rotation = Quaternion(0.142273, 0.777636, 0.16415, 0.589997)
-bones/102/rotation = Quaternion(-0.0349378, 0.00252229, -0.0305056, 0.998921)
-bones/103/rotation = Quaternion(0.146141, -0.000834629, -0.0216193, 0.989027)
-bones/104/rotation = Quaternion(0.0335986, -0.000229895, -0.00155079, 0.999434)
-bones/105/rotation = Quaternion(0.265652, 0.00865924, -0.118958, 0.956663)
-bones/106/rotation = Quaternion(0.251069, -0.000841886, -0.0237086, 0.967678)
-bones/107/rotation = Quaternion(0.0586313, 7.54297e-05, -0.0133692, 0.99819)
-bones/108/rotation = Quaternion(0.142909, -0.00196765, -0.0660055, 0.98753)
-bones/109/rotation = Quaternion(0.234053, -0.00184786, -0.0304572, 0.971745)
-bones/110/rotation = Quaternion(0.139005, 0.000110328, -0.0162873, 0.990158)
-bones/111/rotation = Quaternion(0.29433, -0.0149828, -0.0695377, 0.953053)
-bones/112/rotation = Quaternion(0.149209, 0.00103629, -0.0178127, 0.988645)
-bones/113/rotation = Quaternion(0.10957, 0.00143377, -0.0107962, 0.993919)
-bones/114/rotation = Quaternion(-0.28711, 0.851998, 0.150375, 0.411163)
-bones/115/rotation = Quaternion(0.161785, -0.134783, 0.0451829, 0.976533)
-bones/116/rotation = Quaternion(-0.113392, 0.0505677, 0.0348997, 0.991649)
-bones/117/rotation = Quaternion(0.493062, -0.51167, -0.532836, -0.459532)
-bones/118/rotation = Quaternion(0.116648, 0.83037, -0.52273, 0.153728)
-bones/119/rotation = Quaternion(0.194265, 0.716942, -0.194265, 0.640715)
-bones/120/rotation = Quaternion(0.119247, -0.83574, -0.0446026, 0.534162)
-bones/121/rotation = Quaternion(0.0930213, 0.0184907, -0.00590208, 0.995475)
-bones/122/rotation = Quaternion(0.231027, 0.00148386, 0.0300981, 0.972481)
-bones/123/rotation = Quaternion(0.151553, 0.00222978, 0.00487325, 0.988435)
-bones/124/rotation = Quaternion(0.381439, 0.0129103, 0.0903007, 0.919882)
-bones/125/rotation = Quaternion(0.414574, 0.00404108, 0.0402219, 0.909117)
-bones/126/rotation = Quaternion(0.368618, 0.0120887, 0.0199024, 0.929289)
-bones/127/rotation = Quaternion(0.199501, 0.00468642, 0.0701513, 0.977372)
-bones/128/rotation = Quaternion(0.325134, 0.00290747, 0.0394024, 0.944842)
-bones/129/rotation = Quaternion(0.267637, 0.000295565, 0.0277755, 0.96312)
-bones/130/rotation = Quaternion(0.348309, 0.0175964, 0.0752791, 0.934187)
-bones/131/rotation = Quaternion(0.20602, -0.00144768, 0.0234407, 0.978266)
-bones/132/rotation = Quaternion(0.175499, 0.00138238, 0.00160345, 0.984477)
-bones/133/rotation = Quaternion(-0.265627, -0.788316, -0.119692, 0.541917)
-bones/134/rotation = Quaternion(0.030149, -0.109913, 0.0650064, 0.991355)
-bones/135/rotation = Quaternion(-0.0559587, 0.131676, 0.0133531, 0.989622)
-bones/136/rotation = Quaternion(-0.00272144, 0.194683, 0.98039, -0.0304421)
-bones/167/rotation = Quaternion(-0.0607798, 0.845597, -0.53009, -0.016598)
-bones/188/rotation = Quaternion(-0.00772225, 0.716321, -0.697648, 0.0106382)
-bones/189/rotation = Quaternion(1.70532e-08, 0.999907, 0.0136763, 4.21848e-09)
-bones/190/rotation = Quaternion(-0.105298, 0.0824784, 0.986806, -0.091234)
-bones/221/rotation = Quaternion(0.0144534, 0.988464, -0.150061, 0.0145486)
-bones/242/rotation = Quaternion(-0.0608312, 0.657795, -0.750727, -0.00369938)
-bones/243/rotation = Quaternion(2.15847e-09, 0.999707, 0.0241982, -1.86955e-08)
+bones/1/position = Vector3(-0.0112792, 0.851322, 0.0267507)
+bones/1/rotation = Quaternion(-0.0273885, -0.0555585, -0.0408173, 0.997245)
+bones/32/rotation = Quaternion(-0.0201352, -0.0105362, 0.0416752, 0.998873)
+bones/33/rotation = Quaternion(-0.00697357, -0.0165034, 0.0515094, 0.998512)
+bones/34/rotation = Quaternion(-0.00648476, -0.0150104, 0.0520252, 0.998512)
+bones/41/rotation = Quaternion(0.0314659, 0.00399658, -0.0225243, 0.999243)
+bones/42/rotation = Quaternion(0.0224048, 0.0367558, -0.0896466, 0.995043)
+bones/43/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/44/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/98/rotation = Quaternion(0.545098, 0.44915, 0.516574, -0.484028)
+bones/99/rotation = Quaternion(0.0560915, 0.810517, -0.568633, -0.128734)
+bones/100/rotation = Quaternion(0.0799838, -0.718511, 0.0799837, 0.686256)
+bones/101/rotation = Quaternion(0.108369, 0.703344, 0.0190787, 0.702281)
+bones/102/rotation = Quaternion(0.0644229, -0.00172217, -0.00135687, 0.99792)
+bones/103/rotation = Quaternion(0.223112, 2.7433e-05, -0.0269252, 0.974421)
+bones/104/rotation = Quaternion(0.141244, -1.56462e-06, -0.0170455, 0.989828)
+bones/105/rotation = Quaternion(0.167369, -0.000193819, -0.0375291, 0.98518)
+bones/106/rotation = Quaternion(0.242543, 0.00945085, 0.00558525, 0.970078)
+bones/107/rotation = Quaternion(0.427112, 0.00150961, -0.0515448, 0.902727)
+bones/108/rotation = Quaternion(0.100142, -3.3021e-05, -0.0119989, 0.994901)
+bones/109/rotation = Quaternion(0.247185, -5.0962e-06, -0.0298304, 0.968509)
+bones/110/rotation = Quaternion(0.193752, 3.94881e-06, -0.023382, 0.980772)
+bones/111/rotation = Quaternion(0.133932, -0.00135002, -0.0122375, 0.990914)
+bones/112/rotation = Quaternion(0.332834, 4.23193e-06, -0.0401666, 0.94213)
+bones/113/rotation = Quaternion(0.26633, 3.06964e-06, -0.0321408, 0.963346)
+bones/114/rotation = Quaternion(-0.188488, 0.732015, 0.096138, 0.647599)
+bones/115/rotation = Quaternion(0.174644, 0.0762806, -0.0521193, 0.980288)
+bones/116/rotation = Quaternion(0.158376, 0.0655739, 0.00403166, 0.985191)
+bones/117/rotation = Quaternion(0.52583, -0.461474, -0.563089, -0.439859)
+bones/118/rotation = Quaternion(0.0362987, 0.909926, -0.397323, 0.113359)
+bones/119/rotation = Quaternion(0.0681357, 0.717421, -0.068136, 0.689944)
+bones/120/rotation = Quaternion(0.00489235, -0.636907, 0.0273289, 0.770441)
+bones/121/rotation = Quaternion(0.076481, 0.00104606, 0.00550508, 0.997055)
+bones/122/rotation = Quaternion(0.160924, 2.9698e-05, 0.0196124, 0.986772)
+bones/123/rotation = Quaternion(0.0918413, 5.51343e-07, 0.0111931, 0.995711)
+bones/124/rotation = Quaternion(0.182159, 0.00156003, 0.0187747, 0.983089)
+bones/125/rotation = Quaternion(0.256043, 0.000699699, 0.031205, 0.966161)
+bones/126/rotation = Quaternion(0.363347, 0.000631362, 0.0442827, 0.930601)
+bones/127/rotation = Quaternion(0.0892561, -7.05421e-05, 0.0108136, 0.99595)
+bones/128/rotation = Quaternion(0.258778, 0.000180259, 0.0315383, 0.965422)
+bones/129/rotation = Quaternion(0.113617, -5.14984e-05, 0.0138282, 0.993428)
+bones/130/rotation = Quaternion(0.149886, -0.000839308, 0.0207056, 0.988486)
+bones/131/rotation = Quaternion(0.298465, -3.88622e-05, 0.036375, 0.953727)
+bones/132/rotation = Quaternion(0.248572, -0.000139087, 0.0302697, 0.96814)
+bones/133/rotation = Quaternion(-0.19756, -0.681801, -0.118567, 0.694304)
+bones/134/rotation = Quaternion(0.16273, -0.145828, 0.0234298, 0.975553)
+bones/135/rotation = Quaternion(0.111115, -0.0578755, 0.00295293, 0.992117)
+bones/136/rotation = Quaternion(0.142198, 0.169526, 0.967612, -0.121521)
+bones/167/rotation = Quaternion(-0.0262281, 0.988914, -0.14042, -0.0405324)
+bones/188/rotation = Quaternion(-0.0548534, 0.736735, -0.671052, 0.0624665)
+bones/189/rotation = Quaternion(-5.69833e-09, 0.999803, -0.0198361, -2.77005e-08)
+bones/190/rotation = Quaternion(-0.0753209, 0.029827, 0.994653, -0.0640488)
+bones/221/rotation = Quaternion(0.0011147, 0.978483, -0.196115, -0.0640973)
+bones/242/rotation = Quaternion(-0.0180012, 0.600403, -0.799291, 0.018064)
+bones/243/rotation = Quaternion(1.85786e-07, 0.999996, 0.00273576, -9.81957e-09)
 
 [node name="Head" parent="AvatarSample_E/GeneralSkeleton" index="4"]
-transform = Transform3D(0.999883, 0.013541, -0.00712819, -0.0130288, 0.997629, 0.0675738, 0.00802634, -0.067473, 0.997689, 0.0150853, 1.32619, 0.00467698)
+transform = Transform3D(0.995213, 0.0108586, -0.0971192, -0.00884106, 0.999737, 0.0211803, 0.0973236, -0.0202203, 0.995047, -0.0461147, 1.30354, -0.0541394)
 
 [node name="AnimationPlayer" parent="AvatarSample_E" index="1"]
 libraries = {
@@ -1923,5 +1929,17 @@ collider_library = Array[ExtResource("5_fh514")]([SubResource("Resource_1bjl4"),
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_y0mvw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_i3st1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChatInterface" parent="CanvasLayer" instance=ExtResource("7_rp5gh")]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 
 [editable path="AvatarSample_E"]
