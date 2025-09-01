@@ -26,6 +26,9 @@ func _on_chat_closed():
 func _input(event: InputEvent) -> void:
 	if input_disabled:
 		return
+	if chat_interface.is_chat_open:
+		return
+	
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * mouse_sensitivity
 		pitch -= event.relative.y * mouse_sensitivity
