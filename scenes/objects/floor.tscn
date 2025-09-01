@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://epgsjxpc50j6"]
+[gd_scene load_steps=5 format=3 uid="uid://epgsjxpc50j6"]
 
 [ext_resource type="PackedScene" uid="uid://6g2grxwvrnsv" path="res://assets/kenney_prototype/Floor.gltf" id="1_g5sng"]
+[ext_resource type="PackedScene" uid="uid://3qvv0h7niyfu" path="res://assets/kenney_prototype/Floor_Dirt.gltf" id="2_ees4p"]
+[ext_resource type="PackedScene" uid="uid://1st0ro1q8tjf" path="res://assets/kenney_prototype/Floor_Prototype.gltf" id="3_hocbu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2hhcp"]
 size = Vector3(4.027, 0.508789, 3.98901)
@@ -11,4 +13,13 @@ size = Vector3(4.027, 0.508789, 3.98901)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00257492, 0.245605, -0.00012207)
+visible = false
 shape = SubResource("BoxShape3D_2hhcp")
+
+[node name="Floor_Dirt2" parent="." instance=ExtResource("2_ees4p")]
+visible = false
+
+[node name="Floor_Prototype2" parent="." instance=ExtResource("3_hocbu")]
+visible = false
+
+[editable path="Floor2"]

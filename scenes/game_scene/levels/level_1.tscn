@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=9 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
@@ -6,6 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://dc384m82i3jlj" path="res://scenes/entities/sunny.tscn" id="4_w6i3l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6i3l"]
+
+[sub_resource type="Sky" id="Sky_623lg"]
+sky_material = SubResource("ProceduralSkyMaterial_w6i3l")
+
+[sub_resource type="Environment" id="Environment_sycfm"]
+background_mode = 2
+sky = SubResource("Sky_623lg")
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_623lg")
@@ -30,34 +39,16 @@ transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.43
 [node name="Floor" parent="Floors" instance=ExtResource("3_w6i3l")]
 
 [node name="Floor2" parent="Floors" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
-
-[node name="Floor3" parent="Floors" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
-
-[node name="Floor4" parent="Floors" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-
-[node name="Floor5" parent="Floors" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
-
-[node name="Floor6" parent="Floors" instance=ExtResource("3_w6i3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Floor7" parent="Floors" instance=ExtResource("3_w6i3l")]
+[node name="Floor3" parent="Floors" instance=ExtResource("3_w6i3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
-[node name="Floor8" parent="Floors" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
-
-[node name="Floor9" parent="Floors" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
-
-[node name="Floor10" parent="Floors" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
-
-[node name="Floor11" parent="Floors" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 4)
+[node name="Floor4" parent="Floors" instance=ExtResource("3_w6i3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="Sunny" parent="." instance=ExtResource("4_w6i3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09782, 1.32014, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sycfm")
