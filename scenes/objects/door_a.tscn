@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://xgx0o0jheiq0"]
+
+[ext_resource type="PackedScene" uid="uid://dahksfg7da1pq" path="res://assets/kenney_prototype/Door_A.gltf" id="1_ttbh5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ttbh5"]
+size = Vector3(1.427, 2.71631, 1.54596)
+
+[node name="Door_A" type="Area3D"]
+
+[node name="Door_A2" parent="." instance=ExtResource("1_ttbh5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88269, 1.50195, 0.0210876)
+shape = SubResource("BoxShape3D_ttbh5")
