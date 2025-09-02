@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=13 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="3_y0mvw"]
+[ext_resource type="PackedScene" uid="uid://khgp83k671ke" path="res://assets/kenney_prototype/Barrel_B.gltf" id="4_bsimd"]
 [ext_resource type="PackedScene" uid="uid://dc384m82i3jlj" path="res://scenes/entities/sunny.tscn" id="4_w6i3l"]
+[ext_resource type="PackedScene" uid="uid://duoiysbi5mhm5" path="res://assets/kenney_prototype/Cube_Prototype_Large_A.gltf" id="5_fmabn"]
+[ext_resource type="PackedScene" uid="uid://dahksfg7da1pq" path="res://assets/kenney_prototype/Door_A.gltf" id="6_85t3v"]
+[ext_resource type="PackedScene" uid="uid://cyoawslka6otj" path="res://assets/kenney_prototype/Primitive_Floor.gltf" id="8_8avtb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -47,8 +51,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 [node name="Floor4" parent="Floors" instance=ExtResource("3_w6i3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
+[node name="Barrel_B2" parent="Floors" instance=ExtResource("4_bsimd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 3)
+
+[node name="Cube_Prototype_Large_A2" parent="Floors" instance=ExtResource("5_fmabn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+
+[node name="Cube_Prototype_Large_A3" parent="Floors" instance=ExtResource("5_fmabn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6546, 0, 8)
+
+[node name="Door_A2" parent="Floors" instance=ExtResource("6_85t3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375122, 0.528357, 6.02849)
+
 [node name="Sunny" parent="." instance=ExtResource("4_w6i3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09782, 1.32014, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sycfm")
+
+[node name="Primitive_Floor2" parent="." instance=ExtResource("8_8avtb")]
+transform = Transform3D(0.966979, -0.254855, 0, 0.254855, 0.966979, 0, 0, 0, 1, 8.05921, 0, 4.17828)

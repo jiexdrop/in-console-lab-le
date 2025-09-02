@@ -29,11 +29,17 @@ func _input(event: InputEvent) -> void:
 	if chat_interface.is_chat_open:
 		return
 	
+	# Add this section for the talk input
+	if event.is_action_pressed("talk"):
+		chat_interface.show_chat()
+		set_input_disabled(true)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		return
+	
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * mouse_sensitivity
 		pitch -= event.relative.y * mouse_sensitivity
 		pitch = clamp(pitch, -1.2, 1.2) # limit looking up/down
-
 		rotation.y = yaw
 		cam.rotation.x = pitch
 
