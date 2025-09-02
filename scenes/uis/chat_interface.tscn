@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c00xwxnrfntu7"]
+[gd_scene load_steps=17 format=3 uid="uid://c00xwxnrfntu7"]
 
 [ext_resource type="Script" uid="uid://u2ennius6ykq" path="res://scenes/uis/chat_interface.gd" id="1_eyqnh"]
 [ext_resource type="Script" uid="uid://bupnh0kqklshe" path="res://addons/player2/nodes/Player2AINPC.gd" id="2_uvxqh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bpvfdwoxmeah3" path="res://addons/player2/helpers/config/Player2AIChatConfig.gd" id="5_3rp4n"]
 [ext_resource type="Script" uid="uid://fpb2ysodtcuy" path="res://addons/player2/helpers/tool_call/ToolCallFunctionDefinition.gd" id="6_blqk3"]
 [ext_resource type="Script" uid="uid://dt7mt3t7a08me" path="res://addons/player2/helpers/tool_call/ToolCallFunctionDefinitions.gd" id="7_t2xl8"]
+[ext_resource type="Script" uid="uid://vpbsdwnjywx3" path="res://scripts/tool_call.gd" id="8_qunfm"]
 
 [sub_resource type="Animation" id="Animation_1"]
 resource_name = "slide_down"
@@ -46,20 +47,20 @@ _data = {
 &"slide_up": SubResource("Animation_2")
 }
 
-[sub_resource type="Resource" id="Resource_peb23"]
+[sub_resource type="Resource" id="Resource_4yoii"]
 script = ExtResource("4_4yoii")
 tts_speed = 1.0
 tts_default_language = 0
 tts_default_gender = 0
 
-[sub_resource type="Resource" id="Resource_knd6d"]
+[sub_resource type="Resource" id="Resource_blqk3"]
 script = ExtResource("3_qunfm")
 use_player2_selected_character = false
 use_player2_selected_character_desired_index = -1
 tts_enabled = true
-tts = SubResource("Resource_peb23")
+tts = SubResource("Resource_4yoii")
 
-[sub_resource type="Resource" id="Resource_j3it8"]
+[sub_resource type="Resource" id="Resource_t2xl8"]
 script = ExtResource("5_3rp4n")
 queue_check_interval_seconds = 2.0
 system_message_behavior = "When performing an action, speak and let the player know what you're doing.
@@ -99,11 +100,21 @@ tool_calls_choice = "Use a tool when deciding to complete a task. If you say you
 tool_calls_reply_message = "Got result from calling ${tool_call_name}: ${tool_call_reply}"
 tool_calls_message_optional_arg_description = "If you wish to say something while calling this function, populate this field with your speech. Leave string empty to not say anything/do it quietly. Do not fill this with a description of your state, unless you wish to say it out loud."
 
-[sub_resource type="Resource" id="Resource_3vexn"]
+[sub_resource type="Resource" id="Resource_qunfm"]
 Resource = null
-resource_path = "res://scenes/uis/chat_interface.tscn::Resource_3vexn"
+resource_path = "res://scenes/uis/chat_interface.tscn::Resource_qunfm"
+resource_scene_unique_id = "Resource_qunfm"
+script = ExtResource("6_blqk3")
+name = "open_door"
+enabled = true
+description = "Will open the door for the player "
+
+[sub_resource type="Resource" id="Resource_peb23"]
+Resource = null
+resource_path = "res://scenes/uis/chat_interface.tscn::Resource_peb23"
 script = ExtResource("7_t2xl8")
-definitions = Array[ExtResource("6_blqk3")]([])
+definitions = Array[ExtResource("6_blqk3")]([SubResource("Resource_qunfm")])
+open_door = SubResource("Resource_qunfm")
 
 [node name="ChatInterface" type="Control" node_paths=PackedStringArray("player2_agent")]
 layout_mode = 3
@@ -158,9 +169,13 @@ placeholder_text = "Type your message..."
 layout_mode = 2
 text = "Send"
 
-[node name="Player2AINPC" type="Node" parent="."]
+[node name="ToolCalls" type="Node" parent="."]
+script = ExtResource("8_qunfm")
+
+[node name="Player2AINPC" type="Node" parent="." node_paths=PackedStringArray("tool_calls_scan_node_for_functions")]
 script = ExtResource("2_uvxqh")
-character_config = SubResource("Resource_knd6d")
-chat_config = SubResource("Resource_j3it8")
-tool_calls_function_definitions = SubResource("Resource_3vexn")
+character_config = SubResource("Resource_blqk3")
+chat_config = SubResource("Resource_t2xl8")
+tool_calls_scan_node_for_functions = [NodePath("../ToolCalls")]
+tool_calls_function_definitions = SubResource("Resource_peb23")
 metadata/_custom_type_script = "uid://bupnh0kqklshe"

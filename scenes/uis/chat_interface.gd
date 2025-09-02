@@ -4,7 +4,7 @@ extends Control
 @onready var send_button = $ChatPanel/VBoxContainer/HBoxContainer/SendButton
 @onready var chat_history = $ChatPanel/VBoxContainer/ChatHistory
 @export var deselect_on_send : bool = true
-@export var player2_agent : Node  # Assign your Player2Agent in the inspector
+@export var player2_agent : Player2AINPC  # Assign your Player2Agent in the inspector
 
 signal text_sent(text: String)
 signal chat_closed()  # New signal to notify when chat closes
@@ -22,6 +22,7 @@ func _ready() -> void:
 	if player2_agent:
 		text_sent.connect(player2_agent.chat)
 		player2_agent.chat_received.connect(append_line_agent)
+
 
 func _on_chat_input_gui_input(event: InputEvent):
 	if event is InputEventKey and event.pressed:
