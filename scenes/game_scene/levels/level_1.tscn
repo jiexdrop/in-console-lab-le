@@ -38,9 +38,6 @@ transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.43
 
 [node name="Walls" type="Node3D" parent="."]
 
-[node name="Wall2" parent="Walls" instance=ExtResource("5_623lg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
-
 [node name="Wall7" parent="Walls" instance=ExtResource("5_623lg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
 
@@ -58,9 +55,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0,
 
 [node name="Wall6" parent="Walls" instance=ExtResource("5_623lg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 4)
-
-[node name="Wall" parent="Walls" instance=ExtResource("5_623lg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="Floors" type="Node3D" parent="."]
 
@@ -83,3 +77,14 @@ environment = SubResource("Environment_sycfm")
 
 [node name="Door_A" parent="." instance=ExtResource("6_sycfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3984, 0.32056, -1.36269)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01782, 1.97713, -1.94482)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(8.01221, 4.07154, 1.11035)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, 0.166985)
+operation = 2
+size = Vector3(1.62321, 3.14511, 1.60986)
