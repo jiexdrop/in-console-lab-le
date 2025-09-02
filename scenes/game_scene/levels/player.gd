@@ -24,6 +24,14 @@ func _on_chat_closed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
+	# Handle escape key for chat closing with highest priority
+	if chat_interface.is_chat_open and event.is_action_pressed("ui_cancel"):
+		chat_interface.hide_chat()
+		input_disabled = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_viewport().set_input_as_handled()  # Consume the event
+		return
+	
 	if input_disabled:
 		return
 	if chat_interface.is_chat_open:
@@ -32,8 +40,9 @@ func _input(event: InputEvent) -> void:
 	# Add this section for the talk input
 	if event.is_action_pressed("talk"):
 		chat_interface.show_chat()
-		set_input_disabled(true)
+		input_disabled = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_viewport().set_input_as_handled()  # This consumes the event
 		return
 	
 	if event is InputEventMouseMotion:
@@ -42,7 +51,6 @@ func _input(event: InputEvent) -> void:
 		pitch = clamp(pitch, -1.2, 1.2) # limit looking up/down
 		rotation.y = yaw
 		cam.rotation.x = pitch
-
 
 func _physics_process(delta: float) -> void:
 	if input_disabled:
