@@ -136,3 +136,15 @@ func move_to_position(pos: Vector3) -> void:
 	target_position = pos
 	has_target = true
 	state = State.MOVE_TO_CHECKPOINT
+	
+# Add this method to make Sunny follow the player
+func start_following_player() -> void:
+	state = State.CHASE_PLAYER
+	has_target = false  # Clear any existing target
+	print("Sunny is now following the player")
+
+# Optional: Add a method to stop following
+func stop_following_player() -> void:
+	state = State.WANDER
+	has_target = false
+	print("Sunny stopped following the player")

@@ -100,4 +100,4 @@ operation = 2
 size = Vector3(1.62321, 3.14511, 1.60986)
 
 [node name="Door1Target" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99341, 0, -1.7542)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99341, 0.481162, -0.561462)
