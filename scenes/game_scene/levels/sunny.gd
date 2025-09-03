@@ -1,3 +1,4 @@
+class_name Sunny
 extends CharacterBody3D
 
 @export var speed: float = 3.0
@@ -130,3 +131,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		state = State.WANDER
+		
+func move_to_position(pos: Vector3) -> void:
+	target_position = pos
+	has_target = true
+	state = State.MOVE_TO_CHECKPOINT
