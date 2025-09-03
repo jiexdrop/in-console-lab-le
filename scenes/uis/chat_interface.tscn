@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c00xwxnrfntu7"]
+[gd_scene load_steps=19 format=3 uid="uid://c00xwxnrfntu7"]
 
 [ext_resource type="Script" uid="uid://u2ennius6ykq" path="res://scenes/uis/chat_interface.gd" id="1_eyqnh"]
 [ext_resource type="Script" uid="uid://bupnh0kqklshe" path="res://addons/player2/nodes/Player2AINPC.gd" id="2_uvxqh"]
@@ -100,6 +100,15 @@ tool_calls_choice = "Use a tool when deciding to complete a task. If you say you
 tool_calls_reply_message = "Got result from calling ${tool_call_name}: ${tool_call_reply}"
 tool_calls_message_optional_arg_description = "If you wish to say something while calling this function, populate this field with your speech. Leave string empty to not say anything/do it quietly. Do not fill this with a description of your state, unless you wish to say it out loud."
 
+[sub_resource type="Resource" id="Resource_knd6d"]
+Resource = null
+resource_path = "res://scenes/uis/chat_interface.tscn::Resource_knd6d"
+resource_scene_unique_id = "Resource_knd6d"
+script = ExtResource("6_blqk3")
+name = "create_bridge"
+enabled = true
+description = "Will create a bridge for the player to go to next stage "
+
 [sub_resource type="Resource" id="Resource_qunfm"]
 Resource = null
 resource_path = "res://scenes/uis/chat_interface.tscn::Resource_qunfm"
@@ -122,9 +131,10 @@ description = "Will follow the player "
 Resource = null
 resource_path = "res://scenes/uis/chat_interface.tscn::Resource_peb23"
 script = ExtResource("7_t2xl8")
-definitions = Array[ExtResource("6_blqk3")]([SubResource("Resource_qunfm"), SubResource("Resource_3rp4n")])
+definitions = Array[ExtResource("6_blqk3")]([SubResource("Resource_qunfm"), SubResource("Resource_3rp4n"), SubResource("Resource_knd6d")])
 open_door = SubResource("Resource_qunfm")
 follow_player = SubResource("Resource_3rp4n")
+create_bridge = SubResource("Resource_knd6d")
 
 [node name="ChatInterface" type="Control" node_paths=PackedStringArray("player2_agent")]
 layout_mode = 3
