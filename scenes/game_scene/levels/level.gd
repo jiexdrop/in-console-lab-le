@@ -23,3 +23,11 @@ func _ready() -> void:
 	#%BackgroundColor.color = level_state.color
 	#if not level_state.tutorial_read:
 	#	open_tutorials()
+
+
+func _on_scene_goal_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		if not next_level_path.is_empty():
+			level_won_and_changed.emit(next_level_path)
+		else:
+			level_won.emit()

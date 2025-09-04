@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=15 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
@@ -20,6 +20,9 @@ sky_material = SubResource("ProceduralSkyMaterial_w6i3l")
 [sub_resource type="Environment" id="Environment_sycfm"]
 background_mode = 2
 sky = SubResource("Sky_623lg")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fmabn"]
+size = Vector3(2.55286, 3.30359, 2.3894)
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_623lg")
@@ -145,5 +148,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97502, 0.463164, -0.539146)
 [node name="Bridge1Target" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55268, 0.717867, -5.15252)
 
-[node name="Door_B2" parent="." instance=ExtResource("8_bsimd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41564, 0.288023, -18.1823)
+[node name="SceneGoal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39192, 0.326384, -18.2876)
+
+[node name="Door_B2" parent="SceneGoal" instance=ExtResource("8_bsimd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SceneGoal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776428, 1.15179, 0.694702)
+shape = SubResource("BoxShape3D_fmabn")
+
+[connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
