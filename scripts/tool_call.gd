@@ -3,7 +3,7 @@ var sunny : Sunny
 var waiting_for_sunny : bool = false
 var waiting_for_bridge : bool = false  
 var door_a : StaticBody3D
-var bridge : Node3D
+var bridge : Bridge
 var door1_target : Marker3D
 var bridge1_target : Marker3D
 
@@ -18,6 +18,7 @@ func _ready() -> void:
 	# Make sure bridge starts invisible
 	if bridge:
 		bridge.visible = false
+		bridge.enable_collision(false)
 
 func _process(delta: float) -> void:
 	# Check if we're waiting for Sunny and if she's reached the door destination
@@ -34,6 +35,7 @@ func _process(delta: float) -> void:
 		if distance <= sunny.stop_distance * 2:
 			print("Sunny reached bridge destination - creating bridge!")
 			bridge.visible = true
+			bridge.enable_collision(true)
 			waiting_for_bridge = false
 
 ## Will open the door once Sunny reaches the target

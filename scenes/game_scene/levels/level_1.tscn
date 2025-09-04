@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=14 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bush4fy85bbj" path="res://scenes/objects/wall.tscn" id="5_623lg"]
 [ext_resource type="PackedScene" uid="uid://xgx0o0jheiq0" path="res://scenes/objects/door_a.tscn" id="6_sycfm"]
 [ext_resource type="Material" uid="uid://bgvjs6pmpnyio" path="res://resources/mtoon_shader_material.tres" id="7_pmyid"]
+[ext_resource type="PackedScene" uid="uid://dcwsf66srmk8x" path="res://assets/kenney_prototype/Door_B.gltf" id="8_bsimd"]
+[ext_resource type="Script" uid="uid://df4w5wpg2x3pi" path="res://scenes/game_scene/levels/bridge.gd" id="8_fmabn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -89,6 +91,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 [node name="Floor4" parent="Floors" instance=ExtResource("3_w6i3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
+[node name="Bridge" type="Node3D" parent="."]
+visible = false
+script = ExtResource("8_fmabn")
+
+[node name="Floor11" parent="Bridge" instance=ExtResource("3_w6i3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00692629, -9.53674e-07, -7.95619)
+
+[node name="Floor12" parent="Bridge" instance=ExtResource("3_w6i3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00692629, -9.53674e-07, -11.9562)
+
 [node name="Sunny" parent="." instance=ExtResource("4_w6i3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09782, 1.32014, 0)
 player_path = NodePath("../Player")
@@ -127,17 +139,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, -5.63155)
 operation = 2
 size = Vector3(1.62321, 3.14511, 1.60986)
 
-[node name="Bridge" type="Node3D" parent="."]
-visible = false
-
-[node name="Floor11" parent="Bridge" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00692629, -9.53674e-07, -7.95619)
-
-[node name="Floor12" parent="Bridge" instance=ExtResource("3_w6i3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00692629, -9.53674e-07, -11.9562)
-
 [node name="Door1Target" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97502, 0.463164, -0.539146)
 
 [node name="Bridge1Target" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55268, 0.717867, -5.15252)
+
+[node name="Door_B2" parent="." instance=ExtResource("8_bsimd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41564, 0.288023, -18.1823)
