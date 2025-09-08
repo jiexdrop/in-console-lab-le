@@ -5,6 +5,7 @@ var lever_1 : Lever
 var lever_1_target : Marker3D
 
 var waiting_for_lever : bool = false
+var lever_1_state = false
 
 func _ready() -> void:
 	var level2_node = get_tree().root  # This should be Level1
@@ -20,16 +21,21 @@ func _process(delta: float) -> void:
 		var distance = sunny.global_position.distance_to(lever_1_target.global_position)
 		if distance <= sunny.stop_distance * 2:
 			print("Sunny reached destination - opening door!")
-			lever_1.activate_lever()
+			if not lever_1_state:
+				lever_1.activate_lever()
+			else:
+				lever_1.deactivate_lever()
 			waiting_for_lever = false
 
-## Will activate lever 1
-func activate_lever_1() -> void:
+## Will activate/deactivate lever 1
+func toggle_lever_1() -> void:
 	print("Telling Sunny to move to bridge target...")
 	
 	# Tell Sunny to move to the bridge target
 	if sunny and lever_1_target:
 		sunny.move_to_position(lever_1_target.global_position)
 		waiting_for_lever = true
+		lever_1_state = not lever_1_state
 	else:
 		print("Could not find Sunny or Bridge1Target")
+	
