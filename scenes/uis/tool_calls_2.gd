@@ -9,14 +9,18 @@ var waiting_for_lever : bool = false
 var waiting_for_sunny : bool = false
 var lever_1_state = true
 var door_a : StaticBody3D
+var player_2ainpc: Player2AINPC 
+
 
 func _ready() -> void:
 	var level2_node = get_tree().root  # This should be Level1
 	sunny = level2_node.find_child("Sunny", true, false)
+	player_2ainpc = sunny.find_child("Player2AINPC", true, false)
 	lever_1 = level2_node.find_child("Lever", true, false)
 	lever_1_target = level2_node.find_child("Lever1Target", true, false)
 	door1_target = level2_node.find_child("Door1Target", true, false)
 	door_a = level2_node.find_child("Door_A", true, false)
+
 
 func _process(delta: float) -> void:
 	# Check if we're waiting for Sunny and if she's reached the door destination
@@ -52,6 +56,10 @@ func toggle_lever_1() -> void:
 	
 ## Will open the door once Sunny reaches the target
 func open_door() -> void:
+	if lever_1_state:
+		player_2ainpc.notify("The player tried to open a locked door. It failed.")
+		return
+	
 	print("Telling Sunny to move to door target...")
 	
 	# Tell Sunny to move to the door target
