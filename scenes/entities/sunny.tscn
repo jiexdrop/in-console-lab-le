@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://dc384m82i3jlj"]
+[gd_scene load_steps=137 format=3 uid="uid://dc384m82i3jlj"]
 
 [ext_resource type="Script" uid="uid://t8d23hydev30" path="res://scenes/game_scene/levels/sunny.gd" id="1_t0o1e"]
 [ext_resource type="PackedScene" uid="uid://bkwpborfxt1fj" path="res://assets/vrm/AvatarSample_E.vrm" id="2_q1f5h"]
@@ -7,7 +7,14 @@
 [ext_resource type="Script" uid="uid://crthok3iytbyc" path="res://addons/vrm/vrm_collider.gd" id="5_fh514"]
 [ext_resource type="AnimationLibrary" uid="uid://b3500ewld25tp" path="res://assets/animation_library/locomotion_2.res" id="7_cap2f"]
 [ext_resource type="PackedScene" uid="uid://c00xwxnrfntu7" path="res://scenes/uis/chat_interface.tscn" id="7_rp5gh"]
+[ext_resource type="Script" uid="uid://vpbsdwnjywx3" path="res://scripts/tool_call.gd" id="9_fh514"]
+[ext_resource type="Script" uid="uid://bupnh0kqklshe" path="res://addons/player2/nodes/Player2AINPC.gd" id="10_0ib0v"]
 [ext_resource type="AnimationLibrary" uid="uid://dpd4w14h0scq3" path="res://assets/animation_library/locomotion_1.res" id="11_o1e80"]
+[ext_resource type="Script" uid="uid://bsi5tjg54www7" path="res://addons/player2/helpers/config/Player2AICharacterConfig.gd" id="11_xjlkh"]
+[ext_resource type="Script" uid="uid://mt8gdygmb5og" path="res://addons/player2/helpers/config/Player2TTSConfig.gd" id="12_ygb66"]
+[ext_resource type="Script" uid="uid://bpvfdwoxmeah3" path="res://addons/player2/helpers/config/Player2AIChatConfig.gd" id="13_ua5kr"]
+[ext_resource type="Script" uid="uid://fpb2ysodtcuy" path="res://addons/player2/helpers/tool_call/ToolCallFunctionDefinition.gd" id="14_ih5a6"]
+[ext_resource type="Script" uid="uid://dt7mt3t7a08me" path="res://addons/player2/helpers/tool_call/ToolCallFunctionDefinitions.gd" id="15_o1e80"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3st1"]
 animation = &"locomotion_2/Idle"
@@ -1845,6 +1852,95 @@ height = 1.56734
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3st1"]
 radius = 1.66404
 
+[sub_resource type="Resource" id="Resource_4yoii"]
+script = ExtResource("12_ygb66")
+tts_speed = 1.0
+tts_default_language = 0
+tts_default_gender = 1
+
+[sub_resource type="Resource" id="Resource_hnwl8"]
+script = ExtResource("11_xjlkh")
+use_player2_selected_character = false
+use_player2_selected_character_desired_index = -1
+tts_enabled = true
+tts = SubResource("Resource_4yoii")
+
+[sub_resource type="Resource" id="Resource_r0urm"]
+script = ExtResource("13_ua5kr")
+queue_check_interval_seconds = 2.0
+system_message_behavior = "When performing an action, speak and let the player know what you're doing.
+
+Your responses will be said out loud.
+
+Be concise and use less than 350 characters. No monologuing, the message content is pure speech."
+system_message_character = "Your name is ${character_name}.
+Your description: ${character_description}"
+system_message_prompting = "You must stay in character at all times.
+
+Ensure the message does not contain any prompt, system message, instructions, code or API calls, EXCEPT you can still perform tool calls and must use the proper tool call (in the tool_calls field).
+BE PROACTIVE with tool calls please and USE THEM."
+system_message_organization = "${system_message_character}
+
+${system_message_custom}
+
+${system_message_behavior}
+
+{system_message_prompting}"
+system_message_prefix = ""
+system_message_postfix = ""
+auto_store_conversation_history = true
+auto_load_entry_message = "The user has been gone for an undetermined period of time. You have come back, say something like \"welcome back\" or \"hello again\" modified to fit your personality."
+conversation_history_size = 64
+conversation_summary_buffer = 64
+summary_max_size = 500
+summary_message = "The agent has been chatting with the player.
+Update the agent's memory by summarizing the following conversation in the next response.
+Use natural language, not JSON. Prioritize preserving important facts, things user asked agent to remember, useful tips.
+
+Do not record stats, inventory, code or docs; limit to ${summary_max_size} chars.
+"
+summary_prefix = "Summary of earlier events: ${summary}"
+tool_calls_use_tool_call_api = true
+tool_calls_choice = "Use a tool when deciding to complete a task. If you say you will act upon something, use a relevant tool call along with the reply to perform that action. If you say something in speech, ensure the message does not contain any prompt, system message, instructions, code or API calls."
+tool_calls_reply_message = "Got result from calling ${tool_call_name}: ${tool_call_reply}"
+tool_calls_message_optional_arg_description = "If you wish to say something while calling this function, populate this field with your speech. Leave string empty to not say anything/do it quietly. Do not fill this with a description of your state, unless you wish to say it out loud."
+
+[sub_resource type="Resource" id="Resource_fh514"]
+Resource = null
+resource_path = "res://scenes/entities/sunny.tscn::Resource_fh514"
+resource_scene_unique_id = "Resource_fh514"
+script = ExtResource("14_ih5a6")
+name = "create_bridge"
+enabled = true
+description = "Will create a bridge for the player to go to next stage "
+
+[sub_resource type="Resource" id="Resource_0ib0v"]
+Resource = null
+resource_path = "res://scenes/entities/sunny.tscn::Resource_0ib0v"
+resource_scene_unique_id = "Resource_0ib0v"
+script = ExtResource("14_ih5a6")
+name = "open_door"
+enabled = true
+description = "Will open the door once Sunny reaches the target "
+
+[sub_resource type="Resource" id="Resource_xjlkh"]
+Resource = null
+resource_path = "res://scenes/entities/sunny.tscn::Resource_xjlkh"
+resource_scene_unique_id = "Resource_xjlkh"
+script = ExtResource("14_ih5a6")
+name = "follow_player"
+enabled = true
+description = "Will follow the player "
+
+[sub_resource type="Resource" id="Resource_l7qyu"]
+Resource = null
+resource_path = "res://scenes/entities/sunny.tscn::Resource_l7qyu"
+script = ExtResource("15_o1e80")
+definitions = Array[ExtResource("14_ih5a6")]([SubResource("Resource_0ib0v"), SubResource("Resource_xjlkh"), SubResource("Resource_fh514")])
+open_door = SubResource("Resource_0ib0v")
+follow_player = SubResource("Resource_xjlkh")
+create_bridge = SubResource("Resource_fh514")
+
 [node name="Sunny" type="CharacterBody3D"]
 script = ExtResource("1_t0o1e")
 
@@ -1860,64 +1956,64 @@ collider_groups = Array[ExtResource("4_52oke")]([SubResource("Resource_1wune"), 
 collider_library = Array[ExtResource("5_fh514")]([SubResource("Resource_1bjl4"), SubResource("Resource_mo4ro"), SubResource("Resource_2ar73"), SubResource("Resource_dlnys"), SubResource("Resource_f3i8e"), SubResource("Resource_xlomg"), SubResource("Resource_frrvx"), SubResource("Resource_bvkng"), SubResource("Resource_v846j"), SubResource("Resource_m6htu"), SubResource("Resource_carl0"), SubResource("Resource_o3qt2"), SubResource("Resource_kewum"), SubResource("Resource_ou6k3"), SubResource("Resource_y30x7"), SubResource("Resource_3rqd5"), SubResource("Resource_b0l17"), SubResource("Resource_i3das"), SubResource("Resource_sxcpv"), SubResource("Resource_k4j2h"), SubResource("Resource_ojyy3"), SubResource("Resource_nl56o"), SubResource("Resource_ackcu"), SubResource("Resource_lfrr0"), SubResource("Resource_l7s3j"), SubResource("Resource_rhc3q"), SubResource("Resource_wfysm"), SubResource("Resource_35rew")])
 
 [node name="GeneralSkeleton" parent="AvatarSample_E" index="0"]
-bones/1/position = Vector3(0.00796518, 0.85672, 0.0353307)
-bones/1/rotation = Quaternion(-0.0125588, -0.0362486, -0.0643135, 0.997192)
-bones/32/rotation = Quaternion(-0.00612166, -0.00649681, 0.0614808, 0.998068)
-bones/33/rotation = Quaternion(-0.0196859, -0.00770612, 0.0153891, 0.999658)
-bones/34/rotation = Quaternion(-0.0195952, -0.00792422, 0.0154278, 0.999658)
-bones/41/rotation = Quaternion(0.0383575, -0.000461523, -0.0323602, 0.99874)
-bones/42/rotation = Quaternion(-0.0686352, -0.0089989, 0.00892584, 0.997561)
+bones/1/position = Vector3(0.0662051, 0.854845, 0.0441761)
+bones/1/rotation = Quaternion(-0.0185336, -0.139684, 0.0380527, 0.989291)
+bones/32/rotation = Quaternion(-0.00959646, 0.000185585, -0.0551411, 0.998432)
+bones/33/rotation = Quaternion(-0.0202697, -0.00286555, -0.0140952, 0.999691)
+bones/34/rotation = Quaternion(-0.0203453, -0.00295947, -0.0139942, 0.999691)
+bones/41/rotation = Quaternion(0.0571352, 0.00325691, 0.0265097, 0.998009)
+bones/42/rotation = Quaternion(-0.0771435, 0.0143476, 0.00631254, 0.996897)
 bones/43/rotation = Quaternion(0.707107, 0, 0, 0.707107)
 bones/44/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/98/rotation = Quaternion(0.509329, 0.481634, 0.545598, -0.459277)
-bones/99/rotation = Quaternion(-0.115249, 0.822834, -0.555361, -0.0351549)
-bones/100/rotation = Quaternion(0.124769, -0.725322, 0.124769, 0.665413)
-bones/101/rotation = Quaternion(0.105374, 0.785098, 0.0501403, 0.60828)
-bones/102/rotation = Quaternion(0.155389, -0.00549855, -0.00535721, 0.987824)
-bones/103/rotation = Quaternion(0.189795, 2.33405e-05, -0.0229045, 0.981557)
-bones/104/rotation = Quaternion(0.256276, -2.73537e-06, -0.0309274, 0.966109)
-bones/105/rotation = Quaternion(0.166723, 0.00362047, -0.0481054, 0.984823)
-bones/106/rotation = Quaternion(0.212033, 0.00824151, 0.00952273, 0.977181)
-bones/107/rotation = Quaternion(0.234184, 0.000827621, -0.0282619, 0.971781)
-bones/108/rotation = Quaternion(0.105356, -0.00392161, -0.00159872, 0.994426)
-bones/109/rotation = Quaternion(0.196329, -3.99184e-06, -0.0236932, 0.980252)
-bones/110/rotation = Quaternion(0.247082, 5.04052e-06, -0.029818, 0.968536)
-bones/111/rotation = Quaternion(0.164716, -0.00128745, -0.0168221, 0.986197)
-bones/112/rotation = Quaternion(0.183345, 2.33223e-06, -0.0221262, 0.9828)
-bones/113/rotation = Quaternion(0.278522, 3.20093e-06, -0.033612, 0.959842)
-bones/114/rotation = Quaternion(-0.208994, 0.726644, 0.0513985, 0.652433)
-bones/115/rotation = Quaternion(0.0878472, 0.0513084, 0.0215271, 0.994579)
-bones/116/rotation = Quaternion(0.114146, -0.0257645, -0.0568174, 0.991503)
-bones/117/rotation = Quaternion(0.521955, -0.47101, -0.53555, -0.467866)
-bones/118/rotation = Quaternion(0.0454637, 0.873752, -0.47376, 0.100214)
-bones/119/rotation = Quaternion(0.162379, 0.726089, -0.162379, 0.648121)
-bones/120/rotation = Quaternion(0.0437007, -0.793216, -0.0453558, 0.605675)
-bones/121/rotation = Quaternion(0.219095, -0.00300386, 0.0326799, 0.975152)
-bones/122/rotation = Quaternion(0.115896, 2.13356e-05, 0.0141247, 0.993161)
-bones/123/rotation = Quaternion(0.207034, 1.39769e-06, 0.0252319, 0.978008)
-bones/124/rotation = Quaternion(0.176634, 0.00165949, 0.0181449, 0.984108)
-bones/125/rotation = Quaternion(0.171297, 0.000467992, 0.0208767, 0.984998)
-bones/126/rotation = Quaternion(0.236338, 0.000410634, 0.0288036, 0.971244)
-bones/127/rotation = Quaternion(0.156628, 0.0060739, 0.0039136, 0.987631)
-bones/128/rotation = Quaternion(0.178116, 0.000124119, 0.0217078, 0.98377)
-bones/129/rotation = Quaternion(0.299106, 0.015732, 0.0460077, 0.95298)
-bones/130/rotation = Quaternion(0.221011, 0.00440965, 0.0180891, 0.975094)
-bones/131/rotation = Quaternion(0.137209, -1.78768e-05, 0.0167221, 0.990401)
-bones/132/rotation = Quaternion(0.205125, 0.0922798, 0.069988, 0.971859)
-bones/133/rotation = Quaternion(-0.244942, -0.710214, -0.0760691, 0.655601)
-bones/134/rotation = Quaternion(0.206523, -0.0958435, -0.0102605, 0.973682)
-bones/135/rotation = Quaternion(-0.0189427, 0.0149655, -0.0110213, 0.999648)
-bones/136/rotation = Quaternion(0.0548465, 0.123206, 0.987783, -0.0780777)
-bones/167/rotation = Quaternion(-0.00876151, 0.960338, -0.267599, 0.0778843)
-bones/188/rotation = Quaternion(0.000338268, 0.601946, -0.798187, 0.0236329)
-bones/189/rotation = Quaternion(3.89843e-08, 0.999923, -0.0123779, -3.31809e-06)
-bones/190/rotation = Quaternion(-0.0718952, 0.055467, 0.993966, -0.0615338)
-bones/221/rotation = Quaternion(-0.00219568, 0.984442, -0.171668, -0.0374016)
-bones/242/rotation = Quaternion(0.0137981, 0.634145, -0.772676, 0.0253075)
-bones/243/rotation = Quaternion(2.34745e-08, 0.999985, 0.00548927, 3.07313e-09)
+bones/98/rotation = Quaternion(0.512999, 0.471164, 0.574875, -0.429367)
+bones/99/rotation = Quaternion(-0.0639531, 0.88604, -0.456721, -0.0474291)
+bones/100/rotation = Quaternion(0.131054, -0.725607, 0.131054, 0.66268)
+bones/101/rotation = Quaternion(0.113378, 0.783573, 0.034353, 0.609901)
+bones/102/rotation = Quaternion(0.152541, -0.00542951, -0.00507232, 0.988269)
+bones/103/rotation = Quaternion(0.186234, 2.29259e-05, -0.0224749, 0.982248)
+bones/104/rotation = Quaternion(0.250784, -2.70916e-06, -0.0302648, 0.96757)
+bones/105/rotation = Quaternion(0.164045, 0.00372229, -0.0482295, 0.985266)
+bones/106/rotation = Quaternion(0.207926, 0.0080788, 0.0100498, 0.97806)
+bones/107/rotation = Quaternion(0.22765, 0.0008046, -0.0274733, 0.973355)
+bones/108/rotation = Quaternion(0.102271, -0.0037722, -0.00154413, 0.994748)
+bones/109/rotation = Quaternion(0.193005, -4.0025e-06, -0.0232919, 0.980921)
+bones/110/rotation = Quaternion(0.242528, 4.89043e-06, -0.0292684, 0.969703)
+bones/111/rotation = Quaternion(0.161406, -0.00143467, -0.0160415, 0.986757)
+bones/112/rotation = Quaternion(0.181473, 2.36912e-06, -0.0219004, 0.983152)
+bones/113/rotation = Quaternion(0.275669, 3.05992e-06, -0.0332676, 0.960677)
+bones/114/rotation = Quaternion(-0.202512, 0.729031, 0.0501582, 0.65191)
+bones/115/rotation = Quaternion(0.0972712, 0.0544447, 0.0228942, 0.993504)
+bones/116/rotation = Quaternion(0.123337, -0.024168, -0.0507696, 0.990771)
+bones/117/rotation = Quaternion(0.507879, -0.479257, -0.567683, -0.436012)
+bones/118/rotation = Quaternion(-0.0264323, 0.862361, -0.496939, 0.0931987)
+bones/119/rotation = Quaternion(0.160115, 0.726107, -0.160115, 0.649227)
+bones/120/rotation = Quaternion(0.0583184, -0.798789, -0.0209038, 0.598413)
+bones/121/rotation = Quaternion(0.221932, -0.00287768, 0.0327253, 0.974509)
+bones/122/rotation = Quaternion(0.117516, 2.15688e-05, 0.014322, 0.992968)
+bones/123/rotation = Quaternion(0.215663, 1.39167e-06, 0.0262837, 0.976114)
+bones/124/rotation = Quaternion(0.181783, 0.00203746, 0.0179768, 0.983172)
+bones/125/rotation = Quaternion(0.176055, 0.000481057, 0.0214566, 0.984146)
+bones/126/rotation = Quaternion(0.241229, 0.000419064, 0.0293997, 0.970023)
+bones/127/rotation = Quaternion(0.16087, 0.00676578, 0.00293083, 0.986948)
+bones/128/rotation = Quaternion(0.185068, 0.000129075, 0.0225549, 0.982467)
+bones/129/rotation = Quaternion(0.308408, 0.0137823, 0.0461407, 0.950035)
+bones/130/rotation = Quaternion(0.226733, 0.00509153, 0.0175465, 0.973786)
+bones/131/rotation = Quaternion(0.141553, -1.85267e-05, 0.0172515, 0.98978)
+bones/132/rotation = Quaternion(0.209503, 0.0919203, 0.0708723, 0.970895)
+bones/133/rotation = Quaternion(-0.245107, -0.710114, -0.0761746, 0.655635)
+bones/134/rotation = Quaternion(0.208265, -0.0969562, -0.0109468, 0.973194)
+bones/135/rotation = Quaternion(-0.0151771, 0.0123551, -0.0123571, 0.999732)
+bones/136/rotation = Quaternion(0.0166728, 0.0884105, 0.991612, 0.0927933)
+bones/167/rotation = Quaternion(-0.0114995, 0.976102, -0.203143, 0.0763203)
+bones/188/rotation = Quaternion(0.150113, 0.622718, -0.762343, 0.0923156)
+bones/189/rotation = Quaternion(-0.000114188, 0.999863, 0.00764027, 0.0147049)
+bones/190/rotation = Quaternion(-0.0578511, 0.123028, 0.987959, 0.0738612)
+bones/221/rotation = Quaternion(0.0140506, 0.966181, -0.251655, 0.0544758)
+bones/242/rotation = Quaternion(0.0469376, 0.613971, -0.787924, -0.00363924)
+bones/243/rotation = Quaternion(4.17722e-08, 0.99997, 0.00777577, 1.2333e-08)
 
 [node name="Head" parent="AvatarSample_E/GeneralSkeleton" index="4"]
-transform = Transform3D(0.991273, 0.00891975, -0.131523, 0.0150343, 0.983549, 0.180015, 0.130965, -0.180422, 0.974831, 0.0116803, 1.31392, -0.0264657)
+transform = Transform3D(0.96626, 0.0636289, -0.249584, -0.0222207, 0.985986, 0.16534, 0.256607, -0.154215, 0.954133, 0.10128, 1.31113, -0.00864215)
 
 [node name="AnimationPlayer" parent="AvatarSample_E" index="1"]
 libraries = {
@@ -1940,7 +2036,19 @@ shape = SubResource("SphereShape3D_i3st1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ChatInterface" parent="CanvasLayer" instance=ExtResource("7_rp5gh")]
+[node name="ChatInterface" parent="CanvasLayer" node_paths=PackedStringArray("player2_agent") instance=ExtResource("7_rp5gh")]
+player2_agent = NodePath("../../Player2AINPC")
+
+[node name="ToolCalls" type="Node" parent="."]
+script = ExtResource("9_fh514")
+
+[node name="Player2AINPC" type="Node" parent="." node_paths=PackedStringArray("tool_calls_scan_node_for_functions")]
+script = ExtResource("10_0ib0v")
+character_config = SubResource("Resource_hnwl8")
+chat_config = SubResource("Resource_r0urm")
+tool_calls_scan_node_for_functions = [NodePath("../ToolCalls")]
+tool_calls_function_definitions = SubResource("Resource_l7qyu")
+metadata/_custom_type_script = "uid://bupnh0kqklshe"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

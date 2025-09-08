@@ -1852,44 +1852,6 @@ height = 1.56734
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3st1"]
 radius = 1.66404
 
-[sub_resource type="Animation" id="Animation_1"]
-resource_name = "slide_down"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ChatPanel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 400), Vector2(0, 600)]
-}
-
-[sub_resource type="Animation" id="Animation_2"]
-resource_name = "slide_up"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ChatPanel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 600), Vector2(0, 400)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1"]
-_data = {
-&"slide_down": SubResource("Animation_1"),
-&"slide_up": SubResource("Animation_2")
-}
-
 [sub_resource type="Resource" id="Resource_4yoii"]
 script = ExtResource("17_xydju")
 tts_speed = 1.0
@@ -1959,6 +1921,44 @@ script = ExtResource("20_e37jb")
 definitions = Array[ExtResource("19_gavt8")]([SubResource("Resource_6hgae")])
 toggle_lever_1 = SubResource("Resource_6hgae")
 
+[sub_resource type="Animation" id="Animation_1"]
+resource_name = "slide_down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChatPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 400), Vector2(0, 600)]
+}
+
+[sub_resource type="Animation" id="Animation_2"]
+resource_name = "slide_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChatPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 600), Vector2(0, 400)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1"]
+_data = {
+&"slide_down": SubResource("Animation_1"),
+&"slide_up": SubResource("Animation_2")
+}
+
 [node name="Sunny2" type="CharacterBody3D"]
 script = ExtResource("1_tfja4")
 player_path = NodePath("../Player")
@@ -1975,64 +1975,64 @@ collider_groups = Array[ExtResource("4_xv8ta")]([SubResource("Resource_1wune"), 
 collider_library = Array[ExtResource("5_h2vp1")]([SubResource("Resource_1bjl4"), SubResource("Resource_mo4ro"), SubResource("Resource_2ar73"), SubResource("Resource_dlnys"), SubResource("Resource_f3i8e"), SubResource("Resource_xlomg"), SubResource("Resource_frrvx"), SubResource("Resource_bvkng"), SubResource("Resource_v846j"), SubResource("Resource_m6htu"), SubResource("Resource_carl0"), SubResource("Resource_o3qt2"), SubResource("Resource_kewum"), SubResource("Resource_ou6k3"), SubResource("Resource_y30x7"), SubResource("Resource_3rqd5"), SubResource("Resource_b0l17"), SubResource("Resource_i3das"), SubResource("Resource_sxcpv"), SubResource("Resource_k4j2h"), SubResource("Resource_ojyy3"), SubResource("Resource_nl56o"), SubResource("Resource_ackcu"), SubResource("Resource_lfrr0"), SubResource("Resource_l7s3j"), SubResource("Resource_rhc3q"), SubResource("Resource_wfysm"), SubResource("Resource_35rew")])
 
 [node name="GeneralSkeleton" parent="AvatarSample_E" index="0"]
-bones/1/position = Vector3(0.0872268, 0.852462, 0.0323985)
-bones/1/rotation = Quaternion(-0.0209318, -0.138792, 0.030892, 0.989618)
-bones/32/rotation = Quaternion(-0.00787286, -0.00304392, -0.0590331, 0.99822)
-bones/33/rotation = Quaternion(-0.0417524, -0.00812782, -0.0171612, 0.998948)
-bones/34/rotation = Quaternion(-0.0419219, -0.00856461, -0.0164512, 0.998949)
-bones/41/rotation = Quaternion(0.0676281, 0.000308225, 0.0309694, 0.99723)
-bones/42/rotation = Quaternion(-0.0432809, 0.00847977, 0.0137368, 0.998933)
+bones/1/position = Vector3(0.0585377, 0.862828, 0.0502883)
+bones/1/rotation = Quaternion(-0.00784138, -0.116354, 0.0162462, 0.993044)
+bones/32/rotation = Quaternion(0.00730806, -0.00261903, -0.0275176, 0.999591)
+bones/33/rotation = Quaternion(-0.0365865, -0.00642215, -0.00515639, 0.999297)
+bones/34/rotation = Quaternion(-0.0366215, -0.00650626, -0.00479245, 0.999297)
+bones/41/rotation = Quaternion(0.0471322, 0.00115853, 0.00876785, 0.99885)
+bones/42/rotation = Quaternion(-0.0670329, 0.00195701, 0.00865053, 0.997711)
 bones/43/rotation = Quaternion(0.707107, 0, 0, 0.707107)
 bones/44/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/98/rotation = Quaternion(0.514933, 0.474228, 0.552815, -0.452048)
-bones/99/rotation = Quaternion(-0.159724, 0.853834, -0.49033, -0.0709448)
-bones/100/rotation = Quaternion(0.135627, -0.725775, 0.135627, 0.660652)
-bones/101/rotation = Quaternion(0.0889565, 0.76468, 0.0493439, 0.63633)
-bones/102/rotation = Quaternion(0.112239, -0.00443614, -0.00123361, 0.993671)
-bones/103/rotation = Quaternion(0.135829, 1.65471e-05, -0.0163919, 0.990597)
-bones/104/rotation = Quaternion(0.172723, -1.78814e-06, -0.0208443, 0.98475)
-bones/105/rotation = Quaternion(0.126135, 0.00486685, -0.0499445, 0.990743)
-bones/106/rotation = Quaternion(0.149449, 0.00576108, 0.0174863, 0.988598)
-bones/107/rotation = Quaternion(0.134963, 0.000476977, -0.0162875, 0.990717)
-bones/108/rotation = Quaternion(0.0587198, -0.00188201, -0.000846237, 0.998272)
-bones/109/rotation = Quaternion(0.14591, -3.03586e-06, -0.0176085, 0.989141)
-bones/110/rotation = Quaternion(0.178109, 3.55911e-06, -0.0214941, 0.983776)
-bones/111/rotation = Quaternion(0.114255, -0.00324118, -0.00483716, 0.993434)
-bones/112/rotation = Quaternion(0.154427, 2.16294e-06, -0.0186363, 0.987828)
-bones/113/rotation = Quaternion(0.23511, 2.60443e-06, -0.0283729, 0.971555)
-bones/114/rotation = Quaternion(-0.151704, 0.745167, 0.0465321, 0.647724)
-bones/115/rotation = Quaternion(0.174198, 0.0772898, 0.0349798, 0.981049)
-bones/116/rotation = Quaternion(0.185805, -0.0177971, 0.0154605, 0.982304)
-bones/117/rotation = Quaternion(0.521239, -0.473451, -0.526949, -0.475898)
-bones/118/rotation = Quaternion(0.08512, 0.830538, -0.539284, 0.110158)
-bones/119/rotation = Quaternion(0.171527, 0.72593, -0.171527, 0.64357)
-bones/120/rotation = Quaternion(0.0358919, -0.781901, -0.0603761, 0.619433)
-bones/121/rotation = Quaternion(0.20152, -0.00375696, 0.0324367, 0.97894)
-bones/122/rotation = Quaternion(0.100191, 1.84133e-05, 0.0122106, 0.994893)
-bones/123/rotation = Quaternion(0.162559, 1.03163e-06, 0.0198116, 0.9865)
-bones/124/rotation = Quaternion(0.148483, -0.000258442, 0.01912, 0.98873)
-bones/125/rotation = Quaternion(0.143366, 0.000391748, 0.0174726, 0.989515)
-bones/126/rotation = Quaternion(0.209792, 0.000364544, 0.0255682, 0.977412)
-bones/127/rotation = Quaternion(0.132906, 0.00244413, 0.00948512, 0.99108)
-bones/128/rotation = Quaternion(0.141104, 9.8447e-05, 0.0171969, 0.989846)
-bones/129/rotation = Quaternion(0.250919, 0.0260645, 0.0446814, 0.966625)
-bones/130/rotation = Quaternion(0.191564, 0.00114055, 0.02097, 0.981255)
-bones/131/rotation = Quaternion(0.112941, -1.47087e-05, 0.0137645, 0.993506)
-bones/132/rotation = Quaternion(0.179589, 0.0943779, 0.0648062, 0.977057)
-bones/133/rotation = Quaternion(-0.248101, -0.708306, -0.07808, 0.65624)
-bones/134/rotation = Quaternion(0.196676, -0.0894313, -0.00625344, 0.976361)
-bones/135/rotation = Quaternion(-0.0391307, 0.0291411, -0.00378927, 0.998802)
-bones/136/rotation = Quaternion(0.0167667, 0.0999588, 0.990372, 0.0942895)
-bones/167/rotation = Quaternion(-0.00618575, 0.974471, -0.211123, 0.0761276)
-bones/188/rotation = Quaternion(0.160347, 0.62447, -0.759686, 0.0848726)
-bones/189/rotation = Quaternion(-0.000111306, 0.999865, 0.00760063, 0.014557)
-bones/190/rotation = Quaternion(-0.0673487, 0.132794, 0.985501, 0.0813557)
-bones/221/rotation = Quaternion(0.00797963, 0.965501, -0.253325, 0.059748)
-bones/242/rotation = Quaternion(0.0543591, 0.622443, -0.780756, -0.00558558)
-bones/243/rotation = Quaternion(1.16719e-09, 0.999983, 0.00588368, -1.2586e-08)
+bones/98/rotation = Quaternion(0.512283, 0.475314, 0.561058, -0.443685)
+bones/99/rotation = Quaternion(-0.0876172, 0.871667, -0.47932, -0.0526585)
+bones/100/rotation = Quaternion(0.125703, -0.725368, 0.125703, 0.665011)
+bones/101/rotation = Quaternion(0.109901, 0.781419, 0.0504883, 0.612175)
+bones/102/rotation = Quaternion(0.155238, -0.0054991, -0.00533207, 0.987847)
+bones/103/rotation = Quaternion(0.189589, 2.32549e-05, -0.0228797, 0.981597)
+bones/104/rotation = Quaternion(0.255983, -2.66138e-06, -0.0308922, 0.966188)
+bones/105/rotation = Quaternion(0.16658, 0.00362595, -0.0481121, 0.984847)
+bones/106/rotation = Quaternion(0.21183, 0.00823344, 0.0095487, 0.977225)
+bones/107/rotation = Quaternion(0.233841, 0.000826514, -0.0282204, 0.971865)
+bones/108/rotation = Quaternion(0.1052, -0.00391391, -0.00159603, 0.994442)
+bones/109/rotation = Quaternion(0.196152, -3.92558e-06, -0.0236717, 0.980288)
+bones/110/rotation = Quaternion(0.246834, 4.99467e-06, -0.029788, 0.9686)
+bones/111/rotation = Quaternion(0.164562, -0.00129469, -0.0167856, 0.986223)
+bones/112/rotation = Quaternion(0.182893, 2.41161e-06, -0.0220716, 0.982885)
+bones/113/rotation = Quaternion(0.278385, 3.12027e-06, -0.0335954, 0.959882)
+bones/114/rotation = Quaternion(-0.205856, 0.727968, 0.0505781, 0.652018)
+bones/115/rotation = Quaternion(0.0920685, 0.0528992, 0.0222387, 0.994098)
+bones/116/rotation = Quaternion(0.118917, -0.0242503, -0.0548939, 0.991089)
+bones/117/rotation = Quaternion(0.511151, -0.479465, -0.552166, -0.451609)
+bones/118/rotation = Quaternion(-0.00127069, 0.860551, -0.499894, 0.0977547)
+bones/119/rotation = Quaternion(0.158717, 0.726114, -0.158717, 0.649905)
+bones/120/rotation = Quaternion(0.0557618, -0.798367, -0.0240635, 0.599101)
+bones/121/rotation = Quaternion(0.222288, -0.00286373, 0.0327352, 0.974427)
+bones/122/rotation = Quaternion(0.117853, 2.16487e-05, 0.0143631, 0.992927)
+bones/123/rotation = Quaternion(0.216478, 1.3932e-06, 0.026383, 0.975931)
+bones/124/rotation = Quaternion(0.182176, 0.00206577, 0.0179665, 0.9831)
+bones/125/rotation = Quaternion(0.176421, 0.000482105, 0.0215011, 0.98408)
+bones/126/rotation = Quaternion(0.241731, 0.00041997, 0.0294608, 0.969896)
+bones/127/rotation = Quaternion(0.16131, 0.00683851, 0.00282902, 0.986876)
+bones/128/rotation = Quaternion(0.185498, 0.0001294, 0.0226073, 0.982385)
+bones/129/rotation = Quaternion(0.308957, 0.0136674, 0.046147, 0.949857)
+bones/130/rotation = Quaternion(0.227427, 0.00516823, 0.0174959, 0.973624)
+bones/131/rotation = Quaternion(0.142004, -1.85385e-05, 0.0173065, 0.989715)
+bones/132/rotation = Quaternion(0.209902, 0.0918947, 0.0709564, 0.970805)
+bones/133/rotation = Quaternion(-0.245, -0.710179, -0.0761062, 0.655613)
+bones/134/rotation = Quaternion(0.208659, -0.0971944, -0.0110841, 0.973084)
+bones/135/rotation = Quaternion(-0.0147391, 0.0120553, -0.0125014, 0.999741)
+bones/136/rotation = Quaternion(0.0212001, 0.0749491, 0.994965, 0.0630664)
+bones/167/rotation = Quaternion(-0.0113664, 0.981723, -0.173314, 0.0778011)
+bones/188/rotation = Quaternion(0.126978, 0.630159, -0.762574, 0.0725104)
+bones/189/rotation = Quaternion(-0.000277725, 0.999863, 0.000638587, 0.0165331)
+bones/190/rotation = Quaternion(-0.0492485, 0.0914009, 0.993673, 0.0428355)
+bones/221/rotation = Quaternion(0.0215798, 0.979916, -0.196954, 0.022557)
+bones/242/rotation = Quaternion(0.0490158, 0.629798, -0.775186, -0.00628839)
+bones/243/rotation = Quaternion(7.26357e-09, 0.999907, 0.0136756, -5.66677e-09)
 
 [node name="Head" parent="AvatarSample_E/GeneralSkeleton" index="4"]
-transform = Transform3D(0.954914, 0.0748433, -0.287294, -0.0266061, 0.985382, 0.168269, 0.295688, -0.153039, 0.942946, 0.140138, 1.3019, -0.0370424)
+transform = Transform3D(0.967448, 0.0510451, -0.247868, -0.00497114, 0.983091, 0.183052, 0.25302, -0.175861, 0.951343, 0.0836746, 1.31926, -0.00303713)
 
 [node name="AnimationPlayer" parent="AvatarSample_E" index="1"]
 libraries = {
@@ -2053,6 +2053,17 @@ shape = SubResource("CapsuleShape3D_y0mvw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_i3st1")
 
+[node name="ToolCalls" type="Node" parent="."]
+script = ExtResource("9_6hgae")
+
+[node name="Player2AINPC" type="Node" parent="." node_paths=PackedStringArray("tool_calls_scan_node_for_functions")]
+script = ExtResource("15_b4l6b")
+character_config = SubResource("Resource_blqk3")
+chat_config = SubResource("Resource_t2xl8")
+tool_calls_scan_node_for_functions = [NodePath("../ToolCalls")]
+tool_calls_function_definitions = SubResource("Resource_peb23")
+metadata/_custom_type_script = "uid://bupnh0kqklshe"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ChatInterface" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("player2_agent")]
@@ -2063,7 +2074,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("13_ai3sp")
-player2_agent = NodePath("Player2AINPC")
+player2_agent = NodePath("../../Player2AINPC")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ChatInterface"]
 libraries = {
@@ -2107,17 +2118,6 @@ placeholder_text = "Type your message..."
 [node name="SendButton" type="Button" parent="CanvasLayer/ChatInterface/ChatPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Send"
-
-[node name="ToolCalls" type="Node" parent="CanvasLayer/ChatInterface"]
-script = ExtResource("9_6hgae")
-
-[node name="Player2AINPC" type="Node" parent="CanvasLayer/ChatInterface" node_paths=PackedStringArray("tool_calls_scan_node_for_functions")]
-script = ExtResource("15_b4l6b")
-character_config = SubResource("Resource_blqk3")
-chat_config = SubResource("Resource_t2xl8")
-tool_calls_scan_node_for_functions = [NodePath("../ToolCalls")]
-tool_calls_function_definitions = SubResource("Resource_peb23")
-metadata/_custom_type_script = "uid://bupnh0kqklshe"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
