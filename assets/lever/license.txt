@@ -1,0 +1,8 @@
+Model Information:
+* title:	Low Poly Lever
+* source:	https://sketchfab.com/3d-models/low-poly-lever-47c877d295ec4b5599bc1b7b21255809
+* author:	TNTbuster. (https://sketchfab.com/Carterk10)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct7txq6evdcjj"]
+
+[ext_resource type="PackedScene" uid="uid://b1lkv5qv8q2ox" path="res://assets/lever/scene.gltf" id="1_06vmi"]
+[ext_resource type="Script" uid="uid://1lfc8dg377pe" path="res://scenes/objects/lever.gd" id="2_donkj"]
+
+[node name="Lever" instance=ExtResource("1_06vmi")]
+script = ExtResource("2_donkj")
