@@ -5,7 +5,7 @@ var lever_1 : Lever
 var lever_1_target : Marker3D
 
 var waiting_for_lever : bool = false
-var lever_1_state = false
+var lever_1_state = true
 
 func _ready() -> void:
 	var level2_node = get_tree().root  # This should be Level1

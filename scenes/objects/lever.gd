@@ -14,8 +14,9 @@ var cylinder_activated_rotation: Vector3
 var lever_height = 49.213 - 9.843
 
 func _ready():
+	lever.rotation = lever.rotation + Vector3(0, 0, deg_to_rad(45))
 	# Store the default rotations
-	lever_default_rotation = lever.rotation
+	lever_default_rotation = lever.rotation 
 	cylinder_default_rotation = cylinder_002.rotation
 	
 	# Create a RemoteTransform3D to link cylinder to lever
@@ -28,7 +29,7 @@ func _ready():
 	# Position the RemoteTransform at the lever tip
 	remote_transform.position = Vector3(0, lever_height, -3.89)  # Adjust based on lever dimensions
 	
-	lever_activated_rotation = lever_default_rotation + Vector3(0, 0, deg_to_rad(-45))
+	lever_activated_rotation = lever_default_rotation + Vector3(0, 0, deg_to_rad(-90))
 	
 func activate_lever():
 	if not activated:

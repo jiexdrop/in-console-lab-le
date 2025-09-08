@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgqsek1rjbuvj"]
+[gd_scene load_steps=19 format=3 uid="uid://cgqsek1rjbuvj"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_i1l6d"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_c6hhn"]
@@ -10,6 +10,9 @@
 [ext_resource type="Material" uid="uid://bgvjs6pmpnyio" path="res://resources/mtoon_shader_material.tres" id="8_gkltp"]
 [ext_resource type="PackedScene" uid="uid://dcwsf66srmk8x" path="res://assets/kenney_prototype/Door_B.gltf" id="9_bp8id"]
 [ext_resource type="PackedScene" uid="uid://ct7txq6evdcjj" path="res://scenes/objects/lever.tscn" id="10_c6hhn"]
+[ext_resource type="PackedScene" uid="uid://duoiysbi5mhm5" path="res://assets/kenney_prototype/Cube_Prototype_Large_A.gltf" id="11_t62rc"]
+[ext_resource type="PackedScene" uid="uid://dll7a1xl63ubj" path="res://assets/kenney_prototype/Cube_Prototype_Large_B.gltf" id="12_xg5px"]
+[ext_resource type="PackedScene" uid="uid://csss2upue2np7" path="res://assets/kenney_prototype/Cube_Prototype_Small.gltf" id="13_hhxfa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -74,17 +77,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00945067, -4.76837e-07, -3
 [node name="Floor6" parent="Floors" instance=ExtResource("4_urmku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -3.98418)
 
+[node name="Floor11" parent="Floors" instance=ExtResource("4_urmku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -3.98418)
+
 [node name="Floor7" parent="Floors" instance=ExtResource("4_urmku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -15.9842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -25.9842)
 
 [node name="Floor9" parent="Floors" instance=ExtResource("4_urmku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -19.9842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -29.9842)
 
 [node name="Floor10" parent="Floors" instance=ExtResource("4_urmku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00944996, -4.76837e-07, -19.9842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00944996, -4.76837e-07, -29.9842)
 
 [node name="Floor8" parent="Floors" instance=ExtResource("4_urmku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00945067, -4.76837e-07, -15.9842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00945067, -4.76837e-07, -25.9842)
 
 [node name="Floor2" parent="Floors" instance=ExtResource("4_urmku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
@@ -134,11 +140,11 @@ material_overlay = ExtResource("8_gkltp")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176512, -5.60498)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176512, -15.605)
 size = Vector3(8.01221, 4.42456, 1.11035)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, -5.63155)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, -15.6316)
 operation = 2
 size = Vector3(1.62321, 3.14511, 1.60986)
 
@@ -152,12 +158,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06777, 0.717867, 0.848822)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39192, 0.326384, -18.2876)
 
 [node name="Door_B2" parent="SceneGoal" instance=ExtResource("9_bp8id")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SceneGoal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776428, 1.15179, 0.694702)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776428, 1.15179, -9.3053)
 shape = SubResource("BoxShape3D_fmabn")
 
 [node name="Lever" parent="." instance=ExtResource("10_c6hhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.741144, 0.500263, -0.32702)
+
+[node name="Cube_Prototype_Large_A2" parent="." instance=ExtResource("11_t62rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92251, -5, -10.0152)
+
+[node name="Cube_Prototype_Large_A3" parent="." instance=ExtResource("11_t62rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92251, -3, -20.0152)
+
+[node name="Cube_Prototype_Large_B2" parent="." instance=ExtResource("12_xg5px")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.64627, -4, -15.5366)
+
+[node name="Cube_Prototype_Small2" parent="." instance=ExtResource("13_hhxfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9234, -2, -9.48525)
+
+[node name="Cube_Prototype_Small3" parent="." instance=ExtResource("13_hhxfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.923398, -2, -17.4852)
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
