@@ -118,7 +118,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09782, 1.32014, 0.885618)
 environment = SubResource("Environment_sycfm")
 
 [node name="Door_A" parent="." instance=ExtResource("7_hhxfa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3984, 0.32056, -1.36269)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38624, 0.496666, -1.36269)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01782, 1.97713, -1.94482)
@@ -130,9 +130,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176512, 0)
 size = Vector3(8.01221, 4.42456, 1.11035)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, 0.166985)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.157336, -0.41408, 0.166985)
 operation = 2
-size = Vector3(1.62321, 3.14511, 1.60986)
+size = Vector3(1.58687, 3.14511, 1.60986)
 
 [node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01782, 1.97713, -12.9448)
