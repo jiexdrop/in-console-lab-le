@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgqsek1rjbuvj"]
+[gd_scene load_steps=20 format=3 uid="uid://cgqsek1rjbuvj"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_i1l6d"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_c6hhn"]
 [ext_resource type="PackedScene" uid="uid://bush4fy85bbj" path="res://scenes/objects/wall.tscn" id="3_yh8gr"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="4_urmku"]
-[ext_resource type="Script" uid="uid://df4w5wpg2x3pi" path="res://scenes/game_scene/levels/bridge.gd" id="5_t62rc"]
 [ext_resource type="PackedScene" uid="uid://11yp6ro3th8p" path="res://scenes/entities/sunny_2.tscn" id="6_c6hhn"]
 [ext_resource type="PackedScene" uid="uid://xgx0o0jheiq0" path="res://scenes/objects/door_a.tscn" id="7_hhxfa"]
 [ext_resource type="Material" uid="uid://bgvjs6pmpnyio" path="res://resources/mtoon_shader_material.tres" id="8_gkltp"]
@@ -27,6 +26,12 @@ sky = SubResource("Sky_623lg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fmabn"]
 size = Vector3(2.55286, 3.30359, 2.3894)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_urmku"]
+size = Vector3(3.85645, 4.28668, 4.14209)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t62rc"]
+size = Vector3(2.08472, 2.09973, 2.01392)
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_i1l6d")
@@ -101,16 +106,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 [node name="Floor4" parent="Floors" instance=ExtResource("4_urmku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
-[node name="Bridge" type="Node3D" parent="."]
-visible = false
-script = ExtResource("5_t62rc")
-
-[node name="Floor11" parent="Bridge" instance=ExtResource("4_urmku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00692629, -9.53674e-07, -7.95619)
-
-[node name="Floor12" parent="Bridge" instance=ExtResource("4_urmku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00692629, -9.53674e-07, -11.9562)
-
 [node name="Sunny" parent="." instance=ExtResource("6_c6hhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09782, 1.32014, 0.885618)
 
@@ -167,19 +162,49 @@ shape = SubResource("BoxShape3D_fmabn")
 [node name="Lever" parent="." instance=ExtResource("10_c6hhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.741144, 0.500263, -0.32702)
 
-[node name="Cube_Prototype_Large_A2" parent="." instance=ExtResource("11_t62rc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92251, -5, -10.0152)
+[node name="BigCube2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.77979, -3.97362, -17.0904)
 
-[node name="Cube_Prototype_Large_A3" parent="." instance=ExtResource("11_t62rc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92251, -3, -20.0152)
+[node name="Cube_Prototype_Large_B2" parent="BigCube2" instance=ExtResource("12_xg5px")]
 
-[node name="Cube_Prototype_Large_B2" parent="." instance=ExtResource("12_xg5px")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.64627, -4, -15.5366)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BigCube2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0170898, 2.01401, 0.0617676)
+shape = SubResource("BoxShape3D_urmku")
 
-[node name="Cube_Prototype_Small2" parent="." instance=ExtResource("13_hhxfa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9234, -2, -9.48525)
+[node name="BigCube" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.07979, -3.97362, -21.3735)
 
-[node name="Cube_Prototype_Small3" parent="." instance=ExtResource("13_hhxfa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.923398, -2, -17.4852)
+[node name="Cube_Prototype_Large_A3" parent="BigCube" instance=ExtResource("11_t62rc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BigCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0170898, 2.01401, 0.0617676)
+shape = SubResource("BoxShape3D_urmku")
+
+[node name="BigCube3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.21205, -3.97362, -10.6067)
+
+[node name="Cube_Prototype_Large_A3" parent="BigCube3" instance=ExtResource("11_t62rc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BigCube3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0170898, 2.01401, 0.0617676)
+shape = SubResource("BoxShape3D_urmku")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.47089, -2.32711, -11.4043)
+
+[node name="Cube_Prototype_Small2" parent="StaticBody3D" instance=ExtResource("13_hhxfa")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0418701, 1.01984, 0.0452881)
+shape = SubResource("BoxShape3D_t62rc")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47702, -2.32711, -16.6211)
+
+[node name="Cube_Prototype_Small2" parent="StaticBody3D2" instance=ExtResource("13_hhxfa")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0418701, 1.01984, 0.0452881)
+shape = SubResource("BoxShape3D_t62rc")
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
