@@ -11,6 +11,9 @@ var lever_1_state = true
 var door_a : StaticBody3D
 var player_2ainpc: Player2AINPC 
 
+var big_cube_1 : Cube
+var big_cube_2 : Cube
+var big_cube_3 : Cube
 
 func _ready() -> void:
 	var level2_node = get_tree().root  # This should be Level1
@@ -20,6 +23,9 @@ func _ready() -> void:
 	lever_1_target = level2_node.find_child("Lever1Target", true, false)
 	door1_target = level2_node.find_child("Door1Target", true, false)
 	door_a = level2_node.find_child("Door_A", true, false)
+	big_cube_1 = level2_node.find_child("BigCube", true, false)
+	big_cube_2 = level2_node.find_child("BigCube2", true, false)
+	big_cube_3 = level2_node.find_child("BigCube3", true, false)
 
 
 func _process(delta: float) -> void:
@@ -68,4 +74,15 @@ func open_door() -> void:
 		waiting_for_sunny = true
 	else:
 		print("Could not find Sunny or Door1Target")
-		
+	
+## Will move big_cube_1
+func move_big_cube_1():
+	big_cube_1.move_to_random_marker()
+	
+## Will move big_cube_2
+func move_big_cube_2():
+	big_cube_2.move_to_random_marker()
+	
+## Will move big_cube_3
+func move_big_cube_3():
+	big_cube_3.move_to_random_marker()
