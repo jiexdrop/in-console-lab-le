@@ -55,7 +55,14 @@ func follow_player() -> void:
 		sunny.start_following_player()
 	else:
 		print("Could not find Sunny")
-		
+
+## Will stop following the player
+func stop_follow_player() -> void:
+	if sunny:
+		sunny.stop_following_player()
+	else:
+		print("Could not find Sunny")
+
 ## Will create a bridge for the player to go to next stage
 func create_bridge() -> void:
 	print("Telling Sunny to move to bridge target...")

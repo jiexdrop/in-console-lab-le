@@ -2,7 +2,7 @@
 ## Collaborators
 
 ### Role
-[Komoydity](https://komodity.itch.io/)  
+[Komodity](https://komodity.itch.io/)  
 
 ## Sourced
 ### Kenney Prototype Pack

@@ -86,3 +86,17 @@ func move_big_cube_2():
 ## Will move big_cube_3
 func move_big_cube_3():
 	big_cube_3.move_to_random_marker()
+	
+## Will follow the player
+func follow_player() -> void:
+	if sunny:
+		sunny.start_following_player()
+	else:
+		print("Could not find Sunny")
+
+## Will stop following the player
+func stop_follow_player() -> void:
+	if sunny:
+		sunny.stop_following_player()
+	else:
+		print("Could not find Sunny")
