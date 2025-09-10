@@ -13,11 +13,11 @@ extends CharacterBody3D
 
 var target_position: Vector3
 var has_target: bool = false
+var is_following_player: bool = false
 
 # AI states
 enum State { IDLE, WANDER, MOVE_TO_CHECKPOINT, CHASE_PLAYER }
 var state: State = State.WANDER
-var previous_state: State = State.WANDER
 
 var player: Node3D
 var current_animation: String = ""
@@ -126,14 +126,12 @@ func _play_idle() -> void:
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		previous_state = state
+	if body.is_in_group("player") and not is_following_player:
 		state = State.IDLE
-		
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		state = previous_state
+		state = State.WANDER
 		
 func move_to_position(pos: Vector3) -> void:
 	target_position = pos
@@ -143,11 +141,12 @@ func move_to_position(pos: Vector3) -> void:
 # Add this method to make Sunny follow the player
 func start_following_player() -> void:
 	state = State.CHASE_PLAYER
-	has_target = false  # Clear any existing target
+	is_following_player = true
+	has_target = false
 	print("Sunny is now following the player")
 
-# Optional: Add a method to stop following
 func stop_following_player() -> void:
 	state = State.WANDER
+	is_following_player = false
 	has_target = false
 	print("Sunny stopped following the player")
