@@ -17,6 +17,7 @@ var has_target: bool = false
 # AI states
 enum State { IDLE, WANDER, MOVE_TO_CHECKPOINT, CHASE_PLAYER }
 var state: State = State.WANDER
+var previous_state: State = State.WANDER
 
 var player: Node3D
 var current_animation: String = ""
@@ -126,11 +127,13 @@ func _play_idle() -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		previous_state = state
 		state = State.IDLE
+		
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		state = State.WANDER
+		state = previous_state
 		
 func move_to_position(pos: Vector3) -> void:
 	target_position = pos
