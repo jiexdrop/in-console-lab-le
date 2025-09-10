@@ -2,14 +2,18 @@
 ## Collaborators
 
 ### Role
-Person 1  
-Person 2  
-[Person w/ Link]()  
+[Komoydity](https://komodity.itch.io/)  
 
 ## Sourced
-### Asset Type
-#### Use Case
-Author: [Name]()  
+### Kenney Prototype Pack
+#### Level Design
+Author: [Kenney]()  
+Source: [Domain : webpage.html]()  
+License: [License]()
+
+### VRoid
+#### Game Character
+Author: [VRoid]()  
 Source: [Domain : webpage.html]()  
 License: [License]()
 

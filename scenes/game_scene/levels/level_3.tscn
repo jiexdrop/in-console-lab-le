@@ -1,102 +1,249 @@
-[gd_scene load_steps=6 format=3 uid="uid://211nmqt5j7sl"]
+[gd_scene load_steps=21 format=3 uid="uid://drk5b4bpwy4ap"]
 
-[ext_resource type="Script" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
-[ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/capture_focus.gd" id="2_satlj"]
-[ext_resource type="Script" path="res://scenes/game_scene/input_display_label.gd" id="3_4popk"]
-[ext_resource type="Script" path="res://scenes/game_scene/tutorial_manager.gd" id="4_mdq82"]
-[ext_resource type="PackedScene" path="res://scenes/game_scene/tutorials/tutorial_3.tscn" id="5_32y40"]
+[ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
+[ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
+[ext_resource type="PackedScene" uid="uid://bush4fy85bbj" path="res://scenes/objects/wall.tscn" id="3_ce5ly"]
+[ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="4_qmvo6"]
+[ext_resource type="PackedScene" uid="uid://ce10cwvpgn5ig" path="res://scenes/entities/sunny_3.tscn" id="5_mdq82"]
+[ext_resource type="PackedScene" uid="uid://xgx0o0jheiq0" path="res://scenes/objects/door_a.tscn" id="6_oxc23"]
+[ext_resource type="Material" uid="uid://bgvjs6pmpnyio" path="res://resources/mtoon_shader_material.tres" id="7_v0u1s"]
+[ext_resource type="PackedScene" uid="uid://dcwsf66srmk8x" path="res://assets/kenney_prototype/Door_B.gltf" id="8_ivmic"]
+[ext_resource type="PackedScene" uid="uid://d11ucx0vpn1jf" path="res://assets/kenney_prototype/Primitive_Beam.gltf" id="8_x342e"]
+[ext_resource type="PackedScene" uid="uid://c72h7bvw624rl" path="res://assets/kenney_prototype/Pallet_Small_Decorated_B.gltf" id="10_s8hpv"]
+[ext_resource type="PackedScene" uid="uid://buw3x7k6jrff8" path="res://assets/kenney_prototype/Pillar_B.gltf" id="11_qqrq0"]
+[ext_resource type="PackedScene" uid="uid://ne4wkoen2gxw" path="res://assets/kenney_prototype/Primitive_Cube_Small.gltf" id="12_u6nfu"]
+[ext_resource type="PackedScene" uid="uid://kqjkegx5pvgv" path="res://assets/kenney_prototype/Pallet_Large.gltf" id="13_qqrq0"]
+[ext_resource type="PackedScene" uid="uid://bjneeme42i2jj" path="res://assets/kenney_prototype/Pallet_Small.gltf" id="14_u6nfu"]
 
-[node name="Level3" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6i3l"]
+
+[sub_resource type="Sky" id="Sky_623lg"]
+sky_material = SubResource("ProceduralSkyMaterial_w6i3l")
+
+[sub_resource type="Environment" id="Environment_sycfm"]
+background_mode = 2
+sky = SubResource("Sky_623lg")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fmabn"]
+size = Vector3(2.55286, 3.30359, 2.3894)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qqrq0"]
+size = Vector3(4.0426, 0.65033, 3.99365)
+
+[node name="Level3" type="Node3D"]
 script = ExtResource("1_3s8h5")
+next_level_path = "uid://dga0fofrb4udc"
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 2, 4)
+script = ExtResource("2_ps8dp")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_2hhcp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.188535, 0)
+current = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 32
-script = ExtResource("2_satlj")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 0, 0)
 
-[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Win"
+[node name="Walls" type="Node3D" parent="."]
 
-[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
+[node name="Wall6" parent="Walls" instance=ExtResource("3_ce5ly")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.23846, 0.386411, 4)
 
-[node name="LoseButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
+[node name="Wall7" parent="Walls" instance=ExtResource("3_ce5ly")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.23846, 0.386411, 0)
 
-[node name="LoseButton3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
+[node name="Wall8" parent="Walls" instance=ExtResource("3_ce5ly")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.03156, 0.202146, 0.016695)
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Wall9" parent="Walls" instance=ExtResource("3_ce5ly")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.03156, 0.202146, 4.0167)
 
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Tutorial"
+[node name="Wall10" parent="Walls" instance=ExtResource("3_ce5ly")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.86531, 0.29742, 6.04154)
 
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-script = ExtResource("3_4popk")
+[node name="Wall11" parent="Walls" instance=ExtResource("3_ce5ly")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.13469, 0.29742, 6.04154)
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Change Level Color: "
+[node name="Floors" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00252438, -4.76837e-07, 0.0280046)
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Change Color"
+[node name="Floor" parent="Floors" instance=ExtResource("4_qmvo6")]
 
-[node name="TutorialManager" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("4_mdq82")
-tutorial_scenes = Array[PackedScene]([ExtResource("5_32y40")])
+[node name="Floor5" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00945067, -4.76837e-07, -3.98418)
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton2" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton3" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[node name="Floor6" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -3.98418)
+
+[node name="Floor11" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -3.98418)
+
+[node name="Floor7" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -27.9842)
+
+[node name="Floor9" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99055, -4.76837e-07, -31.9842)
+
+[node name="Floor10" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00944996, -4.76837e-07, -31.9842)
+
+[node name="Floor8" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00945067, -4.76837e-07, -27.9842)
+
+[node name="Floor2" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Floor3" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="Floor4" parent="Floors" instance=ExtResource("4_qmvo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sycfm")
+
+[node name="Sunny" parent="." instance=ExtResource("5_mdq82")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30602, 0)
+
+[node name="Door_A" parent="." instance=ExtResource("6_oxc23")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.38624, 0.496666, -1.36269)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01782, 1.97713, -1.94482)
+material_overlay = ExtResource("7_v0u1s")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176512, 0.184326)
+size = Vector3(8.01221, 4.42456, 0.741698)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.157336, -0.41408, 0.166985)
+operation = 2
+size = Vector3(1.58687, 3.14511, 1.60986)
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01782, 1.97713, -14.9448)
+material_overlay = ExtResource("7_v0u1s")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176512, -15.605)
+size = Vector3(8.01221, 4.42456, 1.11035)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, -15.6316)
+operation = 2
+size = Vector3(1.62321, 3.14511, 1.60986)
+
+[node name="Door1Target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97502, 0.463164, -0.539146)
+
+[node name="Lever1Target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06777, 0.717867, 0.848822)
+
+[node name="SceneGoal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39192, 0.326384, -30.2876)
+
+[node name="Door_B2" parent="SceneGoal" instance=ExtResource("8_ivmic")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SceneGoal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941755, 1.57037, 0.584446)
+shape = SubResource("BoxShape3D_fmabn")
+
+[node name="Pallet_Small_Decorated_B2" parent="." instance=ExtResource("10_s8hpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.18799, 0.529436, -11.2769)
+
+[node name="Pallet_Small_Decorated_B3" parent="." instance=ExtResource("10_s8hpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34963, 0.529436, -19.2769)
+
+[node name="Primitive_Beam2" parent="." instance=ExtResource("8_x342e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11815, 3.32086, -1.66846)
+
+[node name="Pillar_B2" parent="." instance=ExtResource("11_qqrq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+
+[node name="Pillar_B3" parent="." instance=ExtResource("11_qqrq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+
+[node name="Primitive_Cube_Small2" parent="." instance=ExtResource("12_u6nfu")]
+transform = Transform3D(1.6689, 0, 0, 0, 1.91057, 0, 0, 0, 0.516792, -0.271133, 0.511055, -1.69126)
+
+[node name="Primitive_Cube_Small3" parent="." instance=ExtResource("12_u6nfu")]
+transform = Transform3D(1.6689, 0, 0, 0, 1.91057, 0, 0, 0, 0.516792, 4.67053, 0.511055, -1.69126)
+
+[node name="Pallets" type="Node3D" parent="."]
+
+[node name="Pallet_Large" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large2" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large2" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large3" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -12)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large3" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large4" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large4" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large5" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -20)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large5" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large6" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large6" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large7" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large7" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Small2" parent="." instance=ExtResource("14_u6nfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -9)
+
+[connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]

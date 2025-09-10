@@ -39,7 +39,7 @@ size = Vector3(2.08472, 2.09973, 2.01392)
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_i1l6d")
-next_level_path = "res://scenes/game_scene/levels/level_2.tscn"
+next_level_path = "uid://drk5b4bpwy4ap"
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 2, 4)
