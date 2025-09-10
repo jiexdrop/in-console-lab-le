@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=22 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
@@ -28,6 +28,9 @@ sky = SubResource("Sky_623lg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fmabn"]
 size = Vector3(2.55286, 3.30359, 2.3894)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u6nfu"]
+size = Vector3(2.31079, 3.17395, 2.00854)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qqrq0"]
 size = Vector3(4.0426, 0.65033, 3.99365)
@@ -157,11 +160,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39192, 0.326384, -30.2876)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941755, 1.57037, 0.584446)
 shape = SubResource("BoxShape3D_fmabn")
 
-[node name="Pallet_Small_Decorated_B2" parent="." instance=ExtResource("10_s8hpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.18799, 0.529436, -11.2769)
+[node name="PalletSmalDecorated" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.92722, 0.355332, -11.0588)
 
-[node name="Pallet_Small_Decorated_B3" parent="." instance=ExtResource("10_s8hpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34963, 0.529436, -19.2769)
+[node name="Pallet_Small_Decorated_B2" parent="PalletSmalDecorated" instance=ExtResource("10_s8hpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140041, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PalletSmalDecorated"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150146, 1.55743, 0.0792236)
+shape = SubResource("BoxShape3D_u6nfu")
+
+[node name="PalletSmalDecorated2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135469, 0.355332, -19.2954)
+
+[node name="Pallet_Small_Decorated_B2" parent="PalletSmalDecorated2" instance=ExtResource("10_s8hpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.944047, 0.140041, 0.124304)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PalletSmalDecorated2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150146, 1.55743, 0.0792236)
+shape = SubResource("BoxShape3D_u6nfu")
 
 [node name="Primitive_Beam2" parent="." instance=ExtResource("8_x342e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11815, 3.32086, -1.66846)
