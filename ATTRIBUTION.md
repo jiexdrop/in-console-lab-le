@@ -1,7 +1,7 @@
 # Attribution
 ## Collaborators
 
-### Role
+### Programmer and Game Designer
 [Komodity](https://komodity.itch.io/)  
 
 ## Sourced
