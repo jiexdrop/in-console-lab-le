@@ -70,8 +70,8 @@ func _send(text: String) -> void:
 
 func append_line_user(line: String) -> void:
 	print("got user: " + line)
-	chat_history.text += "User: " + line + "\n"
+	chat_history.text += "Player: " + line + "\n"
 
 func append_line_agent(line: String) -> void:
 	print("got agent: " + line)
-	chat_history.text += "Agent: " + line + "\n"
+	chat_history.text += "Sunny: " + line + "\n"
