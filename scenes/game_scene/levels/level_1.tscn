@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=16 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
@@ -23,6 +23,10 @@ sky = SubResource("Sky_623lg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fmabn"]
 size = Vector3(2.55286, 3.30359, 2.3894)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_fmabn"]
+vertices = PackedVector3Array(-2.33154, 1, -7.23298, 0.918457, 1, -7.48298, 0.918457, 1, -13.733, -2.33154, 1, -21.483, 5.41846, 1, -13.983, 5.41846, 1, -21.483, 1.16846, 1, -5.73298, -2.33154, 1, 5.76702, 5.91846, 1, 5.76702, 5.91846, 1, -5.73298)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(1, 6, 0), PackedInt32Array(0, 6, 7), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7)]
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_623lg")
@@ -156,5 +160,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39192, 0.326384, -18.2876)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SceneGoal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776428, 1.15179, 0.694702)
 shape = SubResource("BoxShape3D_fmabn")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_fmabn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83862, 0, 0.0618286)
+visible = false
+size = Vector3(9.34033, 1, 12.3558)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75769, 0, -14.1023)
+visible = false
+size = Vector3(4.14771, 1, 15.7614)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47687, 0, -17.8263)
+visible = false
+size = Vector3(8.61682, 1, 8.31334)
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]

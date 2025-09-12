@@ -5,9 +5,10 @@ extends CharacterBody3D
 @export var acceleration: float = 5.0
 @export var stop_distance: float = 0.5
 @export var player_path: NodePath
-@export var fall_threshold: float = -20.0  # Y position considered "void"
-@export var fall_check_time: float = 3.0   # How long to fall before teleporting back
+@export var fall_threshold: float = -20.0
+@export var fall_check_time: float = 1.0
 
+@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var animation_player: AnimationPlayer = $AvatarSample_E/AnimationPlayer
 @onready var avatar_sample_e: VRMTopLevel = $AvatarSample_E
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -18,11 +19,10 @@ extends CharacterBody3D
 var target_position: Vector3
 var has_target: bool = false
 var is_following_player: bool = false
-var initial_position: Vector3  # Store spawn position
+var initial_position: Vector3
 var is_falling: bool = false
 var fall_timer: float = 0.0
 
-# AI states
 enum State { IDLE, WANDER, MOVE_TO_CHECKPOINT, CHASE_PLAYER }
 var state: State = State.WANDER
 
@@ -33,8 +33,19 @@ func _ready():
 	player = get_node_or_null(player_path)
 	state_machine = animation_tree.get("parameters/playback")
 	animation_tree.active = true
-	initial_position = global_position  # Store the initial spawn position
+	initial_position = global_position
+	
+	# Configure NavigationAgent3D
+	navigation_agent.target_desired_distance = stop_distance
+	navigation_agent.path_desired_distance = 0.5
+	
+	# Wait for navigation map to be ready
+	call_deferred("actor_setup")
 	print("Sunny spawned at: ", initial_position)
+	
+func actor_setup():
+	# Wait for the first physics frame so the NavigationServer can sync
+	await get_tree().physics_frame
 
 func _physics_process(delta: float) -> void:
 	# Check for falling into void
@@ -42,23 +53,22 @@ func _physics_process(delta: float) -> void:
 	
 	match state:
 		State.IDLE:
-			# Just stop moving
 			has_target = false
 			_play_idle()
+			_apply_gravity(delta)
 
 		State.WANDER:
 			if not has_target:
 				_pick_random_target()
-			_move_to_target(delta)
+			_navigate_to_target(delta)
 
 		State.MOVE_TO_CHECKPOINT:
-			_move_to_target(delta)
+			_navigate_to_target(delta)
 
 		State.CHASE_PLAYER:
 			if player:
-				target_position = player.global_position
-				has_target = true
-				_move_to_target(delta)
+				_set_navigation_target(player.global_position)
+				_navigate_to_target(delta)
 
 func _check_fall_status(delta: float) -> void:
 	# Check if NPC is below the fall threshold
@@ -142,39 +152,58 @@ func _move_to_target(delta: float) -> void:
 		_play_walking()
 	else:
 		_play_idle()
+		
+func _navigate_to_target(delta: float) -> void:
+	if not has_target and not navigation_agent.is_navigation_finished():
+		return
+	
+	if navigation_agent.is_navigation_finished():
+		has_target = false
+		_play_idle()
+		_apply_gravity(delta)
+		return
+	
+	var current_agent_position = global_position
+	var next_path_position = navigation_agent.get_next_path_position()
+	
+	var direction = (next_path_position - current_agent_position).normalized()
+	direction.y = 0  # Keep movement horizontal
+	
+	velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
+	velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
+	
+	_apply_gravity(delta)
+	move_and_slide()
+	
+	# Rotate model towards movement
+	if velocity.length() > 0.1:
+		var model_root = avatar_sample_e
+		var dir = velocity.normalized()
+		var facing = Transform3D().looking_at(dir, Vector3.UP)
+		model_root.basis = facing.basis
+		model_root.rotate_y(deg_to_rad(180))
+		_play_walking()
+	else:
+		_play_idle()
 
-func _pick_random_target() -> void:
-	var max_attempts = 10
-	var attempt = 0
-	
-	while attempt < max_attempts:
-		var random_offset = Vector3(
-			randf_range(-10, 10),  # Increased range for more variety
-			0,
-			randf_range(-10, 10)
-		)
-		var potential_target = global_position + random_offset
+func _apply_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
 		
-		# Cast a ray downward to check for ground
-		var space_state = get_world_3d().direct_space_state
-		var query = PhysicsRayQueryParameters3D.create(
-			potential_target + Vector3(0, 2, 0),  # Start above the target
-			potential_target + Vector3(0, -10, 0)  # Cast down
-		)
-		
-		var result = space_state.intersect_ray(query)
-		if result:
-			# Found ground! Adjust target to be on the surface
-			target_position = result.position
-			has_target = true
-			return
-		
-		attempt += 1
-	
-	# Fallback: stay in current position if no valid target found
-	target_position = global_position
+func _set_navigation_target(target: Vector3) -> void:
+	navigation_agent.target_position = target
 	has_target = true
 
+
+func _pick_random_target() -> void:
+	var random_offset = Vector3(
+		randf_range(-10, 10),
+		0,
+		randf_range(-10, 10)
+	)
+	var potential_target = global_position + random_offset
+	_set_navigation_target(potential_target)
+	
 # --- Animation helpers ---
 func _play_walking() -> void:
 	if current_animation != "Walking":
@@ -195,15 +224,12 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		state = State.WANDER
 		
 func move_to_position(pos: Vector3) -> void:
-	target_position = pos
-	has_target = true
+	_set_navigation_target(pos)
 	state = State.MOVE_TO_CHECKPOINT
-	
-# Add this method to make Sunny follow the player
+
 func start_following_player() -> void:
 	state = State.CHASE_PLAYER
 	is_following_player = true
-	has_target = false
 	print("Sunny is now following the player")
 
 func stop_following_player() -> void:
