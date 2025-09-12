@@ -80,7 +80,18 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_pressed("ui_accept"): # default: Space
 		velocity.y = jump_velocity
 
+	var old_velocity = velocity
 	move_and_slide()
+	
+	# Real-time pushing
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is CharacterBody3D:
+			var push_vector = old_velocity.normalized() # Adjust strength
+			collider.velocity = push_vector
+			collider.move_and_slide()  # Move immediately
 
 func set_input_disabled(value: bool):
 	input_disabled = value

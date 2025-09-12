@@ -51,6 +51,9 @@ func _physics_process(delta: float) -> void:
 
 func _move_to_target(delta: float) -> void:
 	if not has_target:
+		if not is_on_floor():
+			velocity.y += get_gravity().y * delta
+		move_and_slide()
 		return
 		
 	var direction = (target_position - global_position)
@@ -63,7 +66,18 @@ func _move_to_target(delta: float) -> void:
 		return
 	
 	direction = direction.normalized()
-	velocity = velocity.lerp(direction * speed, acceleration * delta)
+	
+	# Only apply AI movement if not being pushed
+	var push_threshold = 1.0  # Adjust as needed
+	if velocity.length() < push_threshold:
+		velocity = velocity.lerp(direction * speed, acceleration * delta)
+	else:
+		# Being pushed - just add a small AI influence
+		velocity = velocity.lerp(velocity + direction * speed * 0.1, acceleration * delta)
+	
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
+	
 	move_and_slide()
 	
 	# Debug output
