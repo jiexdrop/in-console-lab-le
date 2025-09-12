@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=24 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
@@ -13,7 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://buw3x7k6jrff8" path="res://assets/kenney_prototype/Pillar_B.gltf" id="11_qqrq0"]
 [ext_resource type="PackedScene" uid="uid://ne4wkoen2gxw" path="res://assets/kenney_prototype/Primitive_Cube_Small.gltf" id="12_u6nfu"]
 [ext_resource type="PackedScene" uid="uid://kqjkegx5pvgv" path="res://assets/kenney_prototype/Pallet_Large.gltf" id="13_qqrq0"]
-[ext_resource type="PackedScene" uid="uid://bjneeme42i2jj" path="res://assets/kenney_prototype/Pallet_Small.gltf" id="14_u6nfu"]
+[ext_resource type="Script" uid="uid://dpi5ky2iijte0" path="res://scenes/objects/pallet.gd" id="14_ps8dp"]
+[ext_resource type="PackedScene" uid="uid://ct7txq6evdcjj" path="res://scenes/objects/lever.tscn" id="15_u6nfu"]
+[ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="16_ps8dp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -30,7 +32,7 @@ sky = SubResource("Sky_623lg")
 size = Vector3(2.55286, 3.30359, 2.3894)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u6nfu"]
-size = Vector3(2.31079, 3.17395, 2.00854)
+size = Vector3(1.96417, 3.17395, 2.00854)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qqrq0"]
 size = Vector3(4.0426, 0.65033, 3.99365)
@@ -149,7 +151,7 @@ size = Vector3(1.62321, 3.14511, 1.60986)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97502, 0.463164, -0.539146)
 
 [node name="Lever1Target" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06777, 0.717867, 0.848822)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82085, 0.717867, -13.0864)
 
 [node name="SceneGoal" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39192, 0.326384, -30.2876)
@@ -171,13 +173,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150146, 1.55743, 0.079223
 shape = SubResource("BoxShape3D_u6nfu")
 
 [node name="PalletSmalDecorated2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135469, 0.355332, -19.2954)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135469, 0.355332, -28.9385)
 
 [node name="Pallet_Small_Decorated_B2" parent="PalletSmalDecorated2" instance=ExtResource("10_s8hpv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.944047, 0.140041, 0.124304)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PalletSmalDecorated2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150146, 1.55743, 0.0792236)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949737, 1.55743, 0.0792236)
 shape = SubResource("BoxShape3D_u6nfu")
 
 [node name="Primitive_Beam2" parent="." instance=ExtResource("8_x342e")]
@@ -224,35 +226,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -12)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
 shape = SubResource("BoxShape3D_qqrq0")
 
-[node name="Pallet_Large4" type="StaticBody3D" parent="Pallets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
-
-[node name="Pallet_Large3" parent="Pallets/Pallet_Large4" instance=ExtResource("13_qqrq0")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
-shape = SubResource("BoxShape3D_qqrq0")
-
-[node name="Pallet_Large5" type="StaticBody3D" parent="Pallets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -20)
-
-[node name="Pallet_Large3" parent="Pallets/Pallet_Large5" instance=ExtResource("13_qqrq0")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
-shape = SubResource("BoxShape3D_qqrq0")
-
-[node name="Pallet_Large6" type="StaticBody3D" parent="Pallets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
-
-[node name="Pallet_Large3" parent="Pallets/Pallet_Large6" instance=ExtResource("13_qqrq0")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
-shape = SubResource("BoxShape3D_qqrq0")
-
 [node name="Pallet_Large7" type="StaticBody3D" parent="Pallets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -24)
 
 [node name="Pallet_Large3" parent="Pallets/Pallet_Large7" instance=ExtResource("13_qqrq0")]
 
@@ -260,7 +235,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
 shape = SubResource("BoxShape3D_qqrq0")
 
-[node name="Pallet_Small2" parent="." instance=ExtResource("14_u6nfu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -9)
+[node name="Pallet_Large8" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -20)
+visible = false
+script = ExtResource("14_ps8dp")
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large8" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+disabled = true
+
+[node name="Pallet_Large9" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
+visible = false
+script = ExtResource("14_ps8dp")
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large9" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+disabled = true
+
+[node name="Lever" parent="." instance=ExtResource("15_u6nfu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.96162, 0.581197, -13.0926)
+
+[node name="target2" parent="." instance=ExtResource("16_ps8dp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.842496, 1.87102, -27.7402)
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
