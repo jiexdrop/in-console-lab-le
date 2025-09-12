@@ -67,7 +67,7 @@ func _check_fall_status(delta: float) -> void:
 			is_falling = true
 			fall_timer = 0.0
 			print("WARNING: Sunny is falling into the void!")
-			player_2ainpc.notify("The player pushed you into the void. You will be teleported back to the start. React accordingly.")
+			player_2ainpc.notify("You fell into the void. You will be teleported back to the start. React accordingly.")
 		else:
 			fall_timer += delta
 			if fall_timer >= fall_check_time:
