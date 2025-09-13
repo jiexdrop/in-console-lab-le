@@ -355,11 +355,11 @@ end_position = Vector3(3.59263, 0.770928, -11.325)
 
 [node name="NavigationLink3D2" type="NavigationLink3D" parent="NavigationRegion3D"]
 start_position = Vector3(3.6688, 0.708579, -11.3058)
-end_position = Vector3(1.44355, 1.00822, -16.4905)
+end_position = Vector3(2.10377, 0.355052, -16.1996)
 
 [node name="NavigationLink3D3" type="NavigationLink3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0469069, 0.00444531, -0.0484352)
-start_position = Vector3(1.33183, 0.419504, -16.6999)
+start_position = Vector3(0.775189, 0.289638, -17.5729)
 end_position = Vector3(-5.00763, 0.711328, -21.8)
 
 [node name="NavigationLink3D4" type="NavigationLink3D" parent="NavigationRegion3D"]

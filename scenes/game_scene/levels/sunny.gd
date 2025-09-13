@@ -199,22 +199,33 @@ func _perform_jump():
 	
 	is_jumping = true
 	preparing_jump = false
-	velocity.y = jump_velocity
 	
-	# Simple direction calculation
-	var jump_direction = (jump_target - global_position).normalized()
+	# Calculate jump direction and distance
+	var jump_direction = (jump_target - global_position)
+	var horizontal_distance = Vector2(jump_direction.x, jump_direction.z).length()
 	jump_direction.y = 0
+	jump_direction = jump_direction.normalized()
 	
 	print("Jump direction: ", jump_direction)
+	print("Horizontal distance: ", horizontal_distance)
 	
+	# Set vertical jump velocity
+	velocity.y = jump_velocity
+	
+	# Add forward momentum for longer jumps
+	var forward_boost = speed * 3.5  # Adjust this multiplier as needed
+	velocity.x = jump_direction.x * forward_boost
+	velocity.z = jump_direction.z * forward_boost
+	
+	# Orient towards jump target
 	if jump_direction.length() > 0.1:
 		var model_root = avatar_sample_e
 		var facing = Transform3D().looking_at(jump_direction, Vector3.UP)
 		model_root.basis = facing.basis
-		model_root.rotate_y(deg_to_rad(180))  
+		model_root.rotate_y(deg_to_rad(180))
 	
 	_play_jump()
-
+	
 func _on_velocity_computed(safe_velocity: Vector3):
 	# This can help with smoother movement, but we'll handle jumping manually
 	if not is_jumping and not preparing_jump:
