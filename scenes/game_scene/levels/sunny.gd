@@ -213,7 +213,7 @@ func _perform_jump():
 	velocity.y = jump_velocity
 	
 	# Add forward momentum for longer jumps
-	var forward_boost = speed * 3.5  # Adjust this multiplier as needed
+	var forward_boost = speed * 5  # Adjust this multiplier as needed
 	velocity.x = jump_direction.x * forward_boost
 	velocity.z = jump_direction.z * forward_boost
 	
@@ -249,28 +249,13 @@ func _set_navigation_target(target: Vector3) -> void:
 	has_target = true
 
 func _pick_random_target() -> void:
-	var nav_map = navigation_agent.get_navigation_map()
-	var attempts = 0
-	var max_attempts = 10
-	
-	while attempts < max_attempts:
-		var random_offset = Vector3(
-			randf_range(-10, 10),
-			0,
-			randf_range(-10, 10)
-		)
-		var potential_target = global_position + random_offset
-		
-		# Check if the target is on the navigation mesh
-		var closest_point = NavigationServer3D.map_get_closest_point(nav_map, potential_target)
-		if closest_point.distance_to(potential_target) < 2.0:  # Within reasonable distance
-			_set_navigation_target(closest_point)
-			return
-		
-		attempts += 1
-	
-	# Fallback: stay in place
-	has_target = false
+	var random_offset = Vector3(
+		randf_range(-10, 10),
+		0,
+		randf_range(-10, 10)
+	)
+	var potential_target = global_position + random_offset
+	_set_navigation_target(potential_target)
 
 # Add jump animation (you'll need to create this in your AnimationTree)
 func _play_jump() -> void:

@@ -380,6 +380,9 @@ scene_goal = NodePath("../SceneGoal")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GoalForSunny"]
 shape = SubResource("SphereShape3D_7n1hf")
 
+[node name="EndGoalTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.39292, 0.812415, -26.2419)
+
 [node name="target2" parent="." instance=ExtResource("18_7n1hf")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.39292, 0.339031, -26.2419)
 

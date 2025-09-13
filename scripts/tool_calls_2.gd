@@ -51,6 +51,13 @@ func _process(delta: float) -> void:
 				print("Sunny reached destination - opening door!")
 				door_a.queue_free()
 			waiting_for_sunny = false
+			
+			
+	if waiting_for_end_goal and sunny and end_goal_target:
+		var distance = sunny.global_position.distance_to(end_goal_target.global_position)
+		if distance <= sunny.stop_distance * 2:
+			print("Sunny reached end_goal destination!")
+			waiting_for_end_goal = false
 
 ## Will activate/deactivate lever 1
 func toggle_lever_1() -> void:
@@ -106,7 +113,7 @@ func stop_follow_player() -> void:
 		print("Could not find Sunny")
 
 ## Sunny will be placed in the end goal platform to upload to next level
-func end_goal_position() -> void:
+func go_to_end_target() -> void:
 	print("Telling Sunny to move to goal target...")
 	
 	# Tell Sunny to move to the bridge target

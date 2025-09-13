@@ -83,7 +83,7 @@ func create_bridge() -> void:
 		print("Could not find Sunny or Bridge1Target")
 		
 ## Sunny will be placed in the end goal platform to upload to next level
-func end_goal_position() -> void:
+func go_to_end_target() -> void:
 	print("Telling Sunny to move to goal target...")
 	
 	# Tell Sunny to move to the bridge target
