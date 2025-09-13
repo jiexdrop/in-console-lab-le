@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=19 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
@@ -9,6 +9,8 @@
 [ext_resource type="Material" uid="uid://bgvjs6pmpnyio" path="res://resources/mtoon_shader_material.tres" id="7_pmyid"]
 [ext_resource type="PackedScene" uid="uid://dcwsf66srmk8x" path="res://assets/kenney_prototype/Door_B.gltf" id="8_bsimd"]
 [ext_resource type="Script" uid="uid://df4w5wpg2x3pi" path="res://scenes/game_scene/levels/bridge.gd" id="8_fmabn"]
+[ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="10_85t3v"]
+[ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="11_8avtb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -27,6 +29,9 @@ size = Vector3(2.55286, 3.30359, 2.3894)
 [sub_resource type="NavigationMesh" id="NavigationMesh_fmabn"]
 vertices = PackedVector3Array(-2.42108, 1, -12.483, 0.828918, 1, -12.233, 1.07892, 1, -13.983, -2.42108, 1, -21.483, 5.32892, 1, -13.983, 5.32892, 1, -21.483, 1.32892, 1, -2.73298, 1.57892, 1, -1.73298, 2.82892, 1, -1.73298, 3.07892, 1, -2.73298, 0.828918, 1, -6.48298, -2.42108, 1, -2.73298, 5.82892, 1, -2.73298, 5.82892, 1, -6.23298, 1.32892, 1, -0.732979, 3.07892, 1, -0.732979, -2.42108, 1, 5.76702, 6.07892, 1, 5.76702, 6.07892, 1, -0.732979, -2.42108, 1, -0.732979)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 10), PackedInt32Array(10, 6, 11), PackedInt32Array(12, 9, 13), PackedInt32Array(13, 9, 10), PackedInt32Array(1, 10, 0), PackedInt32Array(0, 10, 11), PackedInt32Array(8, 15, 7), PackedInt32Array(7, 15, 14), PackedInt32Array(15, 17, 14), PackedInt32Array(14, 17, 16), PackedInt32Array(15, 18, 17), PackedInt32Array(16, 19, 14)]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_85t3v"]
+radius = 0.880516
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_623lg")
@@ -189,4 +194,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47687, 0, -17.8263)
 visible = false
 size = Vector3(8.61682, 1, 8.31334)
 
+[node name="target2" parent="." instance=ExtResource("10_85t3v")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.33939, 0.336061, -16.9777)
+
+[node name="EndGoalTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.35597, 0.717867, -16.9666)
+
+[node name="GoalForSunny" type="Area3D" parent="." node_paths=PackedStringArray("scene_goal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.34146, 0.508022, -16.9915)
+script = ExtResource("11_8avtb")
+scene_goal = NodePath("../SceneGoal")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalForSunny"]
+shape = SubResource("SphereShape3D_85t3v")
+
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
+[connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]
+[connection signal="body_exited" from="GoalForSunny" to="GoalForSunny" method="_on_body_exited"]
