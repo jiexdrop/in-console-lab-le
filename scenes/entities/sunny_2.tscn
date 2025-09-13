@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=3 uid="uid://11yp6ro3th8p"]
+[gd_scene load_steps=142 format=3 uid="uid://11yp6ro3th8p"]
 
 [ext_resource type="Script" uid="uid://t8d23hydev30" path="res://scenes/game_scene/levels/sunny.gd" id="1_tfja4"]
 [ext_resource type="PackedScene" uid="uid://bkwpborfxt1fj" path="res://assets/vrm/AvatarSample_E.vrm" id="2_6ednh"]
@@ -1968,11 +1968,20 @@ name = "stop_follow_player"
 enabled = true
 description = "Will stop following the player "
 
+[sub_resource type="Resource" id="Resource_b4l6b"]
+Resource = null
+resource_path = "res://scenes/entities/sunny_2.tscn::Resource_b4l6b"
+resource_scene_unique_id = "Resource_b4l6b"
+script = ExtResource("19_gavt8")
+name = "end_goal_position"
+enabled = true
+description = "Sunny will be placed in the end goal platform to upload to next level "
+
 [sub_resource type="Resource" id="Resource_peb23"]
 Resource = null
 resource_path = "res://scenes/entities/sunny_2.tscn::Resource_peb23"
 script = ExtResource("20_e37jb")
-definitions = Array[ExtResource("19_gavt8")]([SubResource("Resource_6hgae"), SubResource("Resource_xv8ta"), SubResource("Resource_h2vp1"), SubResource("Resource_owqej"), SubResource("Resource_g6scu"), SubResource("Resource_ai3sp"), SubResource("Resource_uxw3g")])
+definitions = Array[ExtResource("19_gavt8")]([SubResource("Resource_6hgae"), SubResource("Resource_xv8ta"), SubResource("Resource_h2vp1"), SubResource("Resource_owqej"), SubResource("Resource_g6scu"), SubResource("Resource_ai3sp"), SubResource("Resource_uxw3g"), SubResource("Resource_b4l6b")])
 toggle_lever_1 = SubResource("Resource_6hgae")
 open_door = SubResource("Resource_xv8ta")
 move_big_cube_1 = SubResource("Resource_h2vp1")
@@ -1980,6 +1989,7 @@ move_big_cube_2 = SubResource("Resource_owqej")
 move_big_cube_3 = SubResource("Resource_g6scu")
 follow_player = SubResource("Resource_ai3sp")
 stop_follow_player = SubResource("Resource_uxw3g")
+end_goal_position = SubResource("Resource_b4l6b")
 
 [node name="Sunny2" type="CharacterBody3D" groups=["Sunny"]]
 script = ExtResource("1_tfja4")

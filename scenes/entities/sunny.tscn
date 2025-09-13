@@ -1946,7 +1946,7 @@ Resource = null
 resource_path = "res://scenes/entities/sunny.tscn::Resource_ua5kr"
 resource_scene_unique_id = "Resource_ua5kr"
 script = ExtResource("14_ih5a6")
-name = "end_target"
+name = "end_goal_position"
 enabled = true
 description = "Sunny will be placed in the end goal platform to upload to next level "
 
@@ -1959,7 +1959,7 @@ open_door = SubResource("Resource_0ib0v")
 follow_player = SubResource("Resource_xjlkh")
 stop_follow_player = SubResource("Resource_ygb66")
 create_bridge = SubResource("Resource_fh514")
-end_target = SubResource("Resource_ua5kr")
+end_goal_position = SubResource("Resource_ua5kr")
 
 [node name="Sunny" type="CharacterBody3D" groups=["Sunny"]]
 script = ExtResource("1_t0o1e")

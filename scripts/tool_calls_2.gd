@@ -4,9 +4,12 @@ var sunny : Sunny
 var lever_1 : Lever
 var lever_1_target : Marker3D
 var door1_target : Marker3D
+var end_goal_target : Marker3D
 
 var waiting_for_lever : bool = false
 var waiting_for_sunny : bool = false
+var waiting_for_end_goal : bool = false  
+
 var lever_1_state = true
 var door_a : StaticBody3D
 var player_2ainpc: Player2AINPC 
@@ -22,6 +25,7 @@ func _ready() -> void:
 	lever_1 = level2_node.find_child("Lever", true, false)
 	lever_1_target = level2_node.find_child("Lever1Target", true, false)
 	door1_target = level2_node.find_child("Door1Target", true, false)
+	end_goal_target = level2_node.find_child("EndGoalTarget", true, false)
 	door_a = level2_node.find_child("Door_A", true, false)
 	big_cube_1 = level2_node.find_child("BigCube", true, false)
 	big_cube_2 = level2_node.find_child("BigCube2", true, false)
@@ -100,3 +104,14 @@ func stop_follow_player() -> void:
 		sunny.stop_following_player()
 	else:
 		print("Could not find Sunny")
+
+## Sunny will be placed in the end goal platform to upload to next level
+func end_goal_position() -> void:
+	print("Telling Sunny to move to goal target...")
+	
+	# Tell Sunny to move to the bridge target
+	if sunny and end_goal_target:
+		sunny.move_to_position(end_goal_target.global_position)
+		waiting_for_end_goal = true
+	else:
+		print("Could not find Sunny or end_goal_target")

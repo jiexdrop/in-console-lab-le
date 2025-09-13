@@ -44,7 +44,6 @@ func _process(delta: float) -> void:
 		var distance = sunny.global_position.distance_to(end_goal_target.global_position)
 		if distance <= sunny.stop_distance * 2:
 			print("Sunny reached end_goal destination!")
-			sunny.state = Sunny.State.IDLE
 			waiting_for_end_goal = false
 
 ## Will open the door once Sunny reaches the target
@@ -84,7 +83,7 @@ func create_bridge() -> void:
 		print("Could not find Sunny or Bridge1Target")
 		
 ## Sunny will be placed in the end goal platform to upload to next level
-func end_target() -> void:
+func end_goal_position() -> void:
 	print("Telling Sunny to move to goal target...")
 	
 	# Tell Sunny to move to the bridge target
