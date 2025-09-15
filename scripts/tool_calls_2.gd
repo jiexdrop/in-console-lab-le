@@ -113,7 +113,7 @@ func stop_follow_player() -> void:
 		print("Could not find Sunny")
 
 ## Sunny will be placed in the end goal platform to upload to next level
-func go_to_end_target() -> void:
+func follow_me_to_the_end() -> void:
 	print("Telling Sunny to move to goal target...")
 	
 	# Tell Sunny to move to the bridge target

@@ -3,10 +3,13 @@ extends Node
 var sunny : Sunny
 var lever_1 : Lever
 var lever_1_target : Marker3D
+var end_goal_target : Marker3D
 var pallet_large_8: Pallet
 var pallet_large_9: Pallet
 
 var waiting_for_lever : bool = false
+var waiting_for_end_goal : bool = false
+
 var lever_1_state = true
 
 func _ready() -> void:
@@ -14,9 +17,9 @@ func _ready() -> void:
 	sunny = level3_node.find_child("Sunny", true, false)
 	lever_1 = level3_node.find_child("Lever", true, false)
 	lever_1_target = level3_node.find_child("Lever1Target", true, false)
+	end_goal_target = level3_node.find_child("EndGoalTarget", true, false)
 	pallet_large_8 = level3_node.find_child("Pallet_Large8", true, false)
 	pallet_large_9 = level3_node.find_child("Pallet_Large9", true, false)
-	
 	
 func _process(delta: float) -> void:
 	# Check if we're waiting for Sunny and if she's reached the door destination
@@ -34,6 +37,12 @@ func _process(delta: float) -> void:
 				pallet_large_9.toggle(false)
 			waiting_for_lever = false
 	
+	if waiting_for_end_goal and sunny and end_goal_target:
+		var distance = sunny.global_position.distance_to(end_goal_target.global_position)
+		if distance <= sunny.stop_distance * 2:
+			print("Sunny reached end_goal destination!")
+			waiting_for_end_goal = false
+
 ## Will follow the player
 func follow_player() -> void:
 	if sunny:
@@ -60,3 +69,13 @@ func toggle_lever_1() -> void:
 	else:
 		print("Could not find Sunny or Bridge1Target")
 	
+## Sunny will be placed in the end goal platform to upload to next level
+func follow_me_to_the_end() -> void:
+	print("Telling Sunny to move to goal target...")
+	
+	# Tell Sunny to move to the bridge target
+	if sunny and end_goal_target:
+		sunny.move_to_position(end_goal_target.global_position)
+		waiting_for_end_goal = true
+	else:
+		print("Could not find Sunny or end_goal_target")

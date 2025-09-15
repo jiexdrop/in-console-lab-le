@@ -27,8 +27,8 @@ sky = SubResource("Sky_623lg")
 size = Vector3(2.55286, 3.30359, 2.3894)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_fmabn"]
-vertices = PackedVector3Array(-2.42108, 1, -12.483, 0.828915, 1, -12.233, 1.07892, 1, -13.983, -2.42108, 1, -21.483, 5.32892, 1, -13.983, 5.32892, 1, -21.483, 1.32892, 1, -2.733, 1.57892, 1, -1.733, 2.82892, 1, -1.733, 3.07892, 1, -2.733, 0.828915, 1, -6.483, -2.42108, 1, -2.733, 5.82892, 1, -2.733, 5.82892, 1, -6.233, 1.32892, 1, -0.733, 3.07892, 1, -0.733, -2.42108, 1, 5.767, 6.07892, 1, 5.767, 6.07892, 1, -0.733, -2.42108, 1, -0.733)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 10), PackedInt32Array(10, 6, 11), PackedInt32Array(12, 9, 13), PackedInt32Array(13, 9, 10), PackedInt32Array(1, 10, 0), PackedInt32Array(0, 10, 11), PackedInt32Array(8, 15, 7), PackedInt32Array(7, 15, 14), PackedInt32Array(15, 17, 14), PackedInt32Array(14, 17, 16), PackedInt32Array(15, 18, 17), PackedInt32Array(16, 19, 14)]
+vertices = PackedVector3Array(-2.42108, 1, -12.483, 0.828915, 1, -12.233, 1.07892, 1, -13.983, -2.42108, 1, -21.483, 5.32892, 1, -13.983, 5.32892, 1, -21.483, 2.07892, 1, -1.733, 2.32892, 1, -1.733, 2.57892, 1, -2.733, 1.82892, 1, -2.733, -2.42108, 1, -2.733, 0.828915, 1, -6.483, 5.82892, 1, -2.733, 5.82892, 1, -6.233, 1.82892, 1, -0.733, 2.57892, 1, -0.733, 6.07892, 1, 5.767, 6.07892, 1, -0.733, -2.42108, 1, -0.733, -2.42108, 1, 5.767)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(6, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(11, 9, 10), PackedInt32Array(12, 8, 13), PackedInt32Array(13, 8, 11), PackedInt32Array(1, 11, 0), PackedInt32Array(0, 11, 10), PackedInt32Array(9, 11, 8), PackedInt32Array(7, 15, 6), PackedInt32Array(6, 15, 14), PackedInt32Array(14, 15, 16), PackedInt32Array(15, 17, 16), PackedInt32Array(18, 14, 19), PackedInt32Array(19, 14, 16)]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_85t3v"]
 radius = 0.880516
@@ -175,9 +175,9 @@ visible = false
 size = Vector3(9.34033, 1, 7.46844)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2179, 0, -1.78114)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12868, 0, -1.84592)
 visible = false
-size = Vector3(1.82056, 1, 1.74601)
+size = Vector3(0.990632, 1, 2.82267)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66432, 0, -4.41308)

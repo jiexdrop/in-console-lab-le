@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=30 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
@@ -16,10 +16,16 @@
 [ext_resource type="Script" uid="uid://dpi5ky2iijte0" path="res://scenes/objects/pallet.gd" id="14_ps8dp"]
 [ext_resource type="PackedScene" uid="uid://ct7txq6evdcjj" path="res://scenes/objects/lever.tscn" id="15_u6nfu"]
 [ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="16_ps8dp"]
+[ext_resource type="Shader" uid="uid://cvms733k7f23a" path="res://resources/shader/mountains.gdshader" id="17_ce5ly"]
+[ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="18_qmvo6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6i3l"]
+sky_top_color = Color(0.470272, 0.507603, 0.642201, 1)
+sky_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
+ground_bottom_color = Color(0.470272, 0.507603, 0.642201, 1)
+ground_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
 
 [sub_resource type="Sky" id="Sky_623lg"]
 sky_material = SubResource("ProceduralSkyMaterial_w6i3l")
@@ -38,8 +44,33 @@ size = Vector3(1.96417, 3.17395, 2.00854)
 size = Vector3(4.0426, 0.65033, 3.99365)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ps8dp"]
-vertices = PackedVector3Array(2.15527, 1, -26.6158, 2.40527, 1, -22.6158, 5.65527, 1, -22.6158, 5.65527, 1, -33.6158, -1.34473, 1, -33.6158, -1.34473, 1, -26.6158, -1.59473, 1, -7.36583, 1.65527, 1, -7.61583, 1.90527, 1, -10.3658, -1.59473, 1, -13.8658, 5.65527, 1, -10.3658, 5.65527, 1, -14.1158, 1.90527, 1, -5.86583, -1.59473, 1, 5.63417, 5.65527, 1, 5.63417, 5.65527, 1, -5.86583)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 9), PackedInt32Array(7, 12, 6), PackedInt32Array(6, 12, 13), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
+vertices = PackedVector3Array(2.08154, 1, -26.6159, 2.33154, 1, -24.3659, 5.83154, 1, -24.3659, -1.41846, 1, -33.6159, -1.41846, 1, -26.6159, 5.83154, 1, -33.6159, 2.33154, 1, -16.1159, 5.83154, 1, -16.1159, -1.66846, 1, -8.3659, 1.58154, 1, -8.3659, 1.83154, 1, -10.3659, 2.08154, 1, -13.8659, -1.66846, 1, -13.8659, 5.83154, 1, -10.3659, 1.83154, 1, -2.3659, 2.08154, 1, -1.6159, 2.33154, 1, -1.6159, 2.58154, 1, -2.3659, 1.83154, 1, -6.1159, 6.08154, 1, -2.3659, 6.08154, 1, -6.1159, -1.91846, 1, -2.3659, 1.83154, 1, -0.615902, 2.58154, 1, -0.615902, -1.66846, 1, 5.6341, 5.83154, 1, 5.6341, 5.83154, 1, -0.615902, -1.66846, 1, -0.615902)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 0, 5), PackedInt32Array(5, 0, 3), PackedInt32Array(1, 2, 6), PackedInt32Array(6, 2, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 12), PackedInt32Array(6, 7, 11), PackedInt32Array(11, 7, 10), PackedInt32Array(10, 7, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 18), PackedInt32Array(19, 17, 20), PackedInt32Array(20, 17, 18), PackedInt32Array(9, 18, 8), PackedInt32Array(8, 18, 14), PackedInt32Array(8, 14, 21), PackedInt32Array(16, 23, 15), PackedInt32Array(15, 23, 22), PackedInt32Array(23, 25, 22), PackedInt32Array(22, 25, 24), PackedInt32Array(23, 26, 25), PackedInt32Array(24, 27, 22)]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmvo6"]
+render_priority = 0
+shader = ExtResource("17_ce5ly")
+shader_parameter/line_thickness = 0.001
+shader_parameter/line_color = Vector4(0.2, 0.2, 0.2, 1)
+shader_parameter/fill_color = Vector4(0.2, 0.2, 0.2, 1)
+shader_parameter/mountain_scale = 22.621
+shader_parameter/mountain_scale_2 = 0.105
+shader_parameter/num_peaks = 19
+shader_parameter/mountain_height = 0.378
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ce5ly"]
+render_priority = 0
+shader = ExtResource("17_ce5ly")
+shader_parameter/line_thickness = 0.001
+shader_parameter/line_color = Vector4(0.1, 0.1, 0.1, 1)
+shader_parameter/fill_color = Vector4(0.1, 0.1, 0.1, 1)
+shader_parameter/mountain_scale = 19.855
+shader_parameter/mountain_scale_2 = 0.331
+shader_parameter/num_peaks = 20
+shader_parameter/mountain_height = 0.289
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3bm7s"]
+radius = 0.880516
 
 [node name="Level3" type="Node3D"]
 script = ExtResource("1_3s8h5")
@@ -273,9 +304,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.842496, 1.87102, -27.7402)
 navigation_mesh = SubResource("NavigationMesh_ps8dp")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05371, 0, -0.058197)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05371, 0, 2.49526)
 visible = false
-size = Vector3(8.29688, 1, 12.2158)
+size = Vector3(8.29688, 1, 7.10888)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17033, 0, -1.75358)
+visible = false
+size = Vector3(0.907745, 1, 3.68982)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03729, 0, -4.23096)
+visible = false
+size = Vector3(8.9115, 1, 4.32042)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0849609, 0, -10.1312)
@@ -287,6 +328,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09025, -4.76837e-07, -12.14
 visible = false
 size = Vector3(4.34906, 1, 4.48904)
 
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09025, -4.76837e-07, -18.6695)
+visible = false
+size = Vector3(4.34906, 1, 8.89826)
+
 [node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09025, -4.76837e-07, -28.166)
 visible = false
@@ -297,4 +343,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128001, -4.76837e-07, -30.1
 visible = false
 size = Vector3(3.79229, 1, 7.94512)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="MeshInstance3D"]
+flip_faces = true
+radius = 100.0
+radial_segments = 40
+rings = 30
+material = SubResource("ShaderMaterial_qmvo6")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="MeshInstance3D"]
+flip_faces = true
+radius = 100.0
+radial_segments = 40
+rings = 30
+material = SubResource("ShaderMaterial_ce5ly")
+
+[node name="EndGoalTarget" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38171, 0.717867, -28.2245)
+
+[node name="target3" parent="." instance=ExtResource("16_ps8dp")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.39292, 0.339031, -28.2419)
+
+[node name="GoalForSunny" type="Area3D" parent="." node_paths=PackedStringArray("scene_goal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.34146, 0.508022, -28.2285)
+script = ExtResource("18_qmvo6")
+scene_goal = NodePath("../SceneGoal")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalForSunny"]
+shape = SubResource("SphereShape3D_3bm7s")
+
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
+[connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]
+[connection signal="body_exited" from="GoalForSunny" to="GoalForSunny" method="_on_body_exited"]
