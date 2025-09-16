@@ -249,13 +249,34 @@ func _set_navigation_target(target: Vector3) -> void:
 	has_target = true
 
 func _pick_random_target() -> void:
-	var random_offset = Vector3(
-		randf_range(-10, 10),
-		0,
-		randf_range(-10, 10)
-	)
-	var potential_target = global_position + random_offset
-	_set_navigation_target(potential_target)
+	var navigation_map = navigation_agent.get_navigation_map()
+	var max_attempts = 10
+	var attempt = 0
+	
+	while attempt < max_attempts:
+		# Generate random offset from current position
+		var random_offset = Vector3(
+			randf_range(-3, 3),
+			0,
+			randf_range(-3, 3)
+		)
+		var potential_target = global_position + random_offset
+		
+		# Check if this position is on the navigation mesh
+		var closest_point = NavigationServer3D.map_get_closest_point(navigation_map, potential_target)
+		var distance_to_navmesh = potential_target.distance_to(closest_point)
+		
+		# If the point is close enough to the navmesh (within reasonable tolerance)
+		if distance_to_navmesh < 1.0:  # Adjust tolerance as needed
+			_set_navigation_target(closest_point)  # Use the closest valid point
+			print("Found valid target: ", closest_point)
+			return
+		
+		attempt += 1
+	
+	# Fallback: if no valid target found, stay put or use a smaller radius
+	print("No valid navigation target found, staying idle")
+	has_target = false
 
 # Add jump animation (you'll need to create this in your AnimationTree)
 func _play_jump() -> void:
