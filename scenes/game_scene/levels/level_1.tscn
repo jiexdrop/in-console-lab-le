@@ -147,9 +147,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176512, -5.60498)
 size = Vector3(8.01221, 4.42456, 1.11035)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, -5.63155)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, -5.16176)
 operation = 2
-size = Vector3(1.62321, 3.14511, 1.60986)
+size = Vector3(1.62321, 3.14511, 0.670286)
 
 [node name="Door1Target" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97502, 0.463164, -0.539146)
