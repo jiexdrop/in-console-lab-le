@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=21 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://df4w5wpg2x3pi" path="res://scenes/game_scene/levels/bridge.gd" id="8_fmabn"]
 [ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="10_85t3v"]
 [ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="11_8avtb"]
+[ext_resource type="PackedScene" uid="uid://dxefa26wkbgtd" path="res://scenes/objects/background.tscn" id="12_ua84b"]
+[ext_resource type="PackedScene" uid="uid://bm6xiakj8if1" path="res://assets/kenney_prototype/target_wall_small.gltf" id="13_hehv2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -211,6 +213,11 @@ scene_goal = NodePath("../SceneGoal")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GoalForSunny"]
 shape = SubResource("SphereShape3D_85t3v")
+
+[node name="Background" parent="." instance=ExtResource("12_ua84b")]
+
+[node name="target_wall_small2" parent="." instance=ExtResource("13_hehv2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190039, 2.65513, -1.34101)
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]

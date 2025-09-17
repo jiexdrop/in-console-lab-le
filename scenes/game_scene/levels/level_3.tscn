@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=28 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://dpi5ky2iijte0" path="res://scenes/objects/pallet.gd" id="14_ps8dp"]
 [ext_resource type="PackedScene" uid="uid://ct7txq6evdcjj" path="res://scenes/objects/lever.tscn" id="15_u6nfu"]
 [ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="16_ps8dp"]
-[ext_resource type="Shader" uid="uid://cvms733k7f23a" path="res://resources/shader/mountains.gdshader" id="17_ce5ly"]
+[ext_resource type="PackedScene" uid="uid://dxefa26wkbgtd" path="res://scenes/objects/background.tscn" id="17_qmvo6"]
 [ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="18_qmvo6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
@@ -46,28 +46,6 @@ size = Vector3(4.0426, 0.65033, 3.99365)
 [sub_resource type="NavigationMesh" id="NavigationMesh_ps8dp"]
 vertices = PackedVector3Array(2.08154, 1, -26.6159, 2.33154, 1, -24.3659, 5.83154, 1, -24.3659, -1.41846, 1, -33.6159, -1.41846, 1, -26.6159, 5.83154, 1, -33.6159, 2.33154, 1, -16.1159, 5.83154, 1, -16.1159, -1.66846, 1, -8.3659, 1.58154, 1, -8.3659, 1.83154, 1, -10.3659, 2.08154, 1, -13.8659, -1.66846, 1, -13.8659, 5.83154, 1, -10.3659, 1.83154, 1, -2.3659, 2.08154, 1, -1.6159, 2.33154, 1, -1.6159, 2.58154, 1, -2.3659, 1.83154, 1, -6.1159, 6.08154, 1, -2.3659, 6.08154, 1, -6.1159, -1.91846, 1, -2.3659, 1.83154, 1, -0.615902, 2.58154, 1, -0.615902, -1.66846, 1, 5.6341, 5.83154, 1, 5.6341, 5.83154, 1, -0.615902, -1.66846, 1, -0.615902)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 0, 5), PackedInt32Array(5, 0, 3), PackedInt32Array(1, 2, 6), PackedInt32Array(6, 2, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 12), PackedInt32Array(6, 7, 11), PackedInt32Array(11, 7, 10), PackedInt32Array(10, 7, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 18), PackedInt32Array(19, 17, 20), PackedInt32Array(20, 17, 18), PackedInt32Array(9, 18, 8), PackedInt32Array(8, 18, 14), PackedInt32Array(8, 14, 21), PackedInt32Array(16, 23, 15), PackedInt32Array(15, 23, 22), PackedInt32Array(23, 25, 22), PackedInt32Array(22, 25, 24), PackedInt32Array(23, 26, 25), PackedInt32Array(24, 27, 22)]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmvo6"]
-render_priority = 0
-shader = ExtResource("17_ce5ly")
-shader_parameter/line_thickness = 0.001
-shader_parameter/line_color = Color(0.368627, 0.368627, 0.368627, 1)
-shader_parameter/fill_color = Color(0.370364, 0.370365, 0.370364, 1)
-shader_parameter/mountain_scale = 22.621
-shader_parameter/mountain_scale_2 = 0.105
-shader_parameter/num_peaks = 19
-shader_parameter/mountain_height = 0.378
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ce5ly"]
-render_priority = 0
-shader = ExtResource("17_ce5ly")
-shader_parameter/line_thickness = 0.001
-shader_parameter/line_color = Color(0.592157, 0.592157, 0.592157, 1)
-shader_parameter/fill_color = Color(0.593134, 0.593134, 0.593133, 1)
-shader_parameter/mountain_scale = 19.855
-shader_parameter/mountain_scale_2 = 0.331
-shader_parameter/num_peaks = 20
-shader_parameter/mountain_height = 0.289
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3bm7s"]
 radius = 0.880516
@@ -343,21 +321,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128001, -4.76837e-07, -30.1
 visible = false
 size = Vector3(3.79229, 1, 7.94512)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="MeshInstance3D"]
-flip_faces = true
-radius = 100.0
-radial_segments = 40
-rings = 30
-material = SubResource("ShaderMaterial_qmvo6")
-
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="MeshInstance3D"]
-flip_faces = true
-radius = 100.0
-radial_segments = 40
-rings = 30
-material = SubResource("ShaderMaterial_ce5ly")
+[node name="Background" parent="." instance=ExtResource("17_qmvo6")]
 
 [node name="EndGoalTarget" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38171, 0.717867, -28.2245)
