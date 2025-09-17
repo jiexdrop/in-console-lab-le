@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=23 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="10_85t3v"]
 [ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="11_8avtb"]
 [ext_resource type="PackedScene" uid="uid://dxefa26wkbgtd" path="res://scenes/objects/background.tscn" id="12_ua84b"]
+[ext_resource type="Script" uid="uid://fuyrl3e5geev" path="res://scenes/objects/wall_hint.gd" id="13_27a66"]
 [ext_resource type="PackedScene" uid="uid://bm6xiakj8if1" path="res://assets/kenney_prototype/target_wall_small.gltf" id="13_hehv2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
@@ -35,6 +36,9 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 [sub_resource type="SphereShape3D" id="SphereShape3D_85t3v"]
 radius = 0.880516
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hehv2"]
+size = Vector3(1, 2.65161, 1.1763)
+
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_623lg")
 next_level_path = "uid://cgqsek1rjbuvj"
@@ -47,7 +51,7 @@ script = ExtResource("3_y0mvw")
 shape = SubResource("CapsuleShape3D_2hhcp")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.188535, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -216,9 +220,145 @@ shape = SubResource("SphereShape3D_85t3v")
 
 [node name="Background" parent="." instance=ExtResource("12_ua84b")]
 
-[node name="target_wall_small2" parent="." instance=ExtResource("13_hehv2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190039, 2.65513, -1.34101)
+[node name="WallHint" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190039, 2.12303, -1.34101)
+script = ExtResource("13_27a66")
+
+[node name="Target" parent="WallHint" instance=ExtResource("13_hehv2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallHint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.825806, 0.30426)
+shape = SubResource("BoxShape3D_hehv2")
+
+[node name="UI" type="CanvasLayer" parent="WallHint"]
+
+[node name="Panel" type="Panel" parent="WallHint/UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.5
+offset_top = -43.0
+offset_right = 293.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WallHint/UI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="InteractionLabel" type="Label" parent="WallHint/UI/Panel/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "You should try to ask Sunny to do something. How about \"Please open the door, Sunny\""
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="WallHint3" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.190039, 2.12303, -2.50624)
+script = ExtResource("13_27a66")
+
+[node name="Target" parent="WallHint3" instance=ExtResource("13_hehv2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallHint3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-08, -0.825806, 0.52037)
+shape = SubResource("BoxShape3D_hehv2")
+
+[node name="UI" type="CanvasLayer" parent="WallHint3"]
+
+[node name="Panel" type="Panel" parent="WallHint3/UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.5
+offset_top = -43.0
+offset_right = 293.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WallHint3/UI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="InteractionLabel" type="Label" parent="WallHint3/UI/Panel/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "A hint: try asking Sunny for a construction that could help you cross to the other side."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="WallHint2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43613, 2.12303, -18.0103)
+script = ExtResource("13_27a66")
+
+[node name="Target" parent="WallHint2" instance=ExtResource("13_hehv2")]
+
+[node name="target_wall_small" parent="WallHint2/Target" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0252514)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallHint2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.825806, 0.30426)
+shape = SubResource("BoxShape3D_hehv2")
+
+[node name="UI" type="CanvasLayer" parent="WallHint2"]
+
+[node name="Panel" type="Panel" parent="WallHint2/UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.5
+offset_top = -43.0
+offset_right = 293.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WallHint2/UI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="InteractionLabel" type="Label" parent="WallHint2/UI/Panel/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "If you are stuck, try telling Sunny \"Follow me to the end!\""
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]
 [connection signal="body_exited" from="GoalForSunny" to="GoalForSunny" method="_on_body_exited"]
+
+[editable path="WallHint/Target"]
+[editable path="WallHint3/Target"]
+[editable path="WallHint2/Target"]
