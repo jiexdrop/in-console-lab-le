@@ -14,6 +14,7 @@ config/name="Ask Sunny!"
 config/description="Hello darkness my old friend."
 run/main_scene="res://scenes/opening/opening_with_logo.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/image="uid://dl7a6njvpsdlf"
 
 [audio]
 
