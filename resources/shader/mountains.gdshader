@@ -1,16 +1,16 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque;
+render_mode blend_mix, depth_draw_always, cull_disabled;
+
 uniform float line_thickness : hint_range(0.001, 0.02) = 0.005;
-uniform vec4 line_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform vec4 fill_color = vec4(0.8, 0.8, 0.8, 0.8); // Semi-transparent
+uniform vec4 line_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 fill_color : source_color = vec4(0.8, 0.8, 0.8, 1.0); 
 uniform float mountain_scale : hint_range(1.0, 50.0) = 20.0;
-uniform float mountain_scale_2 : hint_range(0.0,1.0) = 0.5;
+uniform float mountain_scale_2 : hint_range(0.0, 1.0) = 0.5;
 uniform int num_peaks : hint_range(3, 20) = 8;
 uniform float mountain_height : hint_range(0.0, 1.0) = 0.3;
 
 void fragment() {
     vec2 uv = UV;
-    float alpha = 0.0;
     
     // Generate mountain peaks using straight line segments
     float mountain_y = 0.0;
@@ -28,6 +28,7 @@ void fragment() {
     mountain_y = mix(height1, height2, local_x);
     
     vec3 color = line_color.rgb;
+    float alpha = 1.0; // Always opaque for proper depth testing
     
     // Fill everything below the mountain line
     if (uv.y > mountain_y) {
@@ -36,11 +37,17 @@ void fragment() {
         
         if (line_alpha > 0.5) {
             color = line_color.rgb;
-            alpha = line_color.a;
         } else {
             color = fill_color.rgb;
-            alpha = fill_color.a;
         }
+    } else {
+        // For areas above the mountain, you could either:
+        // Option 1: Discard the fragment (won't write to depth buffer)
+        discard;
+        
+        // Option 2: Use a transparent background color but keep alpha = 1.0
+        // color = vec3(0.0, 0.0, 0.0);
+        // alpha = 0.0; // Only if you want transparency above mountains
     }
     
     ALBEDO = color;
