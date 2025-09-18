@@ -15,41 +15,86 @@ var pitch: float = 0.0
 var input_disabled: bool = false
 
 # How close the player must be to interact
-@export var interact_distance: float = 2.0
+@export var interact_distance: float = 5.0
+var current_lever: Lever = null
+var outline_material: ShaderMaterial
+
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if chat_interface:
 		chat_interface.connect("chat_closed", _on_chat_closed)
+		
+	setup_outline_shader()
 
 func _on_chat_closed():
 	input_disabled = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta: float) -> void:
-	# Only check when the interact key is just pressed
-	if Input.is_action_just_pressed("interact"):
-		var lever := _get_nearby_lever()
-		if lever:
-			# Toggle lever state
-			if lever.activated:
-				lever.deactivate_lever()
-			else:
-				lever.activate_lever()
-				
-func _get_nearby_lever() -> Lever:
-	# Cast a small sphere around the player to find a Lever node
-	var space_state := get_world_3d().direct_space_state
-	var query := PhysicsShapeQueryParameters3D.new()
-	query.shape = SphereShape3D.new()
-	query.shape.radius = interact_distance
-	query.transform = Transform3D(Basis(), global_position)
+	# Continuously raycast to find levers
+	var lever := get_raycast_lever()
+	
+	# Handle outline display
+	if lever != current_lever:
+		# Remove outline from previous lever
+		if current_lever:
+			remove_outline(current_lever)
+		
+		# Add outline to new lever
+		current_lever = lever
+		if current_lever:
+			add_outline(current_lever)
+	
+	# Handle interaction
+	if Input.is_action_just_pressed("interact") and current_lever:
+		# Toggle lever state
+		if current_lever.activated:
+			current_lever.deactivate_lever()
+		else:
+			current_lever.activate_lever()
 
-	for result in space_state.intersect_shape(query):
-		var collider = result.collider
-		if collider is Lever:
-			return collider
+func get_raycast_lever() -> Lever:
+	# Cast a ray from the camera/player forward
+	var camera = get_viewport().get_camera_3d()
+	if not camera:
+		return null
+	
+	var from = camera.global_position
+	var to = from + (-camera.global_transform.basis.z * interact_distance)
+	
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var result = space_state.intersect_ray(query)
+	
+	if result and result.collider is Lever:
+		return result.collider
+	
 	return null
+
+func setup_outline_shader():
+	outline_material = ShaderMaterial.new()
+	var shader = load("res://resources/shader/outline_shader_2.gdshader")
+	outline_material.shader = shader
+	outline_material.set_shader_parameter("shadow_color", Color.BLACK)
+	outline_material.set_shader_parameter("shadow_thickness", 5)
+
+func add_outline(lever: Lever):
+	# Assuming the lever has a MeshInstance3D node
+	var mesh_instance = lever.find_child("LeverBase_Material #27_0")
+	var mesh_instance_2 = lever.find_child("Lever_Material #30_0")
+	if mesh_instance and mesh_instance_2:
+		mesh_instance.material_overlay = outline_material
+		mesh_instance_2.material_overlay = outline_material
+	
+
+func remove_outline(lever: Lever):
+	# Remove the outline material
+	var mesh_instance = lever.find_child("LeverBase_Material #27_0") 
+	var mesh_instance_2 = lever.find_child("Lever_Material #30_0")
+	if mesh_instance:
+		mesh_instance.material_overlay = null
+		mesh_instance_2.material_overlay = null
 
 func _input(event: InputEvent) -> void:
 	# Handle escape key for chat closing with highest priority

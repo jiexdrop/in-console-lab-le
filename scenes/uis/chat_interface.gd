@@ -15,7 +15,7 @@ func _ready() -> void:
 	hide_chat()
 	send_button.pressed.connect(send)
 	
-	# Make enter key send message and escape key close chat
+	# Make enter key send message
 	chat_input.gui_input.connect(_on_chat_input_gui_input)
 	
 	# Connect to Player2Agent if assigned
@@ -23,20 +23,25 @@ func _ready() -> void:
 		text_sent.connect(player2_agent.chat)
 		player2_agent.chat_received.connect(append_line_agent)
 
-
 func _on_chat_input_gui_input(event: InputEvent):
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_ENTER:
+		if event.is_action_pressed("talk"):
 			chat_input.accept_event()
-			send()
-		elif event.keycode == KEY_ESCAPE:
-			chat_input.accept_event()
-			hide_chat()
+			# If chat input has text, send it; otherwise close chat
+			if chat_input.text.strip_edges() != "":
+				send()
+			else:
+				hide_chat()
 
-# Also handle escape when chat is open but input doesn't have focus
+# Handle enter key when chat is closed or input doesn't have focus
 func _unhandled_key_input(event: InputEvent):
-	if is_chat_open and event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		hide_chat()
+	if event is InputEventKey and event.pressed and event.is_action_pressed("talk"):
+		if not is_chat_open:
+			# Chat is closed, open it
+			show_chat()
+		elif not chat_input.has_focus():
+			# Chat is open but input doesn't have focus, focus it
+			chat_input.grab_focus()
 
 func show_chat():
 	visible = true
@@ -44,7 +49,6 @@ func show_chat():
 	animation_player.play("slide_up")
 	chat_input.grab_focus()
 	
-
 func hide_chat():
 	is_chat_open = false
 	animation_player.play("slide_down")
