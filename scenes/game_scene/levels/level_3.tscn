@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=33 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="18_qmvo6"]
 [ext_resource type="Script" uid="uid://1lfc8dg377pe" path="res://scenes/objects/lever.gd" id="19_3bm7s"]
 [ext_resource type="Script" uid="uid://cjibxyoww12co" path="res://scenes/game_scene/levels/bridge_creator.gd" id="20_oxc23"]
+[ext_resource type="Script" uid="uid://c3f6tea6kytvx" path="res://scenes/game_scene/levels/pick_right_lever.gd" id="21_v0u1s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -53,6 +54,9 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Arr
 radius = 0.880516
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ce5ly"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxc23"]
+size = Vector3(7.40515, 5.10818, 8.34351)
 
 [node name="Level3" type="Node3D"]
 script = ExtResource("1_3s8h5")
@@ -383,11 +387,58 @@ script = ExtResource("19_3bm7s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Levers/Lever"]
 shape = SubResource("BoxShape3D_ce5ly")
 
-[node name="BridgeCreator" type="Node3D" parent="."]
+[node name="Lever3" type="StaticBody3D" parent="Levers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.323645)
+script = ExtResource("19_3bm7s")
+
+[node name="Sketchfab_Scene" parent="Levers/Lever3" instance=ExtResource("18_3bm7s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Levers/Lever3"]
+shape = SubResource("BoxShape3D_ce5ly")
+
+[node name="Lever4" type="StaticBody3D" parent="Levers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, -0.323645)
+script = ExtResource("19_3bm7s")
+
+[node name="Sketchfab_Scene" parent="Levers/Lever4" instance=ExtResource("18_3bm7s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Levers/Lever4"]
+shape = SubResource("BoxShape3D_ce5ly")
+
+[node name="Lever5" type="StaticBody3D" parent="Levers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -0.323645)
+script = ExtResource("19_3bm7s")
+
+[node name="Sketchfab_Scene" parent="Levers/Lever5" instance=ExtResource("18_3bm7s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Levers/Lever5"]
+shape = SubResource("BoxShape3D_ce5ly")
+
+[node name="Lever6" type="StaticBody3D" parent="Levers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -0.323645)
+script = ExtResource("19_3bm7s")
+
+[node name="Sketchfab_Scene" parent="Levers/Lever6" instance=ExtResource("18_3bm7s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Levers/Lever6"]
+shape = SubResource("BoxShape3D_ce5ly")
+
+[node name="BridgeCreator" type="Node3D" parent="." node_paths=PackedStringArray("sunny")]
 script = ExtResource("20_oxc23")
+sunny = NodePath("../Sunny")
 
 [node name="PaletMover" type="Node3D" parent="."]
+
+[node name="PickRightLever" type="Area3D" parent="." node_paths=PackedStringArray("sunny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -27)
+script = ExtResource("21_v0u1s")
+sunny = NodePath("../Sunny")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickRightLever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103455, 2.05409, 0.634644)
+shape = SubResource("BoxShape3D_oxc23")
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]
 [connection signal="body_exited" from="GoalForSunny" to="GoalForSunny" method="_on_body_exited"]
+[connection signal="body_entered" from="PickRightLever" to="PickRightLever" method="_on_body_entered"]

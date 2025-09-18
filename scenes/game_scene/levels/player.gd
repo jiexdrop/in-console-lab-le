@@ -15,7 +15,7 @@ var pitch: float = 0.0
 var input_disabled: bool = false
 
 # How close the player must be to interact
-@export var interact_distance: float = 100.0
+@export var interact_distance: float = 2.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
