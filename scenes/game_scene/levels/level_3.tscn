@@ -194,10 +194,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0150146, 1.55743, 0.079223
 shape = SubResource("BoxShape3D_u6nfu")
 
 [node name="PalletSmalDecorated2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135469, 0.355332, -28.9385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38346, 0.355332, -28.3852)
 
 [node name="Pallet_Small_Decorated_B2" parent="PalletSmalDecorated2" instance=ExtResource("10_s8hpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40301, 0.140041, 0.328146)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PalletSmalDecorated2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949737, 1.55743, 0.0792236)
@@ -388,7 +387,7 @@ script = ExtResource("19_3bm7s")
 shape = SubResource("BoxShape3D_ce5ly")
 
 [node name="Lever3" type="StaticBody3D" parent="Levers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.323645)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, -0.323645)
 script = ExtResource("19_3bm7s")
 
 [node name="Sketchfab_Scene" parent="Levers/Lever3" instance=ExtResource("18_3bm7s")]
@@ -397,7 +396,7 @@ script = ExtResource("19_3bm7s")
 shape = SubResource("BoxShape3D_ce5ly")
 
 [node name="Lever4" type="StaticBody3D" parent="Levers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, -0.323645)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.323645)
 script = ExtResource("19_3bm7s")
 
 [node name="Sketchfab_Scene" parent="Levers/Lever4" instance=ExtResource("18_3bm7s")]
@@ -406,7 +405,7 @@ script = ExtResource("19_3bm7s")
 shape = SubResource("BoxShape3D_ce5ly")
 
 [node name="Lever5" type="StaticBody3D" parent="Levers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -0.323645)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -0.323645)
 script = ExtResource("19_3bm7s")
 
 [node name="Sketchfab_Scene" parent="Levers/Lever5" instance=ExtResource("18_3bm7s")]
@@ -415,7 +414,7 @@ script = ExtResource("19_3bm7s")
 shape = SubResource("BoxShape3D_ce5ly")
 
 [node name="Lever6" type="StaticBody3D" parent="Levers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -0.323645)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -0.323645)
 script = ExtResource("19_3bm7s")
 
 [node name="Sketchfab_Scene" parent="Levers/Lever6" instance=ExtResource("18_3bm7s")]
@@ -426,8 +425,6 @@ shape = SubResource("BoxShape3D_ce5ly")
 [node name="BridgeCreator" type="Node3D" parent="." node_paths=PackedStringArray("sunny")]
 script = ExtResource("20_oxc23")
 sunny = NodePath("../Sunny")
-
-[node name="PaletMover" type="Node3D" parent="."]
 
 [node name="PickRightLever" type="Area3D" parent="." node_paths=PackedStringArray("sunny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -27)
