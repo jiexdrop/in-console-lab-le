@@ -5,6 +5,9 @@ extends Node3D
 @onready var cylinder_002: Node3D = $"Sketchfab_Scene/Sketchfab_model/189d8c5f728f4537ad3f9f920e79e82e_fbx/RootNode/Cylinder002"
 @onready var root_node: Node3D = $"Sketchfab_Scene/Sketchfab_model/189d8c5f728f4537ad3f9f920e79e82e_fbx/RootNode"
 
+signal on_activated
+signal on_deactivated
+
 var activated = false
 var lever_default_rotation: Vector3
 var cylinder_default_rotation: Vector3
@@ -34,11 +37,13 @@ func _ready():
 func activate_lever():
 	if not activated:
 		activated = true
+		on_activated.emit()
 		animate_lever(lever_activated_rotation, cylinder_activated_rotation)
 
 func deactivate_lever():
 	if activated:
 		activated = false
+		on_deactivated.emit()
 		animate_lever(lever_default_rotation, cylinder_default_rotation)
 
 func animate_lever(target_lever_rotation: Vector3, target_cylinder_rotation: Vector3):

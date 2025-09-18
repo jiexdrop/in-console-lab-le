@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=31 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b1lkv5qv8q2ox" path="res://assets/lever/scene.gltf" id="18_3bm7s"]
 [ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="18_qmvo6"]
 [ext_resource type="Script" uid="uid://1lfc8dg377pe" path="res://scenes/objects/lever.gd" id="19_3bm7s"]
+[ext_resource type="Script" uid="uid://cjibxyoww12co" path="res://scenes/game_scene/levels/bridge_creator.gd" id="20_oxc23"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -192,7 +193,7 @@ shape = SubResource("BoxShape3D_u6nfu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135469, 0.355332, -28.9385)
 
 [node name="Pallet_Small_Decorated_B2" parent="PalletSmalDecorated2" instance=ExtResource("10_s8hpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40301, 0.140041, 0.124304)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40301, 0.140041, 0.328146)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PalletSmalDecorated2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949737, 1.55743, 0.0792236)
@@ -381,6 +382,11 @@ script = ExtResource("19_3bm7s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Levers/Lever"]
 shape = SubResource("BoxShape3D_ce5ly")
+
+[node name="BridgeCreator" type="Node3D" parent="."]
+script = ExtResource("20_oxc23")
+
+[node name="PaletMover" type="Node3D" parent="."]
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]
