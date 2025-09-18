@@ -14,6 +14,9 @@ var pitch: float = 0.0
 
 var input_disabled: bool = false
 
+# How close the player must be to interact
+@export var interact_distance: float = 100.0
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if chat_interface:
@@ -22,6 +25,31 @@ func _ready() -> void:
 func _on_chat_closed():
 	input_disabled = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _process(delta: float) -> void:
+	# Only check when the interact key is just pressed
+	if Input.is_action_just_pressed("interact"):
+		var lever := _get_nearby_lever()
+		if lever:
+			# Toggle lever state
+			if lever.activated:
+				lever.deactivate_lever()
+			else:
+				lever.activate_lever()
+				
+func _get_nearby_lever() -> Lever:
+	# Cast a small sphere around the player to find a Lever node
+	var space_state := get_world_3d().direct_space_state
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = SphereShape3D.new()
+	query.shape.radius = interact_distance
+	query.transform = Transform3D(Basis(), global_position)
+
+	for result in space_state.intersect_shape(query):
+		var collider = result.collider
+		if collider is Lever:
+			return collider
+	return null
 
 func _input(event: InputEvent) -> void:
 	# Handle escape key for chat closing with highest priority

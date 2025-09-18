@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=30 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
@@ -14,10 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://ne4wkoen2gxw" path="res://assets/kenney_prototype/Primitive_Cube_Small.gltf" id="12_u6nfu"]
 [ext_resource type="PackedScene" uid="uid://kqjkegx5pvgv" path="res://assets/kenney_prototype/Pallet_Large.gltf" id="13_qqrq0"]
 [ext_resource type="Script" uid="uid://dpi5ky2iijte0" path="res://scenes/objects/pallet.gd" id="14_ps8dp"]
-[ext_resource type="PackedScene" uid="uid://ct7txq6evdcjj" path="res://scenes/objects/lever.tscn" id="15_u6nfu"]
 [ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="16_ps8dp"]
 [ext_resource type="PackedScene" uid="uid://dxefa26wkbgtd" path="res://scenes/objects/background.tscn" id="17_qmvo6"]
+[ext_resource type="PackedScene" uid="uid://b1lkv5qv8q2ox" path="res://assets/lever/scene.gltf" id="18_3bm7s"]
 [ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="18_qmvo6"]
+[ext_resource type="Script" uid="uid://1lfc8dg377pe" path="res://scenes/objects/lever.gd" id="19_3bm7s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -49,6 +50,8 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Arr
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3bm7s"]
 radius = 0.880516
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ce5ly"]
 
 [node name="Level3" type="Node3D"]
 script = ExtResource("1_3s8h5")
@@ -152,8 +155,8 @@ material_overlay = ExtResource("7_v0u1s")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176512, -15.605)
-size = Vector3(8.01221, 4.42456, 1.11035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98987, 0.176512, -15.605)
+size = Vector3(15.9919, 4.42456, 1.11035)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175504, -0.41408, -15.1701)
@@ -189,7 +192,7 @@ shape = SubResource("BoxShape3D_u6nfu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135469, 0.355332, -28.9385)
 
 [node name="Pallet_Small_Decorated_B2" parent="PalletSmalDecorated2" instance=ExtResource("10_s8hpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.944047, 0.140041, 0.124304)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40301, 0.140041, 0.124304)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PalletSmalDecorated2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949737, 1.55743, 0.0792236)
@@ -248,6 +251,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -24)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
 shape = SubResource("BoxShape3D_qqrq0")
 
+[node name="Pallet_Large10" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -24)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large10" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large11" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -28)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large11" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large12" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -28)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large12" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
+[node name="Pallet_Large13" type="StaticBody3D" parent="Pallets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -24)
+
+[node name="Pallet_Large3" parent="Pallets/Pallet_Large13" instance=ExtResource("13_qqrq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pallets/Pallet_Large13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
+shape = SubResource("BoxShape3D_qqrq0")
+
 [node name="Pallet_Large8" type="StaticBody3D" parent="Pallets"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -20)
 visible = false
@@ -271,12 +310,6 @@ script = ExtResource("14_ps8dp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00128174, 0.255768, 0.00512695)
 shape = SubResource("BoxShape3D_qqrq0")
 disabled = true
-
-[node name="Lever" parent="." instance=ExtResource("15_u6nfu")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.96162, 0.581197, -13.0926)
-
-[node name="target2" parent="." instance=ExtResource("16_ps8dp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.842496, 1.87102, -27.7402)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ps8dp")
@@ -336,6 +369,18 @@ scene_goal = NodePath("../SceneGoal")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GoalForSunny"]
 shape = SubResource("SphereShape3D_3bm7s")
+
+[node name="Levers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96162, 0.581197, -28.5016)
+
+[node name="Lever" type="StaticBody3D" parent="Levers"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 15.6764)
+script = ExtResource("19_3bm7s")
+
+[node name="Sketchfab_Scene" parent="Levers/Lever" instance=ExtResource("18_3bm7s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Levers/Lever"]
+shape = SubResource("BoxShape3D_ce5ly")
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]

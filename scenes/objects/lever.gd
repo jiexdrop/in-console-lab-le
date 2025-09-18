@@ -1,9 +1,9 @@
 class_name Lever
 extends Node3D
 
-@onready var lever: Node3D = $"Sketchfab_model/189d8c5f728f4537ad3f9f920e79e82e_fbx/RootNode/Lever"
-@onready var cylinder_002: Node3D = $"Sketchfab_model/189d8c5f728f4537ad3f9f920e79e82e_fbx/RootNode/Cylinder002"
-@onready var root_node: Node3D = $"Sketchfab_model/189d8c5f728f4537ad3f9f920e79e82e_fbx/RootNode"
+@onready var lever: Node3D = $"Sketchfab_Scene/Sketchfab_model/189d8c5f728f4537ad3f9f920e79e82e_fbx/RootNode/Lever"
+@onready var cylinder_002: Node3D = $"Sketchfab_Scene/Sketchfab_model/189d8c5f728f4537ad3f9f920e79e82e_fbx/RootNode/Cylinder002"
+@onready var root_node: Node3D = $"Sketchfab_Scene/Sketchfab_model/189d8c5f728f4537ad3f9f920e79e82e_fbx/RootNode"
 
 var activated = false
 var lever_default_rotation: Vector3
