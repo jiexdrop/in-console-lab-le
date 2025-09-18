@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bd6cy8k73ibmy"]
+[gd_scene load_steps=24 format=3 uid="uid://bd6cy8k73ibmy"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="3_w6i3l"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dxefa26wkbgtd" path="res://scenes/objects/background.tscn" id="12_ua84b"]
 [ext_resource type="Script" uid="uid://fuyrl3e5geev" path="res://scenes/objects/wall_hint.gd" id="13_27a66"]
 [ext_resource type="PackedScene" uid="uid://bm6xiakj8if1" path="res://assets/kenney_prototype/target_wall_small.gltf" id="13_hehv2"]
+[ext_resource type="AudioStream" uid="uid://dqiyij4d7d56s" path="res://assets/audio/Above the Peaks.mp3" id="15_m77gi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -354,6 +355,11 @@ layout_mode = 2
 text = "If you are stuck, try telling Sunny \"Follow me to the end!\""
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_m77gi")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]

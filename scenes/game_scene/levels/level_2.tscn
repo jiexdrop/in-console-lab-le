@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgqsek1rjbuvj"]
+[gd_scene load_steps=29 format=3 uid="uid://cgqsek1rjbuvj"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_i1l6d"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_c6hhn"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://d2vqmn53putyy" path="res://scenes/objects/goal_for_sunny.gd" id="17_bp8id"]
 [ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="18_7n1hf"]
 [ext_resource type="PackedScene" uid="uid://dxefa26wkbgtd" path="res://scenes/objects/background.tscn" id="19_olh7b"]
+[ext_resource type="AudioStream" uid="uid://d2kd3hwq681dx" path="res://assets/audio/Above the Peaks (1).mp3" id="19_slyx1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -384,6 +385,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.590
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.590968, 0.339031, -26.6744)
 
 [node name="Background" parent="." instance=ExtResource("19_olh7b")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_slyx1")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]

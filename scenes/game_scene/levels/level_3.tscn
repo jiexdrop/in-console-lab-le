@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=34 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://1lfc8dg377pe" path="res://scenes/objects/lever.gd" id="19_3bm7s"]
 [ext_resource type="Script" uid="uid://cjibxyoww12co" path="res://scenes/game_scene/levels/bridge_creator.gd" id="20_oxc23"]
 [ext_resource type="Script" uid="uid://c3f6tea6kytvx" path="res://scenes/game_scene/levels/pick_right_lever.gd" id="21_v0u1s"]
+[ext_resource type="AudioStream" uid="uid://cvjgl0k1sete4" path="res://assets/audio/Mountain Echoes.mp3" id="22_ivmic"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
@@ -434,6 +435,11 @@ sunny = NodePath("../Sunny")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickRightLever"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103455, 2.05409, 0.634644)
 shape = SubResource("BoxShape3D_oxc23")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_ivmic")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]
