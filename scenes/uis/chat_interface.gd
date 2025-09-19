@@ -25,13 +25,9 @@ func _ready() -> void:
 
 func _on_chat_input_gui_input(event: InputEvent):
 	if event is InputEventKey and event.pressed:
-		if event.is_action_pressed("talk"):
+		if event.is_action_pressed("talk"):  # Use custom action instead of ui_accept
 			chat_input.accept_event()
-			# If chat input has text, send it; otherwise close chat
-			if chat_input.text.strip_edges() != "":
-				send()
-			else:
-				hide_chat()
+			send_message_and_close()
 
 # Handle enter key when chat is closed or input doesn't have focus
 func _unhandled_key_input(event: InputEvent):
@@ -79,3 +75,11 @@ func append_line_user(line: String) -> void:
 func append_line_agent(line: String) -> void:
 	print("got agent: " + line)
 	chat_history.text += "Sunny: " + line + "\n"
+	
+func send_message_and_close() -> void:
+	# If there's text in the input, send it
+	if chat_input.text.strip_edges() != "":
+		send()
+	
+	# Always close the chat after
+	hide_chat()

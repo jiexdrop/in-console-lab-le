@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxefa26wkbgtd"]
+[gd_scene load_steps=7 format=3 uid="uid://dxefa26wkbgtd"]
 
 [ext_resource type="Shader" uid="uid://cvms733k7f23a" path="res://resources/shader/mountains.gdshader" id="1_iiqoh"]
+[ext_resource type="Texture2D" uid="uid://cqdn5mxo08njm" path="res://assets/images/grass14.png" id="2_8u8tn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qmvo6"]
 render_priority = 0
@@ -38,6 +39,11 @@ shader_parameter/num_peaks = 20
 shader_parameter/mountain_height = 0.343
 shader_parameter/seed = 266.344
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ruc3x"]
+albedo_texture = ExtResource("2_8u8tn")
+uv1_scale = Vector3(1000, 1000, 1000)
+texture_filter = 0
+
 [node name="Background" type="MeshInstance3D"]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
@@ -62,3 +68,8 @@ radius = 100.0
 radial_segments = 40
 rings = 30
 material = SubResource("ShaderMaterial_iiqoh")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+size = Vector3(500, 1, 500)
+material = SubResource("StandardMaterial3D_ruc3x")

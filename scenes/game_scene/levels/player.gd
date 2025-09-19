@@ -112,12 +112,13 @@ func remove_outline(lever: Lever):
 		mesh_instance_2.material_overlay = null
 
 func _input(event: InputEvent) -> void:
-	# Handle escape key for chat closing with highest priority
-	if chat_interface.is_chat_open and event.is_action_pressed("ui_cancel"):
-		chat_interface.hide_chat()
+	# Handle enter key for chat with highest priority
+	if chat_interface.is_chat_open and event.is_action_pressed("talk"):
+		# Send the message and close chat
+		chat_interface.send_message_and_close()
 		input_disabled = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		get_viewport().set_input_as_handled()  # Consume the event
+		get_viewport().set_input_as_handled()
 		return
 	
 	if input_disabled:
@@ -125,26 +126,32 @@ func _input(event: InputEvent) -> void:
 	if chat_interface.is_chat_open:
 		return
 	
-	# Add this section for the talk input
+	# Handle talk input to open chat
 	if event.is_action_pressed("talk"):
 		chat_interface.show_chat()
-		input_disabled = true
+		input_disabled = true  # This line is correct
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_viewport().set_input_as_handled()  # This consumes the event
+		get_viewport().set_input_as_handled()
 		return
 	
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * mouse_sensitivity
 		pitch -= event.relative.y * mouse_sensitivity
-		pitch = clamp(pitch, -1.2, 1.2) # limit looking up/down
+		pitch = clamp(pitch, -1.2, 1.2)
 		rotation.y = yaw
 		cam.rotation.x = pitch
 
 func _physics_process(delta: float) -> void:
 	_check_fall_status(delta)
 	
-	if input_disabled:
+	# Don't process ANY input when chat is open or input is disabled
+	if input_disabled or chat_interface.is_chat_open:
+		# Still apply gravity even when input is disabled
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		move_and_slide()
 		return
+	
 	var input_dir = Vector2.ZERO
 	
 	if Input.is_action_pressed("move_up"):
@@ -164,10 +171,10 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
 
-	# gravity + jumping
+	# gravity + jumping - ONLY check for jump when input is allowed
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	elif Input.is_action_just_pressed("ui_accept"): # default: Space
+	elif Input.is_action_just_pressed("jump"):
 		velocity.y = jump_velocity
 
 	var old_velocity = velocity
@@ -179,10 +186,10 @@ func _physics_process(delta: float) -> void:
 		var collider = collision.get_collider()
 		
 		if collider is CharacterBody3D:
-			var push_vector = old_velocity.normalized() # Adjust strength
+			var push_vector = old_velocity.normalized()
 			collider.velocity = push_vector
-			collider.move_and_slide()  # Move immediately
-
+			collider.move_and_slide()
+			
 func set_input_disabled(value: bool):
 	input_disabled = value
 	if value:

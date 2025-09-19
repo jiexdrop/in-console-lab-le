@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cgqsek1rjbuvj"]
+[gd_scene load_steps=30 format=3 uid="uid://cgqsek1rjbuvj"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_i1l6d"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_c6hhn"]
@@ -46,6 +46,9 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7n1hf"]
 radius = 0.880516
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olh7b"]
+albedo_color = Color(0.239216, 0.270588, 0.309804, 1)
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_i1l6d")
@@ -390,6 +393,80 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.590
 stream = ExtResource("19_slyx1")
 volume_db = -5.0
 autoplay = true
+
+[node name="Pillars" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -9, -6)
+use_collision = true
+size = Vector3(1, 23, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -9, -6)
+use_collision = true
+size = Vector3(1, 23, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -9.5, -24)
+use_collision = true
+size = Vector3(1, 22, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -8, -32)
+use_collision = true
+size = Vector3(1, 25, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, -28)
+use_collision = true
+size = Vector3(1, 25, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -8, -28)
+use_collision = true
+size = Vector3(1, 25, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, -32)
+use_collision = true
+size = Vector3(1, 25, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -10.2349, -24)
+use_collision = true
+size = Vector3(1, 20.5301, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -8, 6)
+use_collision = true
+size = Vector3(1, 25, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, 6)
+use_collision = true
+size = Vector3(1, 25, 1)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, -2.03418)
+use_collision = true
+size = Vector3(1, 25, 1.06836)
+material = SubResource("StandardMaterial3D_olh7b")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -8, -2.03418)
+use_collision = true
+size = Vector3(1, 25, 1.06836)
+material = SubResource("StandardMaterial3D_olh7b")
 
 [connection signal="body_entered" from="SceneGoal" to="." method="_on_scene_goal_body_entered"]
 [connection signal="body_entered" from="GoalForSunny" to="GoalForSunny" method="_on_body_entered"]
