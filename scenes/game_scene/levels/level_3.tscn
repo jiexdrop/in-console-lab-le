@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://drk5b4bpwy4ap"]
+[gd_scene load_steps=36 format=3 uid="uid://drk5b4bpwy4ap"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_ps8dp"]
 [ext_resource type="PackedScene" uid="uid://bush4fy85bbj" path="res://scenes/objects/wall.tscn" id="3_ce5ly"]
 [ext_resource type="PackedScene" uid="uid://epgsjxpc50j6" path="res://scenes/objects/floor.tscn" id="4_qmvo6"]
+[ext_resource type="Texture2D" uid="uid://judxqd1ljoel" path="res://assets/images/bloem_field_sunrise_1k.hdr" id="5_52fqs"]
 [ext_resource type="PackedScene" uid="uid://ce10cwvpgn5ig" path="res://scenes/entities/sunny_3.tscn" id="5_mdq82"]
 [ext_resource type="PackedScene" uid="uid://xgx0o0jheiq0" path="res://scenes/objects/door_a.tscn" id="6_oxc23"]
 [ext_resource type="Material" uid="uid://bgvjs6pmpnyio" path="res://resources/mtoon_shader_material.tres" id="7_v0u1s"]
@@ -23,20 +24,17 @@
 [ext_resource type="Script" uid="uid://c3f6tea6kytvx" path="res://scenes/game_scene/levels/pick_right_lever.gd" id="21_v0u1s"]
 [ext_resource type="AudioStream" uid="uid://cvjgl0k1sete4" path="res://assets/audio/Mountain Echoes.mp3" id="22_ivmic"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0o0d5"]
+panorama = ExtResource("5_52fqs")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6i3l"]
-sky_top_color = Color(0.470272, 0.507603, 0.642201, 1)
-sky_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
-ground_bottom_color = Color(0.470272, 0.507603, 0.642201, 1)
-ground_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
-
-[sub_resource type="Sky" id="Sky_623lg"]
-sky_material = SubResource("ProceduralSkyMaterial_w6i3l")
+[sub_resource type="Sky" id="Sky_52fqs"]
+sky_material = SubResource("PanoramaSkyMaterial_0o0d5")
 
 [sub_resource type="Environment" id="Environment_sycfm"]
 background_mode = 2
-sky = SubResource("Sky_623lg")
+sky = SubResource("Sky_52fqs")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fmabn"]
 size = Vector3(2.55286, 3.30359, 2.3894)
@@ -65,6 +63,9 @@ albedo_color = Color(0.239216, 0.270588, 0.309804, 1)
 [node name="Level3" type="Node3D"]
 script = ExtResource("1_3s8h5")
 next_level_path = "uid://dga0fofrb4udc"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sycfm")
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 2, 4)
@@ -134,9 +135,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
 [node name="Floor4" parent="Floors" instance=ExtResource("4_qmvo6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_sycfm")
 
 [node name="Sunny" parent="." instance=ExtResource("5_mdq82")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30602, 0)

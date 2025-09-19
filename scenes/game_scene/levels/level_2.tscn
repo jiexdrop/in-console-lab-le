@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cgqsek1rjbuvj"]
+[gd_scene load_steps=31 format=3 uid="uid://cgqsek1rjbuvj"]
 
 [ext_resource type="Script" uid="uid://bscpsx02a15yb" path="res://scenes/game_scene/levels/level.gd" id="1_i1l6d"]
 [ext_resource type="Script" uid="uid://bgcr7c08edq77" path="res://scenes/game_scene/levels/player.gd" id="2_c6hhn"]
@@ -19,17 +19,19 @@
 [ext_resource type="PackedScene" uid="uid://crypw1wdiu1pr" path="res://assets/kenney_prototype/target.gltf" id="18_7n1hf"]
 [ext_resource type="PackedScene" uid="uid://dxefa26wkbgtd" path="res://scenes/objects/background.tscn" id="19_olh7b"]
 [ext_resource type="AudioStream" uid="uid://d2kd3hwq681dx" path="res://assets/audio/Above the Peaks (1).mp3" id="19_slyx1"]
+[ext_resource type="Texture2D" uid="uid://judxqd1ljoel" path="res://assets/images/bloem_field_sunrise_1k.hdr" id="20_slyx1"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vjvyu"]
+panorama = ExtResource("20_slyx1")
+
+[sub_resource type="Sky" id="Sky_slyx1"]
+sky_material = SubResource("PanoramaSkyMaterial_vjvyu")
+
+[sub_resource type="Environment" id="Environment_g4npr"]
+background_mode = 2
+sky = SubResource("Sky_slyx1")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hhcp"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6i3l"]
-
-[sub_resource type="Sky" id="Sky_623lg"]
-sky_material = SubResource("ProceduralSkyMaterial_w6i3l")
-
-[sub_resource type="Environment" id="Environment_sycfm"]
-background_mode = 2
-sky = SubResource("Sky_623lg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fmabn"]
 size = Vector3(2.55286, 3.30359, 2.3894)
@@ -53,6 +55,9 @@ albedo_color = Color(0.239216, 0.270588, 0.309804, 1)
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_i1l6d")
 next_level_path = "uid://drk5b4bpwy4ap"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g4npr")
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 2, 4)
@@ -125,9 +130,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="Sunny" parent="." instance=ExtResource("6_c6hhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.09782, 1.32014, 0.885618)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_sycfm")
 
 [node name="Door_A" parent="." instance=ExtResource("7_hhxfa")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.38624, 0.496666, -1.36269)
