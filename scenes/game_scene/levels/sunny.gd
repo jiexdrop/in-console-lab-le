@@ -32,6 +32,7 @@ var state: State = State.WANDER
 
 var player: Node3D
 var current_animation: String = ""
+var navigation_map_ready: bool = false
 
 func _ready():
 	player = get_node_or_null(player_path)
@@ -51,6 +52,8 @@ func _ready():
 	
 	call_deferred("actor_setup")
 	print("Sunny spawned at: ", initial_position)
+	
+	NavigationServer3D.map_changed.connect(_on_navigation_map_changed)
 
 func actor_setup():
 	await get_tree().physics_frame
@@ -248,7 +251,12 @@ func _set_navigation_target(target: Vector3) -> void:
 	navigation_agent.target_position = target
 	has_target = true
 
+func _on_navigation_map_changed(_arg) -> void:
+	navigation_map_ready = true
+
 func _pick_random_target() -> void:
+	if not navigation_map_ready:
+		return
 	var navigation_map = navigation_agent.get_navigation_map()
 	var max_attempts = 10
 	var attempt = 0

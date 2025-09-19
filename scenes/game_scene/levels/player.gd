@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var speed: float = 5.0
 @export var mouse_sensitivity: float = 0.003
 @export var jump_velocity: float = 4.5
+@export var fall_threshold: float = -20.0
+@export var fall_check_time: float = 1.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -13,19 +15,32 @@ var yaw: float = 0.0
 var pitch: float = 0.0
 
 var input_disabled: bool = false
+var is_falling: bool = false
+var fall_timer: float = 0.0
+
 
 # How close the player must be to interact
 @export var interact_distance: float = 5.0
 var current_lever: Lever = null
 var outline_material: ShaderMaterial
+var initial_position: Vector3
+
+var sunny : Sunny
+var player_2ainpc: Player2AINPC 
 
 
 func _ready() -> void:
+	initial_position = global_position
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if chat_interface:
 		chat_interface.connect("chat_closed", _on_chat_closed)
 		
 	setup_outline_shader()
+	
+	var level1_node = get_tree().root
+	sunny = level1_node.find_child("Sunny", true, false)
+	player_2ainpc = sunny.find_child("Player2AINPC", true, false)
 
 func _on_chat_closed():
 	input_disabled = false
@@ -126,6 +141,8 @@ func _input(event: InputEvent) -> void:
 		cam.rotation.x = pitch
 
 func _physics_process(delta: float) -> void:
+	_check_fall_status(delta)
+	
 	if input_disabled:
 		return
 	var input_dir = Vector2.ZERO
@@ -172,3 +189,29 @@ func set_input_disabled(value: bool):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _check_fall_status(delta: float) -> void:
+	# Check if NPC is below the fall threshold
+	if global_position.y < fall_threshold:
+		if not is_falling:
+			is_falling = true
+			fall_timer = 0.0
+			print("WARNING: Sunny is falling into the void!")
+			player_2ainpc.notify("The player fell into the void, and will be teleported back to the start. React accordingly.")
+		else:
+			fall_timer += delta
+			if fall_timer >= fall_check_time:
+				_rescue_from_void()
+	else:
+		# Reset fall status if back on safe ground
+		if is_falling and is_on_floor():
+			is_falling = false
+			fall_timer = 0.0
+			print("Sunny is back on safe ground")
+
+func _rescue_from_void() -> void:
+	print("Rescuing Player from the void - teleporting to initial position")
+	
+	# Reset position and physics
+	global_position = initial_position
+	velocity = Vector3.ZERO
