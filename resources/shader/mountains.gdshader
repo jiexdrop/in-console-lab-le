@@ -8,6 +8,7 @@ uniform float mountain_scale : hint_range(1.0, 50.0) = 20.0;
 uniform float mountain_scale_2 : hint_range(0.0, 1.0) = 0.5;
 uniform int num_peaks : hint_range(3, 20) = 8;
 uniform float mountain_height : hint_range(0.0, 1.0) = 0.3;
+uniform float seed : hint_range(0.0, 1000.0) = 0.0;
 
 void fragment() {
     vec2 uv = UV;
@@ -20,9 +21,9 @@ void fragment() {
     int segment = int(uv.x / segment_width);
     float local_x = mod(uv.x, segment_width) / segment_width;
     
-    // Generate heights for current and next segment
-    float height1 = sin(float(segment) * mountain_scale) * mountain_height * mountain_scale_2 + mountain_height;
-    float height2 = sin(float((segment + 1) % num_peaks) * mountain_scale) * mountain_height * mountain_scale_2 + mountain_height;
+    // Generate heights for current and next segment with seed offset
+    float height1 = sin((float(segment) + seed) * mountain_scale) * mountain_height * mountain_scale_2 + mountain_height;
+    float height2 = sin((float((segment + 1) % num_peaks) + seed) * mountain_scale) * mountain_height * mountain_scale_2 + mountain_height;
     
     // Linear interpolation between segment heights
     mountain_y = mix(height1, height2, local_x);
